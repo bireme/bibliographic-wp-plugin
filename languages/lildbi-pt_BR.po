@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LILDBI-WEB 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-10 18:01-0300\n"
-"PO-Revision-Date: 2015-09-10 18:04-0300\n"
+"POT-Creation-Date: 2015-09-10 18:43-0300\n"
+"PO-Revision-Date: 2015-09-10 18:45-0300\n"
 "Last-Translator: Wilson Moura <mourawil@paho.org>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -49,171 +49,179 @@ msgstr "AddThis identificador"
 msgid "Google Analytics code"
 msgstr "Código do Google Analytics"
 
-#: ../settings.php:37
+#: ../settings.php:34
+msgid "About LILDBI-WEB URL page"
+msgstr "URL da página \"Sobre o LILDBI-WEB\""
+
+#: ../settings.php:38
+msgid "Tutorials URL page"
+msgstr "URL da página \"Tutoriais\""
+
+#: ../settings.php:45
 msgid "Save Changes"
 msgstr "Salvar alterações"
 
-#: ../template/resource.php:66
-#: ../template/home.php:85
+#: ../template/resource.php:68
+#: ../template/home.php:87
 msgid "Home"
 msgstr ""
 
-#: ../template/resource.php:67
-#: ../template/home.php:86
+#: ../template/resource.php:69
+#: ../template/home.php:88
 msgid "About LILDBI-WEB"
 msgstr "Sobre o LILDBI-WEB"
 
-#: ../template/resource.php:68
-#: ../template/home.php:87
+#: ../template/resource.php:70
+#: ../template/home.php:89
 msgid "Tutorials"
 msgstr "Tutoriais"
 
-#: ../template/resource.php:82
-#: ../template/home.php:101
+#: ../template/resource.php:84
+#: ../template/home.php:103
 msgid "Search Documents"
 msgstr "Buscar Documentos"
 
-#: ../template/resource.php:83
-#: ../template/home.php:102
+#: ../template/resource.php:85
+#: ../template/home.php:104
 msgid "Search"
 msgstr "Pesquisar"
 
-#: ../template/resource.php:84
-#: ../template/home.php:103
+#: ../template/resource.php:86
+#: ../template/home.php:105
 msgid "Tip! You can do your search using boolean operators."
 msgstr "Dica! Você pode fazer sua pesquisa utilizando operadores booleanos."
 
-#: ../template/resource.php:90
-#: ../template/home.php:112
+#: ../template/resource.php:92
+#: ../template/home.php:114
 msgid "HOME"
 msgstr ""
 
-#: ../template/resource.php:95
 #: ../template/resource.php:97
-#: ../template/home.php:120
+#: ../template/resource.php:99
 #: ../template/home.php:122
+#: ../template/home.php:124
 msgid "Presentation format"
 msgstr "Formato de apresentação"
 
-#: ../template/resource.php:98
-#: ../template/home.php:123
+#: ../template/resource.php:100
+#: ../template/home.php:125
 msgid "Short"
 msgstr "Curto"
 
-#: ../template/resource.php:99
-#: ../template/home.php:124
+#: ../template/resource.php:101
+#: ../template/home.php:126
 msgid "Detailed"
 msgstr "detalhado"
 
-#: ../template/resource.php:103
 #: ../template/resource.php:105
-#: ../template/home.php:128
+#: ../template/resource.php:107
 #: ../template/home.php:130
+#: ../template/home.php:132
 msgid "Order by"
 msgstr "Ordem do resultado"
 
-#: ../template/resource.php:106
-#: ../template/home.php:131
+#: ../template/resource.php:108
+#: ../template/home.php:133
 msgid "Relevance"
 msgstr "Relevância"
 
-#: ../template/resource.php:107
-#: ../template/home.php:132
+#: ../template/resource.php:109
+#: ../template/home.php:134
 msgid "Descending year"
 msgstr "Ano descrescente"
 
-#: ../template/resource.php:108
-#: ../template/home.php:133
+#: ../template/resource.php:110
+#: ../template/home.php:135
 msgid "Ascending year"
 msgstr "Ano crescente"
 
-#: ../template/resource.php:112
 #: ../template/resource.php:114
-#: ../template/home.php:137
+#: ../template/resource.php:116
 #: ../template/home.php:139
+#: ../template/home.php:141
 msgid "Documents per page"
 msgstr "Documentos por página"
 
-#: ../template/resource.php:176
-#: ../template/home.php:202
+#: ../template/resource.php:178
+#: ../template/home.php:204
 msgid " in "
 msgstr "em"
 
-#: ../template/resource.php:189
-#: ../template/home.php:215
+#: ../template/resource.php:191
+#: ../template/home.php:217
 msgid "Full Text"
 msgstr "Texto Completo"
 
-#: ../template/resource.php:196
-#: ../template/home.php:223
+#: ../template/resource.php:198
+#: ../template/home.php:225
 msgid "ABSTRACT"
 msgstr "RESUMO"
 
-#: ../template/resource.php:206
-#: ../template/home.php:235
+#: ../template/resource.php:208
+#: ../template/home.php:237
 msgid "SUBJECTS"
 msgstr "ASSUNTOS"
 
-#: ../template/resource.php:223
-#: ../template/home.php:262
+#: ../template/resource.php:225
+#: ../template/home.php:264
 msgid "Main Subject"
 msgstr "Assunto Principal"
 
-#: ../template/resource.php:237
-#: ../template/home.php:291
+#: ../template/resource.php:239
+#: ../template/home.php:293
 msgid "Publication Type"
 msgstr "Tipo de Publicação"
 
-#: ../template/resource.php:251
-#: ../template/resource.php:265
-#: ../template/home.php:320
+#: ../template/resource.php:253
+#: ../template/resource.php:267
+#: ../template/home.php:322
 msgid "Database"
 msgstr "Base de Dados"
 
-#: ../template/resource.php:279
-#: ../template/home.php:378
+#: ../template/resource.php:281
+#: ../template/home.php:380
 msgid "Limits"
 msgstr "Limites"
 
-#: ../template/resource.php:293
-#: ../template/home.php:407
+#: ../template/resource.php:295
+#: ../template/home.php:409
 msgid "Language"
 msgstr "Idioma"
 
-#: ../template/resource.php:307
-#: ../template/home.php:436
+#: ../template/resource.php:309
+#: ../template/home.php:438
 msgid "Journal"
 msgstr "Revistas"
 
-#: ../template/resource.php:321
-#: ../template/home.php:465
+#: ../template/resource.php:323
+#: ../template/home.php:467
 msgid "Year"
 msgstr "Ano de Publicação"
 
-#: ../template/home.php:108
+#: ../template/home.php:110
 msgid "No results found"
 msgstr "Nenhum resultado encontrado"
 
-#: ../template/home.php:113
+#: ../template/home.php:115
 msgid " document"
 msgstr "documento"
 
-#: ../template/home.php:115
+#: ../template/home.php:117
 msgid "Recent documents"
 msgstr "Documentos mais recentes"
 
-#: ../template/home.php:284
-#: ../template/home.php:313
-#: ../template/home.php:342
-#: ../template/home.php:371
-#: ../template/home.php:400
-#: ../template/home.php:429
-#: ../template/home.php:458
-#: ../template/home.php:487
+#: ../template/home.php:286
+#: ../template/home.php:315
+#: ../template/home.php:344
+#: ../template/home.php:373
+#: ../template/home.php:402
+#: ../template/home.php:431
+#: ../template/home.php:460
+#: ../template/home.php:489
 msgid "Show more"
 msgstr "Mostrar mais"
 
-#: ../template/home.php:349
+#: ../template/home.php:351
 msgid "Publication Country"
 msgstr "País de Publicação"
 
