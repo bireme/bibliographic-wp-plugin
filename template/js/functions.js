@@ -5,6 +5,7 @@ $j(window).load(function(){
 	reportarErro();
 	sugerirTag();
 	showTips();
+	show_more_list();
 });
 
 function change_count(elem) {
@@ -29,6 +30,28 @@ function change_sort(obj){
 function showTips(){
 	$j('.tooltip').tooltipster({
 		animation: 'fade',
+	});
+}
+
+function show_more_list(){
+	$j('.more-items a').click(function() {
+		var element = $j(this).parent().prev().children('.hide');
+		if ( element.length ) {
+			element.each(function( index ) {
+				if ( index < 5 ) {
+  				$j(this).removeClass('hide');
+        }
+        else {
+          return false;
+        }
+			});
+
+      var el = $j(this).parent().prev().children('.hide');
+
+      if ( !el.length ) {
+        $j(this).parent().hide();
+      }
+		}
 	});
 }
 

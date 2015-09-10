@@ -5,7 +5,7 @@ class Paginator{
     var $start;
     var $output;
     var $pag = array();
-    var $default_count = 20;
+    var $default_count = 10;
     var $current_page;
 
     function Paginator($total, $start)
@@ -20,7 +20,7 @@ class Paginator{
         $pag['total'] = $this->total;
         $pag['total_formatted'] = number_format($pag['total'], 0, ',', '.');
         $pag['start'] = $this->start;
-        $pag['total_pages'] = (($pag['total']/$this->count) % 10 == 0) ? (int)($pag['total']/$this->count) : (int)($pag['total']/$this->count+1);
+        $pag['total_pages'] = (($this->count == 1) || ($pag['total']/$this->count) % 10 == 0) ? (int)($pag['total']/$this->count) : (int)($pag['total']/$this->count+1);
         $pag['count'] = $this->count;
 
         $range_min = (($this->current_page-5) > 0) ? $this->current_page-5 : 1;

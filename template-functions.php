@@ -75,7 +75,7 @@ if ( !function_exists('real_site_url') ) {
         $site_url = get_site_url();
 
         // check for multi-language-framework plugin
-        if ( function_exists('mlf_parseURL') ) {
+        if ( is_plugin_active('multi-language-framework/multi-language-framework.php') ) {
             global $mlf_config;
 
             $current_language = substr( strtolower(get_bloginfo('language')),0,2 );
@@ -84,6 +84,16 @@ if ( !function_exists('real_site_url') ) {
                 $site_url .= '/' . $current_language;
             }
         }
+        // check for polylang plugin
+        elseif (is_plugin_active('polylang/polylang.php')) {
+            $defLang = pll_default_language();
+            $curLang = pll_current_language();
+            
+            if ($defLang != $curLang) {
+                $site_url .= '/' . $curLang;
+            }
+        }
+
         if ($path != ''){
             $site_url .= '/' . $path;
         }
