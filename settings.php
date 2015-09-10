@@ -31,11 +31,11 @@ function lildbi_page_admin() {
                             <td><input type="text" name="lildbi_config[google_analytics_code]" value="<?php echo $config['google_analytics_code'] ?>" class="regular-text code"></td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row"><?php _e('About LILDBI-WEB URL', 'lildbi'); ?>:</th>
+                            <th scope="row"><?php _e('About LILDBI-WEB URL page', 'lildbi'); ?>:</th>
                             <td><input type="text" name="lildbi_config[about]" value="<?php echo $config['about'] ?>" class="regular-text code"></td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row"><?php _e('LILDBI-WEB Tutorials URL', 'lildbi'); ?>:</th>
+                            <th scope="row"><?php _e('LILDBI-WEB Tutorials URL page', 'lildbi'); ?>:</th>
                             <td><input type="text" name="lildbi_config[tutorials]" value="<?php echo $config['tutorials'] ?>" class="regular-text code"></td>
                         </tr>
                     </tbody>
