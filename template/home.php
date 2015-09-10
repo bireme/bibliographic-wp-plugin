@@ -13,9 +13,11 @@ $order = array(
         'YEAR_DESC' => 'publication_year desc'
     );
 
-$lildbi_config = get_option('lildbi_config');
+$lildbi_config         = get_option('lildbi_config');
 $lildbi_initial_filter = $lildbi_config['initial_filter'];
-$lildbi_addthis_id = $lildbi_config['addthis_profile_id'];
+$lildbi_addthis_id     = $lildbi_config['addthis_profile_id'];
+$lildbi_about          = $lildbi_config['about'];
+$lildbi_tutorials      = $lildbi_config['tutorials'];
 
 $site_language = strtolower(get_bloginfo('language'));
 $lang_dir = substr($site_language,0,2);
@@ -25,11 +27,11 @@ $query = $_GET['s'] . $_GET['q'];
 $query = stripslashes( trim($query) );
 
 $user_filter = stripslashes($_GET['filter']);
-$page = ( !empty($_GET['page']) ? $_GET['page'] : 1 );
+$page   = ( !empty($_GET['page']) ? $_GET['page'] : 1 );
 $format = ( !empty($_GET['format']) ? $_GET['format'] : '' );
-$sort = ( !empty($_GET['sort']) ? $order[$_GET['sort']] : 'created_date desc' );
-$count = ( !empty($_GET['count']) ? $_GET['count'] : 10 );
-$total = 0;
+$sort   = ( !empty($_GET['sort']) ? $order[$_GET['sort']] : 'created_date desc' );
+$count  = ( !empty($_GET['count']) ? $_GET['count'] : 10 );
+$total  = 0;
 $filter = '';
 
 if ($lildbi_initial_filter != ''){
@@ -83,8 +85,8 @@ $pages->paginate($page_url_params);
                 <div class="menu">
                     <ul id="prime_nav" class="menu">
                         <li><a href="<?php echo real_site_url(); ?>"><span><?php _e('Home','lildbi'); ?></span></a></li>
-                        <li><a href="#"><span><?php _e('About LILDBI-WEB', 'lildbi') ?></span></a></li>
-                        <li><a href="#"><span><?php _e('Tutorials','lildbi'); ?></span></a></li>
+                        <li><a href="<?php echo $lildbi_about; ?>"><span><?php _e('About LILDBI-WEB', 'lildbi') ?></span></a></li>
+                        <li><a href="<?php echo $lildbi_tutorials; ?>"><span><?php _e('Tutorials','lildbi'); ?></span></a></li>
                     </ul>
                 </div>
             </nav>

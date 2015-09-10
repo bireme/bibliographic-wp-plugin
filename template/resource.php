@@ -5,9 +5,11 @@ Template Name: LILDBI-WEB Detail
 
 global $lildbi_service_url, $lildbi_plugin_slug;
 
-$lildbi_config = get_option('lildbi_config');
+$lildbi_config         = get_option('lildbi_config');
 $lildbi_initial_filter = $lildbi_config['initial_filter'];
-$lildbi_addthis_id = $lildbi_config['addthis_profile_id'];
+$lildbi_addthis_id     = $lildbi_config['addthis_profile_id'];
+$lildbi_about          = $lildbi_config['about'];
+$lildbi_tutorials      = $lildbi_config['tutorials'];
 
 $referer = wp_get_referer();
 $path = parse_url($referer);
@@ -33,9 +35,9 @@ if ($lildbi_initial_filter != ''){
     $filter = $user_filter;
 }
 
-$request_uri = $_SERVER["REQUEST_URI"];
+$request_uri   = $_SERVER["REQUEST_URI"];
 $request_parts = explode('/', $request_uri);
-$resource_id = end($request_parts);
+$resource_id   = end($request_parts);
 
 $site_language = strtolower(get_bloginfo('language'));
 $lang_dir = substr($site_language,0,2);
@@ -64,8 +66,8 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
                 <div class="menu">
                     <ul id="prime_nav" class="menu">
                         <li><a href="<?php echo real_site_url(); ?>"><span><?php _e('Home','lildbi'); ?></span></a></li>
-                        <li><a href="#"><span><?php _e('About LILDBI-WEB', 'lildbi') ?></span></a></li>
-                        <li><a href="#"><span><?php _e('Tutorials','lildbi'); ?></span></a></li>
+                        <li><a href="<?php echo $lildbi_about; ?>"><span><?php _e('About LILDBI-WEB', 'lildbi') ?></span></a></li>
+                        <li><a href="<?php echo $lildbi_tutorials; ?>"><span><?php _e('Tutorials','lildbi'); ?></span></a></li>
                     </ul>
                 </div>
             </nav>

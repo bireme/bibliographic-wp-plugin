@@ -12,12 +12,12 @@ $lildbi_config = get_option('lildbi_config');
 $site_language = strtolower(get_bloginfo('language'));
 $lang_dir = substr($site_language,0,2);
 
-$query = ( isset($_GET['s']) ? $_GET['s'] : $_GET['q'] );
+$query       = ( isset($_GET['s']) ? $_GET['s'] : $_GET['q'] );
 $user_filter = stripslashes($_GET['filter']);
-$page = ( isset($_GET['page']) ? $_GET['page'] : 1 );
-$total = 0;
-$count = 10;
-$filter = '';
+$page        = ( isset($_GET['page']) ? $_GET['page'] : 1 );
+$total       = 0;
+$count       = 10;
+$filter      = '';
 
 if ($lildbi_initial_filter != ''){
     if ($user_filter != ''){

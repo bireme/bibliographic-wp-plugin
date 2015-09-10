@@ -30,6 +30,14 @@ function lildbi_page_admin() {
                             <th scope="row"><?php _e('Google Analytics code', 'lildbi'); ?>:</th>
                             <td><input type="text" name="lildbi_config[google_analytics_code]" value="<?php echo $config['google_analytics_code'] ?>" class="regular-text code"></td>
                         </tr>
+                        <tr valign="top">
+                            <th scope="row"><?php _e('About URL', 'lildbi'); ?>:</th>
+                            <td><input type="text" name="lildbi_config[about]" value="<?php echo $config['about'] ?>" class="regular-text code"></td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row"><?php _e('Tutorials URL', 'lildbi'); ?>:</th>
+                            <td><input type="text" name="lildbi_config[tutorials]" value="<?php echo $config['tutorials'] ?>" class="regular-text code"></td>
+                        </tr>
                     </tbody>
                 </table>
 
