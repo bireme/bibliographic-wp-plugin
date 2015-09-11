@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LILDBI-WEB 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-10 18:43-0300\n"
-"PO-Revision-Date: 2015-09-10 18:43-0300\n"
+"POT-Creation-Date: 2015-09-11 09:12-0300\n"
+"PO-Revision-Date: 2015-09-11 09:12-0300\n"
 "Last-Translator: Wilson Moura <mourawil@paho.org>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -202,6 +202,10 @@ msgstr ""
 
 #: ../template/home.php:115
 msgid " document"
+msgstr ""
+
+#: ../template/home.php:115
+msgid " documents"
 msgstr ""
 
 #: ../template/home.php:117

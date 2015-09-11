@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LILDBI-WEB 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-10 18:43-0300\n"
-"PO-Revision-Date: 2015-09-10 18:45-0300\n"
+"POT-Creation-Date: 2015-09-11 09:12-0300\n"
+"PO-Revision-Date: 2015-09-11 09:13-0300\n"
 "Last-Translator: Wilson Moura <mourawil@paho.org>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -111,7 +111,7 @@ msgstr "Curto"
 #: ../template/resource.php:101
 #: ../template/home.php:126
 msgid "Detailed"
-msgstr "detalhado"
+msgstr "Detalhado"
 
 #: ../template/resource.php:105
 #: ../template/resource.php:107
@@ -205,6 +205,10 @@ msgstr "Nenhum resultado encontrado"
 #: ../template/home.php:115
 msgid " document"
 msgstr "documento"
+
+#: ../template/home.php:115
+msgid " documents"
+msgstr "documentos"
 
 #: ../template/home.php:117
 msgid "Recent documents"
