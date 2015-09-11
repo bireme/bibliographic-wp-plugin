@@ -112,7 +112,7 @@ $pages->paginate($page_url_params);
                     <header class="row-fluid border-bottom">
                         <?php if ( ( $query != '' || $user_filter != '' ) && strval($total) > 0) :?>
                             <h1 class="h1-header"><span class="breadcrumb-home"><a href="<?php echo real_site_url($lildbi_plugin_slug); ?>"><?php _e('HOME','lildbi'); ?></a></span> / <?php echo ( strlen($query) > 35 ? substr($query,0,35) . '...' : $query ); ?></h1>
-                            <div class="count-docs pull-right"><?php echo $total; ?> <?php echo ($total == 1) ? __(' document') : __(' documents'); ?></div>
+                            <div class="count-docs pull-right"><?php echo $total; ?> <?php echo ($total == 1) ? __(' document', 'lildbi') : __(' documents', 'lildbi'); ?></div>
                         <?php else: ?>
                             <h1 class="h1-header"><?php _e('Recent documents', 'lildbi') ?></h1>
                         <?php endif; ?>
