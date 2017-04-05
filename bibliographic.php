@@ -1,35 +1,35 @@
 <?php
 /*
-Plugin Name: LILDBI-WEB
+Plugin Name: Bibliographic
 Plugin URI: http://reddes.bvsalud.org/projects/fi-admin/
-Description: List bibliographic references metadata from FI-ADMIN.
+Description: Search bibliographic records from FI-ADMIN.
 Author: BIREME/OPAS/OMS
 Version: 0.1
 Author URI: http://reddes.bvsalud.org/
 */
 
-define('LILDBI_PLUGIN_VERSION', '0.1' );
+define('BIBLIOGRAPHIC_PLUGIN_VERSION', '0.1' );
 
-define('LILDBI_PLUGIN_SYMBOLIC_LINK', false );
-define('LILDBI_PLUGIN_DIRNAME', 'lildbi-web' );
+define('BIBLIOGRAPHIC_SYMBOLIC_LINK', false );
+define('BIBLIOGRAPHIC_PLUGIN_DIRNAME', 'bibliographic' );
 
-if(LILDBI_PLUGIN_SYMBOLIC_LINK == true) {
-    define('LILDBI_PLUGIN_PATH',  ABSPATH . 'wp-content/plugins/' . LILDBI_PLUGIN_DIRNAME );
+if(BIBLIOGRAPHIC_PLUGIN_SYMBOLIC_LINK == true) {
+    define('BIBLIOGRAPHIC_PLUGIN_PATH',  ABSPATH . 'wp-content/plugins/' . BIBLIOGRAPHIC_PLUGIN_DIRNAME );
 } else {
-    define('LILDBI_PLUGIN_PATH',  plugin_dir_path(__FILE__) );
+    define('BIBLIOGRAPHIC_PLUGIN_PATH',  plugin_dir_path(__FILE__) );
 }
 
-define('LILDBI_PLUGIN_DIR',   plugin_basename( LILDBI_PLUGIN_PATH ) );
-define('LILDBI_PLUGIN_URL',   plugin_dir_url(__FILE__) );
+define('BIBLIOGRAPHIC_PLUGIN_DIR',   plugin_basename( BIBLIOGRAPHIC_PLUGIN_PATH ) );
+define('BIBLIOGRAPHIC_PLUGIN_URL',   plugin_dir_url(__FILE__) );
 
 
-require_once(LILDBI_PLUGIN_PATH . '/settings.php');
-require_once(LILDBI_PLUGIN_PATH . '/template-functions.php');
+require_once(BIBLIOGRAPHIC_PLUGIN_PATH . '/settings.php');
+require_once(BIBLIOGRAPHIC_PLUGIN_PATH . '/template-functions.php');
 
-if(!class_exists('LILDBI_WEB_Plugin')) {
-    class LILDBI_WEB_Plugin {
+if(!class_exists('Bibliographic_Plugin')) {
+    class Bibliographic_Plugin {
 
-        private $plugin_slug = 'lildbi';
+        private $plugin_slug = 'biblio';
         private $service_url = 'http://fi-admin.teste.bvsalud.org/';
 
         /**
@@ -69,45 +69,45 @@ if(!class_exists('LILDBI_WEB_Plugin')) {
 
         function load_translation(){
             // Translations
-            load_plugin_textdomain( 'lildbi', false,  LILDBI_PLUGIN_DIR . '/languages' );
+            load_plugin_textdomain( 'biblio', false,  BIBLIOGRAPHIC_PLUGIN_DIR . '/languages' );
         }
 
         function plugin_init() {
-            $lildbi_config = get_option('lildbi_config');
+            $biblio_config = get_option('biblio_config');
 
-            if ($lildbi_config && $lildbi_config['plugin_slug'] != ''){
-                $this->plugin_slug = $lildbi_config['plugin_slug'];
+            if ($biblio_config && $biblio_config['plugin_slug'] != ''){
+                $this->plugin_slug = $biblio_config['plugin_slug'];
             }
 
         }
 
         function admin_menu() {
-            add_options_page(__('LILDBI-WEB Settings', 'lildbi'), __('LILDBI-WEB', 'lildbi'),
-                'manage_options', 'lildbi', 'lildbi_page_admin');
+            add_options_page(__('Bibliographic Settings', 'biblio'), __('Bibliographic', 'biblio'),
+                'manage_options', 'biblio', 'biblio_page_admin');
             //call register settings function
             add_action( 'admin_init', array(&$this, 'register_settings'));
         }
 
         function template_redirect() {
-            global $wp, $lildbi_service_url, $lildbi_plugin_slug;
+            global $wp, $biblio_service_url, $biblio_plugin_slug;
             $pagename = $wp->query_vars["pagename"];
 
-            $lildbi_service_url = $this->service_url;
-            $lildbi_plugin_slug = $this->plugin_slug;
+            $biblio_service_url = $this->service_url;
+            $biblio_plugin_slug = $this->plugin_slug;
 
             if ($pagename == $this->plugin_slug || $pagename == $this->plugin_slug . '/resource'
-                || $pagename == $this->plugin_slug . '/lildbi-feed'
+                || $pagename == $this->plugin_slug . '/bibliographic-feed'
                 ) {
 
                 add_action( 'wp_enqueue_scripts', array(&$this, 'page_template_styles_scripts'));
 
                 if ($pagename == $this->plugin_slug){
-                    $template = LILDBI_PLUGIN_PATH . '/template/home.php';
-                }elseif ($pagename == $this->plugin_slug . '/lildbi-feed'){
+                    $template = BIBLIOGRAPHIC_PLUGIN_PATH . '/template/home.php';
+                }elseif ($pagename == $this->plugin_slug . '/bibliographic-feed'){
                     header("Content-Type: text/xml; charset=UTF-8");
-                    $template = LILDBI_PLUGIN_PATH . '/template/rss.php';
+                    $template = BIBLIOGRAPHIC_PLUGIN_PATH . '/template/rss.php';
                 }else{
-                    $template = LILDBI_PLUGIN_PATH . '/template/resource.php';
+                    $template = BIBLIOGRAPHIC_PLUGIN_PATH . '/template/resource.php';
                 }
                 // force status to 200 - OK
                 status_header(200);
@@ -120,9 +120,9 @@ if(!class_exists('LILDBI_WEB_Plugin')) {
 
         function register_sidebars(){
             $args = array(
-                'name' => __('LILDBI-WEB sidebar', 'lildbi'),
-                'id'   => 'lildbi-home',
-                'description' => 'LILDBI-WEB Area',
+                'name' => __('Bibliographic sidebar', 'biblio'),
+                'id'   => 'biblio-home',
+                'description' => 'Bibligraphic Area',
                 'before_widget' => '<section id="%1$s" class="row-fluid marginbottom25 widget_categories">',
                 'after_widget'  => '</section>',
                 'before_title'  => '<header class="row-fluid border-bottom marginbottom15"><h1 class="h1-header">',
@@ -137,7 +137,7 @@ if(!class_exists('LILDBI_WEB_Plugin')) {
             $title = $title ? $title : get_bloginfo();
 
             if ( strpos($pagename, $this->plugin_slug) === 0 ) { //pagename starts with plugin slug
-                return 'LILDBI-WEB | ' . $title;
+                return __('Bibliographic records')  . ' | ' . $title;
             }
 
         }
@@ -154,32 +154,32 @@ if(!class_exists('LILDBI_WEB_Plugin')) {
         }
 
         function page_template_styles_scripts(){
-            wp_enqueue_script('lildbi-tooltipster',  LILDBI_PLUGIN_URL . 'template/js/jquery.tooltipster.min.js');
-            wp_enqueue_script('lildbi',  LILDBI_PLUGIN_URL . 'template/js/functions.js');
-            wp_enqueue_style ('font-awesome', LILDBI_PLUGIN_URL . 'template/css/font-awesome/css/font-awesome.min.css');
-            wp_enqueue_style ('lildbi-tooltipster',  LILDBI_PLUGIN_URL . 'template/css/tooltipster.css');
-            wp_enqueue_style ('lildbi',  LILDBI_PLUGIN_URL . 'template/css/style.css');
+            wp_enqueue_script('biblio-tooltipster',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/js/jquery.tooltipster.min.js');
+            wp_enqueue_script('biblio',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/js/functions.js');
+            wp_enqueue_style ('font-awesome', BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/font-awesome/css/font-awesome.min.css');
+            wp_enqueue_style ('biblio-tooltipster',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/tooltipster.css');
+            wp_enqueue_style ('biblio',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/style.css');
         }
 
 
         function register_settings(){
-            register_setting('lildbi-settings-group', 'lildbi_config');
+            register_setting('biblio-settings-group', 'biblio_config');
         }
 
         function google_analytics_code(){
             global $wp;
 
             $pagename = $wp->query_vars["pagename"];
-            $lildbi_config = get_option('lildbi_config');
+            $biblio_config = get_option('biblio_config');
 
             // check if is defined GA code and pagename starts with plugin slug
-            if ($lildbi_config['google_analytics_code'] != ''
+            if ($biblio_config['google_analytics_code'] != ''
                 && strpos($pagename, $this->plugin_slug) === 0){
         ?>
 
         <script type="text/javascript">
           var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', '<?php echo $lildbi_config['google_analytics_code'] ?>']);
+          _gaq.push(['_setAccount', '<?php echo $biblio_config['google_analytics_code'] ?>']);
           _gaq.push(['_trackPageview']);
 
           (function() {
@@ -195,17 +195,17 @@ if(!class_exists('LILDBI_WEB_Plugin')) {
         }
 
 
-    } // END class LILDBI_WEB_Plugin
-} // END if(!class_exists('LILDBI_WEB_Plugin'))
+    } // END class Bibliographic_Plugin
+} // END if(!class_exists('Bibliographic_Plugin'))
 
-if(class_exists('LILDBI_WEB_Plugin'))
+if(class_exists('Bibliographic_Plugin'))
 {
     // Installation and uninstallation hooks
-    register_activation_hook(__FILE__, array('LILDBI_WEB_Plugin', 'activate'));
-    register_deactivation_hook(__FILE__, array('LILDBI_WEB_Plugin', 'deactivate'));
+    register_activation_hook(__FILE__, array('Bibliographic_Plugin', 'activate'));
+    register_deactivation_hook(__FILE__, array('Bibliographic_Plugin', 'deactivate'));
 
     // instantiate the plugin class
-    $wp_plugin_template = new LILDBI_WEB_Plugin();
+    $wp_plugin_template = new Bibliographic_Plugin();
 }
 
 ?>

@@ -1,15 +1,15 @@
 <?php
 /*
-Template Name: LILDBI-WEB Detail
+Template Name: Bibliographic Detail
 */
 
-global $lildbi_service_url, $lildbi_plugin_slug;
+global $biblio_service_url, $biblio_plugin_slug;
 
-$lildbi_config         = get_option('lildbi_config');
-$lildbi_initial_filter = $lildbi_config['initial_filter'];
-$lildbi_addthis_id     = $lildbi_config['addthis_profile_id'];
-$lildbi_about          = $lildbi_config['about'];
-$lildbi_tutorials      = $lildbi_config['tutorials'];
+$biblio_config         = get_option('biblio_config');
+$biblio_initial_filter = $biblio_config['initial_filter'];
+$biblio_addthis_id     = $biblio_config['addthis_profile_id'];
+$biblio_about          = $biblio_config['about'];
+$biblio_tutorials      = $biblio_config['tutorials'];
 
 $referer = wp_get_referer();
 $path = parse_url($referer);
@@ -25,11 +25,11 @@ if ( array_key_exists( 'query', $path ) ) {
 
 $filter = '';
 $user_filter = stripslashes($output['filter']);
-if ($lildbi_initial_filter != ''){
+if ($biblio_initial_filter != ''){
     if ($user_filter != ''){
-        $filter = $lildbi_initial_filter . ' AND ' . $user_filter;
+        $filter = $biblio_initial_filter . ' AND ' . $user_filter;
     }else{
-        $filter = $lildbi_initial_filter;
+        $filter = $biblio_initial_filter;
     }
 }else{
     $filter = $user_filter;
@@ -42,11 +42,11 @@ $resource_id   = end($request_parts);
 $site_language = strtolower(get_bloginfo('language'));
 $lang_dir = substr($site_language,0,2);
 
-$lildbi_service_request = $lildbi_service_url . 'api/bibliographic/search/?id=biblioref.referenceanalytic.' . $resource_id . '&op=related&lang=' . $lang_dir;
+$biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?id=biblioref.referenceanalytic.' . $resource_id . '&op=related&lang=' . $lang_dir;
 
-//print $lildbi_service_request;
+//print $biblio_service_request;
 
-$response = @file_get_contents($lildbi_service_request);
+$response = @file_get_contents($biblio_service_request);
 
 if ($response){
     $response_json = json_decode($response);
@@ -55,19 +55,19 @@ if ($response){
     //$related_list = $response_json->diaServerResponse[0]->response->docs;
 }
 
-$feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
+$feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 
 ?>
 
-<?php get_header('lildbi');?>
+<?php get_header('biblio');?>
     <div id="content" class="row-fluid">
         <div class="header-menu">
             <nav role="navigation">
                 <div class="menu">
                     <ul id="prime_nav" class="menu">
-                        <li><a href="<?php echo real_site_url(); ?>"><span><?php _e('Home','lildbi'); ?></span></a></li>
-                        <li><a href="<?php echo $lildbi_about; ?>"><span><?php _e('About LILDBI-WEB', 'lildbi') ?></span></a></li>
-                        <li><a href="<?php echo $lildbi_tutorials; ?>"><span><?php _e('Tutorials','lildbi'); ?></span></a></li>
+                        <li><a href="<?php echo real_site_url(); ?>"><span><?php _e('Home','biblio'); ?></span></a></li>
+                        <li><a href="<?php echo $biblio_about; ?>"><span><?php _e('About LILDBI-WEB', 'biblio_') ?></span></a></li>
+                        <li><a href="<?php echo $biblio_tutorials; ?>"><span><?php _e('Tutorials','biblio_'); ?></span></a></li>
                     </ul>
                 </div>
             </nav>
@@ -75,45 +75,45 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
         </div>
         <div class="ajusta2">
             <section class="header-search">
-                <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($lildbi_plugin_slug); ?>">
+                <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($biblio_plugin_slug); ?>">
                     <input type="hidden" name="lang" id="lang" value="<?php echo $lang_dir; ?>">
                     <input type="hidden" name="sort" id="sort" value="">
                     <input type="hidden" name="format" id="format" value="summary">
                     <input type="hidden" name="count" id="count" value="10">
                     <input type="hidden" name="page" id="page" value="1">
-                    <input value="" name="q" class="input-search" id="s" type="text" placeholder="<?php _e('Search Documents', 'lildbi'); ?>">
-                    <input id="searchsubmit" value="<?php _e('Search', 'lildbi'); ?>" type="submit">
-                    <a href="#" title="<?php _e('Tip! You can do your search using boolean operators.', 'lildbi'); ?>" class="help ketchup tooltip"><i class="fa fa-question-circle fa-2x"></i></a>
+                    <input value="" name="q" class="input-search" id="s" type="text" placeholder="<?php _e('Search Documents', 'biblio'); ?>">
+                    <input id="searchsubmit" value="<?php _e('Search', 'biblio'); ?>" type="submit">
+                    <a href="#" title="<?php _e('Tip! You can do your search using boolean operators.', 'biblio'); ?>" class="help ketchup tooltip"><i class="fa fa-question-circle fa-2x"></i></a>
                 </form>
             </section>
             <section id="conteudo">
                 <header class="row-fluid border-bottom">
                     <h1 class="h1-header">
-                        <span class="breadcrumb-home"><a href="<?php echo real_site_url($lildbi_plugin_slug); ?>"><?php _e('HOME','lildbi'); ?></a><?php echo $ref ? $ref : ''; ?></span> / <?php echo ( strlen($resource->reference_title[0]) > 30 ) ? substr($resource->reference_title[0],0,30) . '...' : $resource->reference_title[0]; ?>
+                        <span class="breadcrumb-home"><a href="<?php echo real_site_url($biblio_plugin_slug); ?>"><?php _e('HOME','biblio'); ?></a><?php echo $ref ? $ref : ''; ?></span> / <?php echo ( strlen($resource->reference_title[0]) > 30 ) ? substr($resource->reference_title[0],0,30) . '...' : $resource->reference_title[0]; ?>
                     </h1>
                     <div class="spacer"></div>
                     <div class="resultsBar">
                         <div class="formset">
-                            <label for="output" class="hide"><?php _e('Presentation format', 'lildbi') ?></label>
+                            <label for="output" class="hide"><?php _e('Presentation format', 'biblio') ?></label>
                             <select name="output" id="output" class="inputText" onchange="javascript:change_format(this);">
-                                <option value=""><?php _e('Presentation format', 'lildbi') ?></option>
-                                <option value="summary"><?php _e('Short', 'lildbi') ?></option>
-                                <option value="abstract"><?php _e('Detailed', 'lildbi') ?></option>
+                                <option value=""><?php _e('Presentation format', 'biblio') ?></option>
+                                <option value="summary"><?php _e('Short', 'biblio') ?></option>
+                                <option value="abstract"><?php _e('Detailed', 'biblio') ?></option>
                             </select>
                         </div>
                         <div class="formset">
-                            <label for="order" class="hide"><?php _e('Order by', 'lildbi') ?></label>
+                            <label for="order" class="hide"><?php _e('Order by', 'biblio') ?></label>
                             <select name="order" id="order" class="inputText" onchange="javascript:change_sort(this);">
-                                <option value=""><?php _e('Order by', 'lildbi') ?></option>
-                                <option value="RELEVANCE"><?php _e('Relevance', 'lildbi') ?></option>
-                                <option value="YEAR_DESC"><?php _e('Descending year', 'lildbi') ?></option>
-                                <option value="YEAR_ASC"><?php _e('Ascending year', 'lildbi') ?></option>
+                                <option value=""><?php _e('Order by', 'biblio') ?></option>
+                                <option value="RELEVANCE"><?php _e('Relevance', 'biblio') ?></option>
+                                <option value="YEAR_DESC"><?php _e('Descending year', 'biblio') ?></option>
+                                <option value="YEAR_ASC"><?php _e('Ascending year', 'biblio') ?></option>
                             </select>
                         </div>
                         <div class="formset">
-                            <label for="per_page" class="hide"><?php _e('Documents per page', 'lildbi') ?></label>
+                            <label for="per_page" class="hide"><?php _e('Documents per page', 'biblio') ?></label>
                             <select name="per_page" id="per_page" onchange="change_count(this);">
-                                <option value=""><?php _e('Documents per page', 'lildbi') ?></option>
+                                <option value=""><?php _e('Documents per page', 'biblio') ?></option>
                                 <option value="10" selected="selected">10</option>
                                 <option value="20">20</option>
                                 <option value="30">30</option>
@@ -122,7 +122,7 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
                             </select>
                         </div>
                         <div class="rss_feed">
-				            <a href="<?php echo $feed_url ?>" target="blank"><img src="<?php echo LILDBI_PLUGIN_URL; ?>template/images/icon_RSS.gif" class="rss_feed" ></a>
+				            <a href="<?php echo $feed_url ?>" target="blank"><img src="<?php echo biblio_PLUGIN_URL; ?>template/images/icon_RSS.gif" class="rss_feed" ></a>
                         </div>
                         <!-- AddThis Button BEGIN -->
                         <div class="addthis_toolbox addthis_default_style">
@@ -134,7 +134,7 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
                             <a class="addthis_button_compact"></a>
                         </div>
                         <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $lildbi_addthis_id; ?>"></script>
+                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $biblio_addthis_id; ?>"></script>
                         <!-- AddThis Button END -->
                     </div>
                 </header>
@@ -142,7 +142,7 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
                     <ol class="doc-loop">
                         <li>
                             <h2 class="h2-loop-tit">
-                                <a href="<?php echo real_site_url($lildbi_plugin_slug); ?>resource/<?php echo $resource->django_id; ?>"><?php echo $resource->reference_title[0]; ?></a>
+                                <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/<?php echo $resource->django_id; ?>"><?php echo $resource->reference_title[0]; ?></a>
                                 <?php foreach ( $resource->reference_title as $index => $title ): ?>
                                     <?php if ( $index != 0 ): ?>
                                         <span class="altLang"><?php echo $title; ?></span>
@@ -153,7 +153,7 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
                             <?php if ( $resource->author ): ?>
                                 <p class="row-fluid">
                                     <?php foreach ( $resource->author as $index => $author ):
-                                        echo "<a href='" . real_site_url($lildbi_plugin_slug) . "?filter=author:\"" . $author . "\"'>" . $author . "</a>";
+                                        echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=author:\"" . $author . "\"'>" . $author . "</a>";
                                         echo count($resource->author)-1 != $index ? '; ' : '.';
                                     endforeach; ?>
                                 </p>
@@ -162,7 +162,7 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
                             <?php if ( $resource->journal ): ?>
                                 <p class="row-fluid">
                                     <?php
-                                        echo "<a href='" . real_site_url($lildbi_plugin_slug) . "?filter=journal:\"" . $resource->journal[0] . "\"'>" . $resource->journal[0] . "</a>";
+                                        echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=journal:\"" . $resource->journal[0] . "\"'>" . $resource->journal[0] . "</a>";
                                         if ( $resource->reference_source ):
                                             echo substr($resource->reference_source, strpos($resource->reference_source, ';'), 100);
                                         endif;
@@ -188,14 +188,14 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
                             <?php if ( $resource->link ) : ?>
                                 <p class="row-fluid">
                                     <a href="<?php echo $resource->link[0]; ?>">
-                                        <em class="fa fa-file-text-o"></em> <?php _e('Full Text','lildbi'); ?>
+                                        <em class="fa fa-file-text-o"></em> <?php _e('Full Text','biblio'); ?>
                                     </a>
                                 </p>
                             <?php endif; ?>
 
                             <?php if ( $resource->reference_abstract ): ?>
                                 <p class="row-fluid abstract">
-                                    <strong><?php _e('ABSTRACT','lildbi'); ?></strong>
+                                    <strong><?php _e('ABSTRACT','biblio'); ?></strong>
                                     <?php foreach ( $resource->reference_abstract as $index => $abs ): ?>
                                         <?php $class = $index != 0 ? 'altLang' : ''; ?>
                                         <div class="abstract-version <?php echo $class; ?>"><?php echo $abs; ?></div>
@@ -205,11 +205,11 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
 
                             <?php if ($resource->descriptor ) : ?>
                                 <p class="row-fluid subjects">
-                                    <strong><?php _e('SUBJECTS','lildbi'); ?></strong>
+                                    <strong><?php _e('SUBJECTS','biblio'); ?></strong>
                                     <?php
                                         $subjects = array();
                                         foreach ( $resource->descriptor as $index => $subject ):
-                                            echo "<a href='" . real_site_url($lildbi_plugin_slug) . "?filter=descriptor:\"" . $subject . "\"'>" . $subject . "</a>";
+                                            echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=descriptor:\"" . $subject . "\"'>" . $subject . "</a>";
                                             echo $index != count($resource->descriptor)-1 ? ', ' : '';
                                         endforeach; ?>
                                 </p>
@@ -222,7 +222,7 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
                 <?php if ( $resource->descriptor ): ?>
                     <section class="row-fluid marginbottom25 widget_categories">
                         <header class="row-fluid border-bottom marginbottom15">
-                            <h1 class="h1-header"><?php _e('Main Subject','lildbi'); ?></h1>
+                            <h1 class="h1-header"><?php _e('Main Subject','biblio'); ?></h1>
                         </header>
                         <ul>
                             <?php foreach ( $resource->descriptor as $subject ): ?>
@@ -236,7 +236,7 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
                 <?php if ( $resource->publication_type ): ?>
                     <section class="row-fluid marginbottom25 widget_categories">
                         <header class="row-fluid border-bottom marginbottom15">
-                            <h1 class="h1-header"><?php _e('Publication Type','lildbi'); ?></h1>
+                            <h1 class="h1-header"><?php _e('Publication Type','biblio'); ?></h1>
                         </header>
                         <ul>
                             <?php foreach ( $resource->publication_type as $type ): ?>
@@ -250,7 +250,7 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
                 <?php if ( $resource->database ): ?>
                     <section class="row-fluid marginbottom25 widget_categories">
                         <header class="row-fluid border-bottom marginbottom15">
-                            <h1 class="h1-header"><?php _e('Database','lildbi'); ?></h1>
+                            <h1 class="h1-header"><?php _e('Database','biblio'); ?></h1>
                         </header>
                         <ul>
                             <?php foreach ( $resource->database as $db ): ?>
@@ -264,7 +264,7 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
                 <?php if ( $resource->publication_country ): ?>
                     <section class="row-fluid marginbottom25 widget_categories">
                         <header class="row-fluid border-bottom marginbottom15">
-                            <h1 class="h1-header"><?php _e('Database','lildbi'); ?></h1>
+                            <h1 class="h1-header"><?php _e('Database','biblio'); ?></h1>
                         </header>
                         <ul>
                             <?php foreach ( $resource->publication_country as $cp ): ?>
@@ -278,7 +278,7 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
                 <?php if ( $resource->check_tags ): ?>
                     <section class="row-fluid marginbottom25 widget_categories">
                         <header class="row-fluid border-bottom marginbottom15">
-                            <h1 class="h1-header"><?php _e('Limits','lildbi'); ?></h1>
+                            <h1 class="h1-header"><?php _e('Limits','biblio'); ?></h1>
                         </header>
                         <ul>
                             <?php foreach ( $resource->check_tags as $limit ): ?>
@@ -292,7 +292,7 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
                 <?php if ( $resource->publication_language ): ?>
                     <section class="row-fluid marginbottom25 widget_categories">
                         <header class="row-fluid border-bottom marginbottom15">
-                            <h1 class="h1-header"><?php _e('Language','lildbi'); ?></h1>
+                            <h1 class="h1-header"><?php _e('Language','biblio'); ?></h1>
                         </header>
                         <ul>
                             <?php foreach ( $resource->publication_language as $lang ): ?>
@@ -306,7 +306,7 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
                 <?php if ( $resource->journal ): ?>
                     <section class="row-fluid marginbottom25 widget_categories">
                         <header class="row-fluid border-bottom marginbottom15">
-                            <h1 class="h1-header"><?php _e('Journal','lildbi'); ?></h1>
+                            <h1 class="h1-header"><?php _e('Journal','biblio'); ?></h1>
                         </header>
                         <ul>
                             <?php foreach ( $resource->journal as $journal ): ?>
@@ -320,7 +320,7 @@ $feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($q
                 <?php if ( $resource->publication_year ): ?>
                     <section class="row-fluid marginbottom25 widget_categories">
                         <header class="row-fluid border-bottom marginbottom15">
-                            <h1 class="h1-header"><?php _e('Year','lildbi'); ?></h1>
+                            <h1 class="h1-header"><?php _e('Year','biblio'); ?></h1>
                         </header>
                         <ul>
                             <li class="cat-item">

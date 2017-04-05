@@ -1,11 +1,13 @@
 <?php
 /*
-Template Name: LILDBI-WEB Home
+Template Name: Bibliographic Home
 */
 
-require_once(LILDBI_PLUGIN_PATH . '/lib/Paginator.php');
+require_once(BIBLIOGRAPHIC_PLUGIN_PATH . '/lib/Paginator.php');
 
-global $lildbi_service_url, $lildbi_plugin_slug;
+global $biblio_service_url, $biblio_plugin_slug;
+
+print "[[" . $biblio_plugin_slug . "]]";
 
 $order = array(
         'RELEVANCE' => 'score desc',
@@ -13,11 +15,9 @@ $order = array(
         'YEAR_DESC' => 'publication_year desc'
     );
 
-$lildbi_config         = get_option('lildbi_config');
-$lildbi_initial_filter = $lildbi_config['initial_filter'];
-$lildbi_addthis_id     = $lildbi_config['addthis_profile_id'];
-$lildbi_about          = $lildbi_config['about'];
-$lildbi_tutorials      = $lildbi_config['tutorials'];
+$biblio_config         = get_option('biblio_config');
+$biblio_initial_filter = $biblio_config['initial_filter'];
+$biblio_addthis_id     = $biblio_config['addthis_profile_id'];
 
 $site_language = strtolower(get_bloginfo('language'));
 $lang_dir = substr($site_language,0,2);
@@ -34,22 +34,22 @@ $count  = ( !empty($_GET['count']) ? $_GET['count'] : 10 );
 $total  = 0;
 $filter = '';
 
-if ($lildbi_initial_filter != ''){
+if ($biblio_initial_filter != ''){
     if ($user_filter != ''){
-        $filter = $lildbi_initial_filter . ' AND ' . $user_filter;
+        $filter = $biblio_initial_filter . ' AND ' . $user_filter;
     }else{
-        $filter = $lildbi_initial_filter;
+        $filter = $biblio_initial_filter;
     }
 }else{
     $filter = $user_filter;
 }
 $start = ($page * $count) - $count;
 
-$lildbi_service_request = $lildbi_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&count=' . $count . '&sort=' . urlencode($sort) . '&lang=' . $lang_dir;
+$biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&count=' . $count . '&sort=' . urlencode($sort) . '&lang=' . $lang_dir;
 
-//print $lildbi_service_request;
+//print $biblio_service_request;
 
-$response = @file_get_contents($lildbi_service_request);
+$response = @file_get_contents($biblio_service_request);
 if ($response){
     $response_json = json_decode($response);
     //echo "<pre>"; print_r($response_json); echo "</pre>";
@@ -70,23 +70,23 @@ $params  = !empty($format) ? '&format=' . $format : '';
 $params .= $count != 2 ? '&count=' . $count : '';
 $params .= !empty($_GET['sort']) ? '&sort=' . $_GET['sort'] : '';
 
-$page_url_params = real_site_url($lildbi_plugin_slug) . '?q=' . urlencode($query) . '&filter=' . urlencode($filter) . $params;
-$feed_url = real_site_url($lildbi_plugin_slug) . 'lildbi-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
+$page_url_params = real_site_url($biblio_plugin_slug) . '?q=' . urlencode($query) . '&filter=' . urlencode($filter) . $params;
+$feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 
 $pages = new Paginator($total, $start);
 $pages->paginate($page_url_params);
 
 ?>
 
-<?php get_header('lildbi');?>
+<?php get_header('biblio');?>
     <div id="content" class="row-fluid">
         <div class="header-menu">
             <nav role="navigation">
                 <div class="menu">
                     <ul id="prime_nav" class="menu">
-                        <li><a href="<?php echo real_site_url(); ?>"><span><?php _e('Home','lildbi'); ?></span></a></li>
-                        <li><a href="<?php echo $lildbi_about; ?>"><span><?php _e('About LILDBI-WEB', 'lildbi') ?></span></a></li>
-                        <li><a href="<?php echo $lildbi_tutorials; ?>"><span><?php _e('Tutorials','lildbi'); ?></span></a></li>
+                        <li><a href="<?php echo real_site_url(); ?>"><span><?php _e('Home','biblio'); ?></span></a></li>
+                        <li><a href="<?php echo $biblio_about; ?>"><span><?php _e('About biblio-WEB', 'biblio') ?></span></a></li>
+                        <li><a href="<?php echo $biblio_tutorials; ?>"><span><?php _e('Tutorials','biblio'); ?></span></a></li>
                     </ul>
                 </div>
             </nav>
@@ -94,51 +94,51 @@ $pages->paginate($page_url_params);
         </div>
         <div class="ajusta2">
             <section class="header-search">
-                <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($lildbi_plugin_slug); ?>">
+                <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($biblio_plugin_slug); ?>">
                     <input type="hidden" name="lang" id="lang" value="<?php echo $lang_dir; ?>">
                     <input type="hidden" name="sort" id="sort" value="<?php echo $_GET['sort']; ?>">
                     <input type="hidden" name="format" id="format" value="<?php echo $format ? $format : 'summary'; ?>">
                     <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
                     <input type="hidden" name="page" id="page" value="<?php echo $page; ?>">
-                    <input value='<?php echo $query; ?>' name="q" class="input-search" id="s" type="text" placeholder="<?php _e('Search Documents', 'lildbi'); ?>">
-                    <input id="searchsubmit" value="<?php _e('Search', 'lildbi'); ?>" type="submit">
-                    <a href="#" title="<?php _e('Tip! You can do your search using boolean operators.', 'lildbi'); ?>" class="help ketchup tooltip"><i class="fa fa-question-circle fa-2x"></i></a>
+                    <input value='<?php echo $query; ?>' name="q" class="input-search" id="s" type="text" placeholder="<?php _e('Search Documents', 'biblio'); ?>">
+                    <input id="searchsubmit" value="<?php _e('Search', 'biblio'); ?>" type="submit">
+                    <a href="#" title="<?php _e('Tip! You can do your search using boolean operators.', 'biblio'); ?>" class="help ketchup tooltip"><i class="fa fa-question-circle fa-2x"></i></a>
                 </form>
             </section>
             <section id="conteudo">
                 <?php if ( isset($total) && strval($total) == 0 ) :?>
-                    <h1 class="h1-header"><?php _e('No results found','lildbi'); ?></h1>
+                    <h1 class="h1-header"><?php _e('No results found','biblio'); ?></h1>
                 <?php else :?>
                     <header class="row-fluid border-bottom">
                         <?php if ( ( $query != '' || $user_filter != '' ) && strval($total) > 0) :?>
-                            <h1 class="h1-header"><span class="breadcrumb-home"><a href="<?php echo real_site_url($lildbi_plugin_slug); ?>"><?php _e('HOME','lildbi'); ?></a></span> / <?php echo ( strlen($query) > 35 ? substr($query,0,35) . '...' : $query ); ?></h1>
-                            <div class="count-docs pull-right"><?php echo $total; ?> <?php echo ($total == 1) ? __(' document', 'lildbi') : __(' documents', 'lildbi'); ?></div>
+                            <h1 class="h1-header"><span class="breadcrumb-home"><a href="<?php echo real_site_url($biblio_plugin_slug); ?>"><?php _e('HOME','biblio'); ?></a></span> / <?php echo ( strlen($query) > 35 ? substr($query,0,35) . '...' : $query ); ?></h1>
+                            <div class="count-docs pull-right"><?php echo $total; ?> <?php echo ($total == 1) ? __(' document', 'biblio') : __(' documents', 'biblio'); ?></div>
                         <?php else: ?>
-                            <h1 class="h1-header"><?php _e('Recent documents', 'lildbi') ?></h1>
+                            <h1 class="h1-header"><?php _e('Recent documents', 'biblio') ?></h1>
                         <?php endif; ?>
                         <div class="spacer"></div>
                         <div class="resultsBar">
                             <div class="formset">
-                                <label for="output" class="hide"><?php _e('Presentation format', 'lildbi') ?></label>
+                                <label for="output" class="hide"><?php _e('Presentation format', 'biblio') ?></label>
                                 <select name="output" id="output" class="inputText" onchange="javascript:change_format(this);">
-                                    <option value=""><?php _e('Presentation format', 'lildbi') ?></option>
-                                    <option value="summary" <?php selected( $format, 'summary' ); ?>><?php _e('Short', 'lildbi') ?></option>
-                                    <option value="abstract" <?php selected( $format, 'abstract' ); ?>><?php _e('Detailed', 'lildbi') ?></option>
+                                    <option value=""><?php _e('Presentation format', 'biblio') ?></option>
+                                    <option value="summary" <?php selected( $format, 'summary' ); ?>><?php _e('Short', 'biblio') ?></option>
+                                    <option value="abstract" <?php selected( $format, 'abstract' ); ?>><?php _e('Detailed', 'biblio') ?></option>
                                 </select>
                             </div>
                             <div class="formset">
-                                <label for="order" class="hide"><?php _e('Order by', 'lildbi') ?></label>
+                                <label for="order" class="hide"><?php _e('Order by', 'biblio') ?></label>
                                 <select name="order" id="order" class="inputText" onchange="javascript:change_sort(this);">
-                                    <option value=""><?php _e('Order by', 'lildbi') ?></option>
-                                    <option value="RELEVANCE" <?php selected( $sort, 'score desc' ); ?>><?php _e('Relevance', 'lildbi') ?></option>
-                                    <option value="YEAR_DESC" <?php selected( $sort, 'publication_year desc' ); ?>><?php _e('Descending year', 'lildbi') ?></option>
-                                    <option value="YEAR_ASC" <?php selected( $sort, 'publication_year asc' ); ?>><?php _e('Ascending year', 'lildbi') ?></option>
+                                    <option value=""><?php _e('Order by', 'biblio') ?></option>
+                                    <option value="RELEVANCE" <?php selected( $sort, 'score desc' ); ?>><?php _e('Relevance', 'biblio') ?></option>
+                                    <option value="YEAR_DESC" <?php selected( $sort, 'publication_year desc' ); ?>><?php _e('Descending year', 'biblio') ?></option>
+                                    <option value="YEAR_ASC" <?php selected( $sort, 'publication_year asc' ); ?>><?php _e('Ascending year', 'biblio') ?></option>
                                 </select>
                             </div>
                             <div class="formset">
-                                <label for="per_page" class="hide"><?php _e('Documents per page', 'lildbi') ?></label>
+                                <label for="per_page" class="hide"><?php _e('Documents per page', 'biblio') ?></label>
                                 <select name="per_page" id="per_page" onchange="change_count(this);">
-                                    <option value=""><?php _e('Documents per page', 'lildbi') ?></option>
+                                    <option value=""><?php _e('Documents per page', 'biblio') ?></option>
                                     <option value="10" <?php selected( $count, '10' ); ?>>10</option>
                                     <option value="20" <?php selected( $count, '20' ); ?>>20</option>
                                     <option value="30" <?php selected( $count, '30' ); ?>>30</option>
@@ -147,7 +147,7 @@ $pages->paginate($page_url_params);
                                 </select>
                             </div>
                             <div class="rss_feed">
-    				            <a href="<?php echo $feed_url ?>" target="blank"><img src="<?php echo LILDBI_PLUGIN_URL; ?>template/images/icon_RSS.gif" class="rss_feed" ></a>
+    				            <a href="<?php echo $feed_url ?>" target="blank"><img src="<?php echo biblio_PLUGIN_URL; ?>template/images/icon_RSS.gif" class="rss_feed" ></a>
                             </div>
                             <!-- AddThis Button BEGIN -->
                             <div class="addthis_toolbox addthis_default_style">
@@ -158,7 +158,7 @@ $pages->paginate($page_url_params);
                                 <a class="addthis_button_favorites"></a>
                                 <a class="addthis_button_compact"></a>
                             </div>
-                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $lildbi_addthis_id; ?>"></script>
+                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $biblio_addthis_id; ?>"></script>
                             <!-- AddThis Button END -->
                         </div>
                     </header>
@@ -168,7 +168,7 @@ $pages->paginate($page_url_params);
                                 <li>
                                     <h2 class="h2-loop-tit">
                                         <div class="position"><?php echo $position + $start; ?>. </div>
-                                        <a href="<?php echo real_site_url($lildbi_plugin_slug); ?>resource/<?php echo $docs->django_id; ?>"><?php echo $docs->reference_title[0]; ?></a>
+                                        <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/<?php echo $docs->django_id; ?>"><?php echo $docs->reference_title[0]; ?></a>
                                         <?php foreach ( $docs->reference_title as $index => $title ): ?>
                                             <?php if ( $index != 0 ): ?>
                                                 <span class="altLang"><?php echo $title; ?></span>
@@ -179,7 +179,7 @@ $pages->paginate($page_url_params);
                                     <?php if ( $docs->author ): ?>
                                         <p class="row-fluid">
                                             <?php foreach ( $docs->author as $index => $author ):
-                                                echo "<a href='" . real_site_url($lildbi_plugin_slug) . "?filter=author:\"" . $author . "\"'>" . $author . "</a>";
+                                                echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=author:\"" . $author . "\"'>" . $author . "</a>";
                                                 echo count($docs->author)-1 != $index ? '; ' : '.';
                                             endforeach; ?>
                                         </p>
@@ -188,7 +188,7 @@ $pages->paginate($page_url_params);
                                     <?php if ( $docs->journal ): ?>
                                         <p class="row-fluid">
                                             <?php
-                                                echo "<a href='" . real_site_url($lildbi_plugin_slug) . "?filter=journal:\"" . $docs->journal[0] . "\"'>" . $docs->journal[0] . "</a>";
+                                                echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=journal:\"" . $docs->journal[0] . "\"'>" . $docs->journal[0] . "</a>";
                                                 if ( $docs->reference_source ):
                                                     echo substr($docs->reference_source, strpos($docs->reference_source, ';'), 100);
                                                 endif;
@@ -214,7 +214,7 @@ $pages->paginate($page_url_params);
                                     <?php if ( $docs->link ) : ?>
                                         <p class="row-fluid">
                                             <a href="<?php echo $docs->link[0]; ?>">
-                                                <em class="fa fa-file-text-o"></em> <?php _e('Full Text','lildbi'); ?>
+                                                <em class="fa fa-file-text-o"></em> <?php _e('Full Text','biblio'); ?>
                                             </a>
                                         </p>
                                     <?php endif; ?>
@@ -222,7 +222,7 @@ $pages->paginate($page_url_params);
                                     <?php if ( !empty( $format ) && $format == 'abstract' ): ?>
                                         <?php if ( $docs->reference_abstract ): ?>
                                             <p class="row-fluid abstract">
-                                                <strong><?php _e('ABSTRACT','lildbi'); ?></strong>
+                                                <strong><?php _e('ABSTRACT','biblio'); ?></strong>
                                                 <?php foreach ( $docs->reference_abstract as $index => $abs ): ?>
                                                     <?php $class = $index != 0 ? 'altLang' : ''; ?>
                                                     <div class="abstract-version <?php echo $class; ?>">
@@ -234,11 +234,11 @@ $pages->paginate($page_url_params);
 
                                         <?php if ($docs->descriptor ) : ?>
                                             <p class="row-fluid subjects">
-                                                <strong><?php _e('SUBJECTS','lildbi'); ?></strong>
+                                                <strong><?php _e('SUBJECTS','biblio'); ?></strong>
                                                 <?php
                                                     $subjects = array();
                                                     foreach ( $docs->descriptor as $index => $subject ):
-                                                        echo "<a href='" . real_site_url($lildbi_plugin_slug) . "?filter=descriptor:\"" . $subject . "\"'>" . $subject . "</a>";
+                                                        echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=descriptor:\"" . $subject . "\"'>" . $subject . "</a>";
                                                         echo $index != count($docs->descriptor)-1 ? ', ' : '';
                                                     endforeach; ?>
                                             </p>
@@ -255,13 +255,13 @@ $pages->paginate($page_url_params);
             </section>
             <aside id="sidebar">
 
-                <?php dynamic_sidebar('lildbi-home');?>
+                <?php dynamic_sidebar('biblio-home');?>
 
                 <?php if (strval($total) > 0) :?>
                     <?php if ( $descriptor_list ): ?>
                         <section class="row-fluid marginbottom25 widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Main Subject','lildbi'); ?></h1>
+                                <h1 class="h1-header"><?php _e('Main Subject','biblio'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $descriptor_list as $index => $descriptor ) { $index++; ?>
@@ -283,14 +283,14 @@ $pages->paginate($page_url_params);
                                 <?php } ?>
                             </ul>
                             <?php if ( count($descriptor_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','lildbi'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
+                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
                             <?php endif; ?>
                         </section>
                     <?php endif; ?>
                     <?php if ( $type_list ): ?>
                         <section class="row-fluid marginbottom25 widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Publication Type','lildbi'); ?></h1>
+                                <h1 class="h1-header"><?php _e('Publication Type','biblio'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $type_list as $type ) { ?>
@@ -312,14 +312,14 @@ $pages->paginate($page_url_params);
                                 <?php } ?>
                             </ul>
                             <?php if ( count($type_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','lildbi'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
+                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
                             <?php endif; ?>
                         </section>
                     <?php endif; ?>
                     <?php if ( $database_list ): ?>
                         <section class="row-fluid marginbottom25 widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Database','lildbi'); ?></h1>
+                                <h1 class="h1-header"><?php _e('Database','biblio'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $database_list as $db ) { ?>
@@ -341,14 +341,14 @@ $pages->paginate($page_url_params);
                                 <?php } ?>
                             </ul>
                             <?php if ( count($database_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','lildbi'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
+                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
                             <?php endif; ?>
                         </section>
                     <?php endif; ?>
                     <?php if ( $cp_list ): ?>
                         <section class="row-fluid marginbottom25 widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Publication Country','lildbi'); ?></h1>
+                                <h1 class="h1-header"><?php _e('Publication Country','biblio'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $cp_list as $cp ) { ?>
@@ -370,14 +370,14 @@ $pages->paginate($page_url_params);
                                 <?php } ?>
                             </ul>
                             <?php if ( count($cp_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','lildbi'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
+                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
                             <?php endif; ?>
                         </section>
                     <?php endif; ?>
                     <?php if ( $limit_list ): ?>
                         <section class="row-fluid marginbottom25 widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Limits','lildbi'); ?></h1>
+                                <h1 class="h1-header"><?php _e('Limits','biblio'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $limit_list as $limit ) { ?>
@@ -399,14 +399,14 @@ $pages->paginate($page_url_params);
                                 <?php } ?>
                             </ul>
                             <?php if ( count($limit_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','lildbi'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
+                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
                             <?php endif; ?>
                         </section>
                     <?php endif; ?>
                     <?php if ( $language_list ): ?>
                         <section class="row-fluid marginbottom25 widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Language','lildbi'); ?></h1>
+                                <h1 class="h1-header"><?php _e('Language','biblio'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $language_list as $lang ) { ?>
@@ -428,14 +428,14 @@ $pages->paginate($page_url_params);
                                 <?php } ?>
                             </ul>
                             <?php if ( count($language_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','lildbi'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
+                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
                             <?php endif; ?>
                         </section>
                     <?php endif; ?>
                     <?php if ( $journal_list ): ?>
                         <section class="row-fluid marginbottom25 widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Journal','lildbi'); ?></h1>
+                                <h1 class="h1-header"><?php _e('Journal','biblio'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $journal_list as $journal ) { ?>
@@ -457,14 +457,14 @@ $pages->paginate($page_url_params);
                                 <?php } ?>
                             </ul>
                             <?php if ( count($journal_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','lildbi'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
+                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
                             <?php endif; ?>
                         </section>
                     <?php endif; ?>
                     <?php if ( $year_list ): ?>
                         <section class="row-fluid marginbottom25 widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Year','lildbi'); ?></h1>
+                                <h1 class="h1-header"><?php _e('Year','biblio'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $year_list as $year ) { ?>
@@ -486,7 +486,7 @@ $pages->paginate($page_url_params);
                                 <?php } ?>
                             </ul>
                             <?php if ( count($year_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','lildbi'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
+                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
                             <?php endif; ?>
                         </section>
                     <?php endif; ?>
