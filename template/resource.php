@@ -60,19 +60,13 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
 ?>
 
 <?php get_header('biblio');?>
+    <div class="row-fluid breadcrumb">
+        <a href="<?php echo real_site_url(); ?>"><?php _e('Home','biblio'); ?></a> >
+        <a href="<?php echo real_site_url($biblio_plugin_slug); ?>"><?php _e('Bibliographic records', 'biblio') ?> </a> >
+        <?php echo ( strlen($resource->reference_title[0]) > 90 ) ? substr($resource->reference_title[0],0,90) . '...' : $resource->reference_title[0]; ?>
+    </div>
+
     <div id="content" class="row-fluid">
-        <div class="header-menu">
-            <nav role="navigation">
-                <div class="menu">
-                    <ul id="prime_nav" class="menu">
-                        <li><a href="<?php echo real_site_url(); ?>"><span><?php _e('Home','biblio'); ?></span></a></li>
-                        <li><a href="<?php echo $biblio_about; ?>"><span><?php _e('About LILDBI-WEB', 'biblio_') ?></span></a></li>
-                        <li><a href="<?php echo $biblio_tutorials; ?>"><span><?php _e('Tutorials','biblio_'); ?></span></a></li>
-                    </ul>
-                </div>
-            </nav>
-            <div class="spacer"></div>
-        </div>
         <div class="ajusta2">
             <section class="header-search">
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($biblio_plugin_slug); ?>">
@@ -81,63 +75,25 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                     <input type="hidden" name="format" id="format" value="summary">
                     <input type="hidden" name="count" id="count" value="10">
                     <input type="hidden" name="page" id="page" value="1">
-                    <input value="" name="q" class="input-search" id="s" type="text" placeholder="<?php _e('Search Documents', 'biblio'); ?>">
+                    <input value="" name="q" class="input-search" id="s" type="text" placeholder="<?php _e('Enter one or more words', 'biblio'); ?>">
                     <input id="searchsubmit" value="<?php _e('Search', 'biblio'); ?>" type="submit">
                     <a href="#" title="<?php _e('Tip! You can do your search using boolean operators.', 'biblio'); ?>" class="help ketchup tooltip"><i class="fa fa-question-circle fa-2x"></i></a>
                 </form>
             </section>
             <section id="conteudo">
-                <header class="row-fluid border-bottom">
-                    <h1 class="h1-header">
-                        <span class="breadcrumb-home"><a href="<?php echo real_site_url($biblio_plugin_slug); ?>"><?php _e('HOME','biblio'); ?></a><?php echo $ref ? $ref : ''; ?></span> / <?php echo ( strlen($resource->reference_title[0]) > 30 ) ? substr($resource->reference_title[0],0,30) . '...' : $resource->reference_title[0]; ?>
-                    </h1>
-                    <div class="spacer"></div>
-                    <div class="resultsBar">
-                        <div class="formset">
-                            <label for="output" class="hide"><?php _e('Presentation format', 'biblio') ?></label>
-                            <select name="output" id="output" class="inputText" onchange="javascript:change_format(this);">
-                                <option value=""><?php _e('Presentation format', 'biblio') ?></option>
-                                <option value="summary"><?php _e('Short', 'biblio') ?></option>
-                                <option value="abstract"><?php _e('Detailed', 'biblio') ?></option>
-                            </select>
-                        </div>
-                        <div class="formset">
-                            <label for="order" class="hide"><?php _e('Order by', 'biblio') ?></label>
-                            <select name="order" id="order" class="inputText" onchange="javascript:change_sort(this);">
-                                <option value=""><?php _e('Order by', 'biblio') ?></option>
-                                <option value="RELEVANCE"><?php _e('Relevance', 'biblio') ?></option>
-                                <option value="YEAR_DESC"><?php _e('Descending year', 'biblio') ?></option>
-                                <option value="YEAR_ASC"><?php _e('Ascending year', 'biblio') ?></option>
-                            </select>
-                        </div>
-                        <div class="formset">
-                            <label for="per_page" class="hide"><?php _e('Documents per page', 'biblio') ?></label>
-                            <select name="per_page" id="per_page" onchange="change_count(this);">
-                                <option value=""><?php _e('Documents per page', 'biblio') ?></option>
-                                <option value="10" selected="selected">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select>
-                        </div>
-                        <div class="rss_feed">
-				            <a href="<?php echo $feed_url ?>" target="blank"><img src="<?php echo biblio_PLUGIN_URL; ?>template/images/icon_RSS.gif" class="rss_feed" ></a>
-                        </div>
-                        <!-- AddThis Button BEGIN -->
-                        <div class="addthis_toolbox addthis_default_style">
-                            <span class="addthis_separator">|</span>
-                            <a class="addthis_button_facebook"></a>
-                            <a class="addthis_button_delicious"></a>
-                            <a class="addthis_button_google_plusone_share"></a>
-                            <a class="addthis_button_favorites"></a>
-                            <a class="addthis_button_compact"></a>
-                        </div>
-                        <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $biblio_addthis_id; ?>"></script>
-                        <!-- AddThis Button END -->
+                <div class="row-fluid">
+                    <!-- AddThis Button BEGIN -->
+                    <div class="addthis_toolbox addthis_default_style">
+                        <a class="addthis_button_facebook"></a>
+                        <a class="addthis_button_delicious"></a>
+                        <a class="addthis_button_google_plusone_share"></a>
+                        <a class="addthis_button_favorites"></a>
+                        <a class="addthis_button_compact"></a>
                     </div>
-                </header>
+                    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+                    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $biblio_addthis_id; ?>"></script>
+                    <!-- AddThis Button END -->
+                </div>
                 <div class="row-fluid">
                     <ol class="doc-loop">
                         <li>

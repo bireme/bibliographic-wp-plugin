@@ -7,8 +7,6 @@ require_once(BIBLIOGRAPHIC_PLUGIN_PATH . '/lib/Paginator.php');
 
 global $biblio_service_url, $biblio_plugin_slug;
 
-print "[[" . $biblio_plugin_slug . "]]";
-
 $order = array(
         'RELEVANCE' => 'score desc',
         'YEAR_ASC'  => 'publication_year asc',
@@ -79,19 +77,17 @@ $pages->paginate($page_url_params);
 ?>
 
 <?php get_header('biblio');?>
+    <div class="row-fluid breadcrumb">
+        <a href="<?php echo real_site_url(); ?>"><?php _e('Home','biblio'); ?></a> >
+        <?php if ($query == '' && $filter == ''): ?>
+            <?php _e('Bibliographic records', 'biblio') ?>
+        <?php else: ?>
+            <a href="<?php echo real_site_url($biblio_plugin_slug); ?>"><?php _e('Bibliographic records', 'biblio') ?> </a> >
+            <?php _e('Search result', 'biblio') ?>
+        <?php endif; ?>
+    </div>
+
     <div id="content" class="row-fluid">
-        <div class="header-menu">
-            <nav role="navigation">
-                <div class="menu">
-                    <ul id="prime_nav" class="menu">
-                        <li><a href="<?php echo real_site_url(); ?>"><span><?php _e('Home','biblio'); ?></span></a></li>
-                        <li><a href="<?php echo $biblio_about; ?>"><span><?php _e('About biblio-WEB', 'biblio') ?></span></a></li>
-                        <li><a href="<?php echo $biblio_tutorials; ?>"><span><?php _e('Tutorials','biblio'); ?></span></a></li>
-                    </ul>
-                </div>
-            </nav>
-            <div class="spacer"></div>
-        </div>
         <div class="ajusta2">
             <section class="header-search">
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($biblio_plugin_slug); ?>">
@@ -100,7 +96,7 @@ $pages->paginate($page_url_params);
                     <input type="hidden" name="format" id="format" value="<?php echo $format ? $format : 'summary'; ?>">
                     <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
                     <input type="hidden" name="page" id="page" value="<?php echo $page; ?>">
-                    <input value='<?php echo $query; ?>' name="q" class="input-search" id="s" type="text" placeholder="<?php _e('Search Documents', 'biblio'); ?>">
+                    <input value='<?php echo $query; ?>' name="q" class="input-search" id="s" type="text" placeholder="<?php _e('Enter one or more words', 'biblio'); ?>">
                     <input id="searchsubmit" value="<?php _e('Search', 'biblio'); ?>" type="submit">
                     <a href="#" title="<?php _e('Tip! You can do your search using boolean operators.', 'biblio'); ?>" class="help ketchup tooltip"><i class="fa fa-question-circle fa-2x"></i></a>
                 </form>
@@ -111,55 +107,12 @@ $pages->paginate($page_url_params);
                 <?php else :?>
                     <header class="row-fluid border-bottom">
                         <?php if ( ( $query != '' || $user_filter != '' ) && strval($total) > 0) :?>
-                            <h1 class="h1-header"><span class="breadcrumb-home"><a href="<?php echo real_site_url($biblio_plugin_slug); ?>"><?php _e('HOME','biblio'); ?></a></span> / <?php echo ( strlen($query) > 35 ? substr($query,0,35) . '...' : $query ); ?></h1>
                             <div class="count-docs pull-right"><?php echo $total; ?> <?php echo ($total == 1) ? __(' document', 'biblio') : __(' documents', 'biblio'); ?></div>
                         <?php else: ?>
-                            <h1 class="h1-header"><?php _e('Recent documents', 'biblio') ?></h1>
+                            <h1 class="h1-header"><?php _e('Records', 'biblio'); echo ': ' . $total ?></h1>
                         <?php endif; ?>
-                        <div class="spacer"></div>
-                        <div class="resultsBar">
-                            <div class="formset">
-                                <label for="output" class="hide"><?php _e('Presentation format', 'biblio') ?></label>
-                                <select name="output" id="output" class="inputText" onchange="javascript:change_format(this);">
-                                    <option value=""><?php _e('Presentation format', 'biblio') ?></option>
-                                    <option value="summary" <?php selected( $format, 'summary' ); ?>><?php _e('Short', 'biblio') ?></option>
-                                    <option value="abstract" <?php selected( $format, 'abstract' ); ?>><?php _e('Detailed', 'biblio') ?></option>
-                                </select>
-                            </div>
-                            <div class="formset">
-                                <label for="order" class="hide"><?php _e('Order by', 'biblio') ?></label>
-                                <select name="order" id="order" class="inputText" onchange="javascript:change_sort(this);">
-                                    <option value=""><?php _e('Order by', 'biblio') ?></option>
-                                    <option value="RELEVANCE" <?php selected( $sort, 'score desc' ); ?>><?php _e('Relevance', 'biblio') ?></option>
-                                    <option value="YEAR_DESC" <?php selected( $sort, 'publication_year desc' ); ?>><?php _e('Descending year', 'biblio') ?></option>
-                                    <option value="YEAR_ASC" <?php selected( $sort, 'publication_year asc' ); ?>><?php _e('Ascending year', 'biblio') ?></option>
-                                </select>
-                            </div>
-                            <div class="formset">
-                                <label for="per_page" class="hide"><?php _e('Documents per page', 'biblio') ?></label>
-                                <select name="per_page" id="per_page" onchange="change_count(this);">
-                                    <option value=""><?php _e('Documents per page', 'biblio') ?></option>
-                                    <option value="10" <?php selected( $count, '10' ); ?>>10</option>
-                                    <option value="20" <?php selected( $count, '20' ); ?>>20</option>
-                                    <option value="30" <?php selected( $count, '30' ); ?>>30</option>
-                                    <option value="50" <?php selected( $count, '50' ); ?>>50</option>
-                                    <option value="100" <?php selected( $count, '100' ); ?>>100</option>
-                                </select>
-                            </div>
-                            <div class="rss_feed">
-    				            <a href="<?php echo $feed_url ?>" target="blank"><img src="<?php echo biblio_PLUGIN_URL; ?>template/images/icon_RSS.gif" class="rss_feed" ></a>
-                            </div>
-                            <!-- AddThis Button BEGIN -->
-                            <div class="addthis_toolbox addthis_default_style">
-                                <span class="addthis_separator">|</span>
-                                <a class="addthis_button_facebook"></a>
-                                <a class="addthis_button_delicious"></a>
-                                <a class="addthis_button_google_plusone_share"></a>
-                                <a class="addthis_button_favorites"></a>
-                                <a class="addthis_button_compact"></a>
-                            </div>
-                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $biblio_addthis_id; ?>"></script>
-                            <!-- AddThis Button END -->
+                        <div class="pull-right">
+				            <a href="<?php echo $feed_url ?>" target="blank"><img src="<?php echo BIBLIOGRAPHIC_PLUGIN_URL; ?>template/images/icon_rss.png" ></a>
                         </div>
                     </header>
                     <div class="row-fluid">
