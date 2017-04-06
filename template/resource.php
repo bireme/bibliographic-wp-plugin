@@ -95,83 +95,84 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                     <!-- AddThis Button END -->
                 </div>
                 <div class="row-fluid">
-                    <ol class="doc-loop">
-                        <li>
-                            <h2 class="h2-loop-tit">
-                                <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/<?php echo $resource->django_id; ?>"><?php echo $resource->reference_title[0]; ?></a>
-                                <?php foreach ( $resource->reference_title as $index => $title ): ?>
-                                    <?php if ( $index != 0 ): ?>
-                                        <span class="altLang"><?php echo $title; ?></span>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </h2>
+                    <article class="conteudo-loop">
+                        <h2 class="h2-loop-tit">
+                            <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/<?php echo $resource->django_id; ?>"><?php echo $resource->reference_title[0]; ?></a>
+                            <?php foreach ( $resource->reference_title as $index => $title ): ?>
+                                <?php if ( $index != 0 ): ?>
+                                    <div class="altLang"><?php echo $title; ?></div>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </h2>
 
-                            <?php if ( $resource->author ): ?>
-                                <p class="row-fluid">
-                                    <?php foreach ( $resource->author as $index => $author ):
-                                        echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=author:\"" . $author . "\"'>" . $author . "</a>";
-                                        echo count($resource->author)-1 != $index ? '; ' : '.';
-                                    endforeach; ?>
-                                </p>
-                            <?php endif; ?>
+                        <?php if ( $resource->author ): ?>
+                            <div class="row-fluid">
+                                <?php foreach ( $resource->author as $index => $author ):
+                                    echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=author:\"" . $author . "\"'>" . $author . "</a>";
+                                    echo count($resource->author)-1 != $index ? '; ' : '.';
+                                endforeach; ?>
+                            </div>
+                        <?php endif; ?>
 
-                            <?php if ( $resource->journal ): ?>
-                                <p class="row-fluid">
-                                    <?php
-                                        echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=journal:\"" . $resource->journal[0] . "\"'>" . $resource->journal[0] . "</a>";
-                                        if ( $resource->reference_source ):
-                                            echo substr($resource->reference_source, strpos($resource->reference_source, ';'), 100);
-                                        endif;
-                                    ?>
-                                </p>
-                            <?php endif; ?>
-
-                            <p class="row-fluid">
+                        <?php if ( $resource->journal ): ?>
+                            <div class="row-fluid">
                                 <?php
-                                    if ( $resource->publication_type ):
-                                        echo ucfirst( $resource->publication_type[0] );
-                                        if ( $resource->publication_language ){
-                                            echo __(' in ') . strtoupper(implode(', ', $resource->publication_language));
-                                        }
-                                        echo ' | ';
+                                    echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=journal:\"" . $resource->journal[0] . "\"'>" . $resource->journal[0] . "</a>";
+                                    if ( $resource->reference_source ):
+                                        echo substr($resource->reference_source, strpos($resource->reference_source, ';'), 100);
                                     endif;
-                                    if ( $resource->database ) echo $resource->database[0] . ' | ';
-                                    if ( $resource->django_id ) echo 'ID: ' . $resource->django_id;
                                 ?>
-                                <br/>
-                            </p>
+                            </div>
+                        <?php endif; ?>
 
-                            <?php if ( $resource->link ) : ?>
-                                <p class="row-fluid">
-                                    <a href="<?php echo $resource->link[0]; ?>">
-                                        <em class="fa fa-file-text-o"></em> <?php _e('Full Text','biblio'); ?>
+                        <div class="row-fluid">
+                            <?php
+                                if ( $resource->publication_type ):
+                                    echo ucfirst( $resource->publication_type[0] );
+                                    if ( $resource->publication_language ){
+                                        echo __(' in ') . strtoupper(implode(', ', $resource->publication_language));
+                                    }
+                                    echo ' | ';
+                                endif;
+                                if ( $resource->database ) echo $resource->database[0] . ' | ';
+                                if ( $resource->django_id ) echo 'ID: ' . $resource->django_id;
+                            ?>
+                            <br/>
+                        </div>
+
+                        <?php if ( $resource->reference_abstract ): ?>
+                            <div class="row-fluid abstract">
+                                <strong><?php _e('ABSTRACT','biblio'); ?></strong>
+                                <?php foreach ( $resource->reference_abstract as $index => $abs ): ?>
+                                    <?php $class = $index != 0 ? 'altLang' : ''; ?>
+                                    <div class="abstract-version <?php echo $class; ?>"><?php echo $abs; ?></div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($resource->descriptor ) : ?>
+                            <div class="row-fluid subjects">
+                                <strong><i class="fa fa-tags" aria-hidden="true"></i></strong>
+                                <?php
+                                    $subjects = array();
+                                    foreach ( $resource->descriptor as $index => $subject ):
+                                        echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=descriptor:\"" . $subject . "\"'>" . $subject . "</a>";
+                                        echo $index != count($resource->descriptor)-1 ? ', ' : '';
+                                    endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ( $resource->link ) : ?>
+                            <div class="row-fluid">
+                                <span class="more">
+                                    <a href="<?php echo $resource->link[0]; ?>" target="_blank">
+                                        <i class="fa fa-file" aria-hidden="true"></i> <?php _e('Fulltext','biblio'); ?>
                                     </a>
-                                </p>
-                            <?php endif; ?>
+                                </span>
+                            </div>
+                        <?php endif; ?>
 
-                            <?php if ( $resource->reference_abstract ): ?>
-                                <p class="row-fluid abstract">
-                                    <strong><?php _e('ABSTRACT','biblio'); ?></strong>
-                                    <?php foreach ( $resource->reference_abstract as $index => $abs ): ?>
-                                        <?php $class = $index != 0 ? 'altLang' : ''; ?>
-                                        <div class="abstract-version <?php echo $class; ?>"><?php echo $abs; ?></div>
-                                    <?php endforeach; ?>
-                                </p>
-                            <?php endif; ?>
-
-                            <?php if ($resource->descriptor ) : ?>
-                                <p class="row-fluid subjects">
-                                    <strong><?php _e('SUBJECTS','biblio'); ?></strong>
-                                    <?php
-                                        $subjects = array();
-                                        foreach ( $resource->descriptor as $index => $subject ):
-                                            echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=descriptor:\"" . $subject . "\"'>" . $subject . "</a>";
-                                            echo $index != count($resource->descriptor)-1 ? ', ' : '';
-                                        endforeach; ?>
-                                </p>
-                            <?php endif; ?>
-                        </li>
-                    </ol>
+                    </article>
                 </div>
             </section>
             <aside id="sidebar">

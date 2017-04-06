@@ -107,7 +107,7 @@ $pages->paginate($page_url_params);
                 <?php else :?>
                     <header class="row-fluid border-bottom">
                         <?php if ( ( $query != '' || $user_filter != '' ) && strval($total) > 0) :?>
-                            <div class="count-docs pull-right"><?php echo $total; ?> <?php echo ($total == 1) ? __(' document', 'biblio') : __(' documents', 'biblio'); ?></div>
+                            <h1 class="h1-header"><?php _e('Results', 'biblio'); echo ': ' . $total ?></h1>
                         <?php else: ?>
                             <h1 class="h1-header"><?php _e('Records', 'biblio'); echo ': ' . $total ?></h1>
                         <?php endif; ?>
@@ -116,90 +116,58 @@ $pages->paginate($page_url_params);
                         </div>
                     </header>
                     <div class="row-fluid">
-                        <ol class="doc-loop">
+
                             <?php foreach ( $docs_list as $position => $docs) { $position++; ?>
-                                <li>
+                                <article class="conteudo-loop">
                                     <h2 class="h2-loop-tit">
                                         <div class="position"><?php echo $position + $start; ?>. </div>
                                         <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/<?php echo $docs->django_id; ?>"><?php echo $docs->reference_title[0]; ?></a>
-                                        <?php foreach ( $docs->reference_title as $index => $title ): ?>
-                                            <?php if ( $index != 0 ): ?>
-                                                <span class="altLang"><?php echo $title; ?></span>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
                                     </h2>
 
                                     <?php if ( $docs->author ): ?>
-                                        <p class="row-fluid">
+                                        <div class="row-fluid">
                                             <?php foreach ( $docs->author as $index => $author ):
                                                 echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=author:\"" . $author . "\"'>" . $author . "</a>";
                                                 echo count($docs->author)-1 != $index ? '; ' : '.';
                                             endforeach; ?>
-                                        </p>
+                                        </div>
                                     <?php endif; ?>
 
                                     <?php if ( $docs->journal ): ?>
-                                        <p class="row-fluid">
+                                        <div class="row-fluid">
                                             <?php
                                                 echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=journal:\"" . $docs->journal[0] . "\"'>" . $docs->journal[0] . "</a>";
                                                 if ( $docs->reference_source ):
                                                     echo substr($docs->reference_source, strpos($docs->reference_source, ';'), 100);
                                                 endif;
                                             ?>
-                                        </p>
+                                        </div>
                                     <?php endif; ?>
 
-                                    <p class="row-fluid">
-                                        <?php
-                                            if ( $docs->publication_type ):
-                                                echo ucfirst( $docs->publication_type[0] );
-                                                if ( $docs->publication_language ){
-                                                    echo __(' in ') . strtoupper(implode(', ', $docs->publication_language));
-                                                }
-                                                echo ' | ';
-                                            endif;
-                                            if ( $docs->database ) echo $docs->database[0] . ' | ';
-                                            if ( $docs->django_id ) echo 'ID: ' . $docs->django_id;
-                                        ?>
-                                        <br/>
-                                    </p>
+                                    <?php if ($docs->descriptor ) : ?>
+                                        <div class="row-fluid subjects">
+                                            <strong><i class="fa fa-tags" aria-hidden="true"></i></strong>
+                                            <?php
+                                                $subjects = array();
+                                                foreach ( $docs->descriptor as $index => $subject ):
+                                                    echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=descriptor:\"" . $subject . "\"'>" . $subject . "</a>";
+                                                    echo $index != count($docs->descriptor)-1 ? ', ' : '';
+                                                endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
 
                                     <?php if ( $docs->link ) : ?>
-                                        <p class="row-fluid">
-                                            <a href="<?php echo $docs->link[0]; ?>">
-                                                <em class="fa fa-file-text-o"></em> <?php _e('Full Text','biblio'); ?>
-                                            </a>
-                                        </p>
+                                        <div class="row-fluid">
+                                            <span class="more">
+                                                <a href="<?php echo $docs->link[0]; ?>" target="_blank">
+                                                    <i class="fa fa-file" aria-hidden="true"></i> <?php _e('Fulltext','biblio'); ?>
+                                                </a>
+                                            </span>
+                                        </div>
                                     <?php endif; ?>
-
-                                    <?php if ( !empty( $format ) && $format == 'abstract' ): ?>
-                                        <?php if ( $docs->reference_abstract ): ?>
-                                            <p class="row-fluid abstract">
-                                                <strong><?php _e('ABSTRACT','biblio'); ?></strong>
-                                                <?php foreach ( $docs->reference_abstract as $index => $abs ): ?>
-                                                    <?php $class = $index != 0 ? 'altLang' : ''; ?>
-                                                    <div class="abstract-version <?php echo $class; ?>">
-                            							<?php echo ( strlen($abs) > 400 ? substr($abs,0,400) . '...' : $abs); ?>
-                                                    </div>
-                                                <?php endforeach; ?>
-                                            </p>
-                                        <?php endif; ?>
-
-                                        <?php if ($docs->descriptor ) : ?>
-                                            <p class="row-fluid subjects">
-                                                <strong><?php _e('SUBJECTS','biblio'); ?></strong>
-                                                <?php
-                                                    $subjects = array();
-                                                    foreach ( $docs->descriptor as $index => $subject ):
-                                                        echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=descriptor:\"" . $subject . "\"'>" . $subject . "</a>";
-                                                        echo $index != count($docs->descriptor)-1 ? ', ' : '';
-                                                    endforeach; ?>
-                                            </p>
-                                        <?php endif; ?>
-                                    <?php endif; ?>
-                                </li>
+                                </article>
                             <?php } ?>
-                        </ol>
+
                     </div>
                     <div class="row-fluid">
                         <?php echo $pages->display_pages(); ?>
