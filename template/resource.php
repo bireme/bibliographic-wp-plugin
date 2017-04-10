@@ -177,8 +177,8 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
             </section>
             <aside id="sidebar">
                 <?php if ( $resource->descriptor ): ?>
-                    <section class="row-fluid marginbottom25 widget_categories">
-                        <header class="row-fluid border-bottom marginbottom15">
+                    <section class="row-fluid widget_categories">
+                        <header class="row-fluid">
                             <h1 class="h1-header"><?php _e('Main Subject','biblio'); ?></h1>
                         </header>
                         <ul>
@@ -191,8 +191,8 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                     </section>
                 <?php endif; ?>
                 <?php if ( $resource->publication_type ): ?>
-                    <section class="row-fluid marginbottom25 widget_categories">
-                        <header class="row-fluid border-bottom marginbottom15">
+                    <section class="row-fluid widget_categories">
+                        <header class="row-fluid">
                             <h1 class="h1-header"><?php _e('Publication Type','biblio'); ?></h1>
                         </header>
                         <ul>
@@ -205,8 +205,8 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                     </section>
                 <?php endif; ?>
                 <?php if ( $resource->database ): ?>
-                    <section class="row-fluid marginbottom25 widget_categories">
-                        <header class="row-fluid border-bottom marginbottom15">
+                    <section class="row-fluid widget_categories">
+                        <header class="row-fluid">
                             <h1 class="h1-header"><?php _e('Database','biblio'); ?></h1>
                         </header>
                         <ul>
@@ -219,9 +219,9 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                     </section>
                 <?php endif; ?>
                 <?php if ( $resource->publication_country ): ?>
-                    <section class="row-fluid marginbottom25 widget_categories">
-                        <header class="row-fluid border-bottom marginbottom15">
-                            <h1 class="h1-header"><?php _e('Database','biblio'); ?></h1>
+                    <section class="row-fluid widget_categories">
+                        <header class="row-fluid">
+                            <h1 class="h1-header"><?php _e('Publication country','biblio'); ?></h1>
                         </header>
                         <ul>
                             <?php foreach ( $resource->publication_country as $cp ): ?>
@@ -233,8 +233,8 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                     </section>
                 <?php endif; ?>
                 <?php if ( $resource->check_tags ): ?>
-                    <section class="row-fluid marginbottom25 widget_categories">
-                        <header class="row-fluid border-bottom marginbottom15">
+                    <section class="row-fluid widget_categories">
+                        <header class="row-fluid">
                             <h1 class="h1-header"><?php _e('Limits','biblio'); ?></h1>
                         </header>
                         <ul>
@@ -247,8 +247,8 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                     </section>
                 <?php endif; ?>
                 <?php if ( $resource->publication_language ): ?>
-                    <section class="row-fluid marginbottom25 widget_categories">
-                        <header class="row-fluid border-bottom marginbottom15">
+                    <section class="row-fluid widget_categories">
+                        <header class="row-fluid">
                             <h1 class="h1-header"><?php _e('Language','biblio'); ?></h1>
                         </header>
                         <ul>
@@ -261,8 +261,8 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                     </section>
                 <?php endif; ?>
                 <?php if ( $resource->journal ): ?>
-                    <section class="row-fluid marginbottom25 widget_categories">
-                        <header class="row-fluid border-bottom marginbottom15">
+                    <section class="row-fluid widget_categories">
+                        <header class="row-fluid">
                             <h1 class="h1-header"><?php _e('Journal','biblio'); ?></h1>
                         </header>
                         <ul>
@@ -275,8 +275,8 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                     </section>
                 <?php endif; ?>
                 <?php if ( $resource->publication_year ): ?>
-                    <section class="row-fluid marginbottom25 widget_categories">
-                        <header class="row-fluid border-bottom marginbottom15">
+                    <section class="row-fluid widget_categories">
+                        <header class="row-fluid">
                             <h1 class="h1-header"><?php _e('Year','biblio'); ?></h1>
                         </header>
                         <ul>

@@ -179,8 +179,8 @@ $pages->paginate($page_url_params);
                 <?php dynamic_sidebar('biblio-home');?>
 
                 <?php if (strval($total) > 0) :?>
-                    <?php if ( $descriptor_list ): ?>
-                        <section class="row-fluid marginbottom25 widget_categories">
+                    <?php if ( in_array('main_subject', $biblio_config['available_filter']) && $descriptor_list ): ?>
+                        <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
                                 <h1 class="h1-header"><?php _e('Main Subject','biblio'); ?></h1>
                             </header>
@@ -203,13 +203,10 @@ $pages->paginate($page_url_params);
                                     </li>
                                 <?php } ?>
                             </ul>
-                            <?php if ( count($descriptor_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
-                            <?php endif; ?>
                         </section>
                     <?php endif; ?>
-                    <?php if ( $type_list ): ?>
-                        <section class="row-fluid marginbottom25 widget_categories">
+                    <?php if ( in_array('publication_type', $biblio_config['available_filter']) && $type_list ): ?>
+                        <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
                                 <h1 class="h1-header"><?php _e('Publication Type','biblio'); ?></h1>
                             </header>
@@ -232,13 +229,10 @@ $pages->paginate($page_url_params);
                                     </li>
                                 <?php } ?>
                             </ul>
-                            <?php if ( count($type_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
-                            <?php endif; ?>
                         </section>
                     <?php endif; ?>
-                    <?php if ( $database_list ): ?>
-                        <section class="row-fluid marginbottom25 widget_categories">
+                    <?php if ( in_array('database', $biblio_config['available_filter']) && $database_list ): ?>
+                        <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
                                 <h1 class="h1-header"><?php _e('Database','biblio'); ?></h1>
                             </header>
@@ -261,13 +255,10 @@ $pages->paginate($page_url_params);
                                     </li>
                                 <?php } ?>
                             </ul>
-                            <?php if ( count($database_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
-                            <?php endif; ?>
                         </section>
                     <?php endif; ?>
-                    <?php if ( $cp_list ): ?>
-                        <section class="row-fluid marginbottom25 widget_categories">
+                    <?php if ( in_array('publication_country', $biblio_config['available_filter']) && $cp_list ): ?>
+                        <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
                                 <h1 class="h1-header"><?php _e('Publication Country','biblio'); ?></h1>
                             </header>
@@ -290,13 +281,10 @@ $pages->paginate($page_url_params);
                                     </li>
                                 <?php } ?>
                             </ul>
-                            <?php if ( count($cp_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
-                            <?php endif; ?>
                         </section>
                     <?php endif; ?>
-                    <?php if ( $limit_list ): ?>
-                        <section class="row-fluid marginbottom25 widget_categories">
+                    <?php if ( in_array('limit', $biblio_config['available_filter']) && $limit_list ): ?>
+                        <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
                                 <h1 class="h1-header"><?php _e('Limits','biblio'); ?></h1>
                             </header>
@@ -319,13 +307,10 @@ $pages->paginate($page_url_params);
                                     </li>
                                 <?php } ?>
                             </ul>
-                            <?php if ( count($limit_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
-                            <?php endif; ?>
                         </section>
                     <?php endif; ?>
-                    <?php if ( $language_list ): ?>
-                        <section class="row-fluid marginbottom25 widget_categories">
+                    <?php if ( in_array('language', $biblio_config['available_filter']) && $language_list ): ?>
+                        <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
                                 <h1 class="h1-header"><?php _e('Language','biblio'); ?></h1>
                             </header>
@@ -348,13 +333,10 @@ $pages->paginate($page_url_params);
                                     </li>
                                 <?php } ?>
                             </ul>
-                            <?php if ( count($language_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
-                            <?php endif; ?>
                         </section>
                     <?php endif; ?>
-                    <?php if ( $journal_list ): ?>
-                        <section class="row-fluid marginbottom25 widget_categories">
+                    <?php if ( in_array('journal', $biblio_config['available_filter']) && $journal_list ): ?>
+                        <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
                                 <h1 class="h1-header"><?php _e('Journal','biblio'); ?></h1>
                             </header>
@@ -377,13 +359,10 @@ $pages->paginate($page_url_params);
                                     </li>
                                 <?php } ?>
                             </ul>
-                            <?php if ( count($journal_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
-                            <?php endif; ?>
                         </section>
                     <?php endif; ?>
-                    <?php if ( $year_list ): ?>
-                        <section class="row-fluid marginbottom25 widget_categories">
+                    <?php if ( in_array('year', $biblio_config['available_filter']) && $year_list ): ?>
+                        <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
                                 <h1 class="h1-header"><?php _e('Year','biblio'); ?></h1>
                             </header>
@@ -406,9 +385,6 @@ $pages->paginate($page_url_params);
                                     </li>
                                 <?php } ?>
                             </ul>
-                            <?php if ( count($year_list) > 10 ):?>
-                                <div class="more-items"><a href="#"><?php _e('Show more','biblio'); ?> <em class="fa fa-arrow-circle-o-down"></em></a></div>
-                            <?php endif; ?>
                         </section>
                     <?php endif; ?>
                 <? endif; ?>

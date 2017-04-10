@@ -75,7 +75,7 @@ a:visited{color:rgb(0,153,255);}
 ol.doc-loop { display: table; width: 100%; }
 ol.doc-loop li {list-style-position: inside; display: table-caption; background:rgb(245,245,245); border:1px solid rgb(223,223,223); padding:15px; border-radius:5px; margin-top:15px;font-size: 1.2rem; font-weight: bold; color: #000;}
 ol.doc-loop li p {font-size: .9rem; font-weight: normal; color:rgb(102,102,102);}
-.conteudo-loop{width: 100%; float: left; background: rgb(245,245,245); border: 1px solid rgb(223,223,223); padding: 15px; border-radius: 5px; margin-top: 15px; }
+.conteudo-loop{width: 95%; float: left; background: rgb(245,245,245); border: 1px solid rgb(223,223,223); padding: 15px; border-radius: 5px; margin-top: 15px; }
 .conteudo-loop-rates{position:absolute; right:15px; top:18px; z-index:3;}
 .conteudo-loop-icons{list-style:none; float:left; width:100%; max-height:22px;margin-bottom: 12px;border-bottom: 1px solid #999;padding-bottom: 12px; }
 .conteudo-loop-icons-li{float:left; margin:0 18.3px; position:relative;}
