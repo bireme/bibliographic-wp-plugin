@@ -69,7 +69,7 @@ $params .= $count != 2 ? '&count=' . $count : '';
 $params .= !empty($_GET['sort']) ? '&sort=' . $_GET['sort'] : '';
 
 $page_url_params = real_site_url($biblio_plugin_slug) . '?q=' . urlencode($query) . '&filter=' . urlencode($filter) . $params;
-$feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
+$feed_url = real_site_url($biblio_plugin_slug) . 'bibliographic-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 
 $pages = new Paginator($total, $start);
 $pages->paginate($page_url_params);
@@ -182,7 +182,7 @@ $pages->paginate($page_url_params);
                     <?php if ( in_array('main_subject', $biblio_config['available_filter']) && $descriptor_list ): ?>
                         <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Main Subject','biblio'); ?></h1>
+                                <h1 class="h1-header"><?php _e('Main subject','biblio'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $descriptor_list as $index => $descriptor ) { $index++; ?>
@@ -208,7 +208,7 @@ $pages->paginate($page_url_params);
                     <?php if ( in_array('publication_type', $biblio_config['available_filter']) && $type_list ): ?>
                         <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Publication Type','biblio'); ?></h1>
+                                <h1 class="h1-header"><?php _e('Publication type','biblio'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $type_list as $type ) { ?>
@@ -260,7 +260,7 @@ $pages->paginate($page_url_params);
                     <?php if ( in_array('publication_country', $biblio_config['available_filter']) && $cp_list ): ?>
                         <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Publication Country','biblio'); ?></h1>
+                                <h1 class="h1-header"><?php _e('Publication country','biblio'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $cp_list as $cp ) { ?>

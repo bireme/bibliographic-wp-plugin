@@ -6,7 +6,7 @@ function biblio_page_admin() {
     ?>
     <div class="wrap">
             <div id="icon-options-general" class="icon32"></div>
-            <h2><?php _e('Bibliographic Plugin Options', 'biblio'); ?></h2>
+            <h2><?php _e('Bibliographic record settings', 'biblio'); ?></h2>
 
             <form method="post" action="options.php">
 
@@ -33,7 +33,7 @@ function biblio_page_admin() {
 
                         <tr valign="top">
                             <td align="left">
-                                <span><?php _e('Available filters', 'biblio'); ?></span>
+                                <span><?php _e('Display filters', 'biblio'); ?>:</span>
                             </td>
                             <td>
                                 <fieldset>
@@ -85,7 +85,7 @@ function biblio_page_admin() {
                 </table>
 
                 <p class="submit">
-                <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
+                <input type="submit" class="button-primary" value="<?php _e('Save changes') ?>" />
                 </p>
 
             </form>

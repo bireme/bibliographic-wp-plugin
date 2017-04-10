@@ -142,7 +142,7 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
 
                         <?php if ( $resource->reference_abstract ): ?>
                             <div class="row-fluid abstract">
-                                <strong><?php _e('ABSTRACT','biblio'); ?></strong>
+                                <strong><?php _e('Abstract','biblio'); ?></strong>
                                 <?php foreach ( $resource->reference_abstract as $index => $abs ): ?>
                                     <?php $class = $index != 0 ? 'altLang' : ''; ?>
                                     <div class="abstract-version <?php echo $class; ?>"><?php echo $abs; ?></div>
@@ -179,7 +179,7 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                 <?php if ( $resource->descriptor ): ?>
                     <section class="row-fluid widget_categories">
                         <header class="row-fluid">
-                            <h1 class="h1-header"><?php _e('Main Subject','biblio'); ?></h1>
+                            <h1 class="h1-header"><?php _e('Main subject','biblio'); ?></h1>
                         </header>
                         <ul>
                             <?php foreach ( $resource->descriptor as $subject ): ?>
@@ -193,7 +193,7 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                 <?php if ( $resource->publication_type ): ?>
                     <section class="row-fluid widget_categories">
                         <header class="row-fluid">
-                            <h1 class="h1-header"><?php _e('Publication Type','biblio'); ?></h1>
+                            <h1 class="h1-header"><?php _e('Publication type','biblio'); ?></h1>
                         </header>
                         <ul>
                             <?php foreach ( $resource->publication_type as $type ): ?>
