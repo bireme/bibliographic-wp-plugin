@@ -96,8 +96,7 @@ if(!class_exists('Bibliographic_Plugin')) {
             $biblio_plugin_slug = $this->plugin_slug;
 
             if ($pagename == $this->plugin_slug || $pagename == $this->plugin_slug . '/resource'
-                || $pagename == $this->plugin_slug . '/bibliographic-feed'
-                ) {
+                || $pagename == $this->plugin_slug . '/bibliographic-feed') {
 
                 add_action( 'wp_enqueue_scripts', array(&$this, 'page_template_styles_scripts'));
 

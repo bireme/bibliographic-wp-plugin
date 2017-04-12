@@ -37,14 +37,12 @@ if ($biblio_initial_filter != ''){
 
 $request_uri   = $_SERVER["REQUEST_URI"];
 $request_parts = explode('/', $request_uri);
-$resource_id   = end($request_parts);
+$resource_id   = $_GET['id'];
 
 $site_language = strtolower(get_bloginfo('language'));
 $lang_dir = substr($site_language,0,2);
 
-$biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?id=biblioref.referenceanalytic.' . $resource_id . '&op=related&lang=' . $lang_dir;
-
-//print $biblio_service_request;
+$biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?id=' . $resource_id . '&op=related&lang=' . $lang_dir;
 
 $response = @file_get_contents($biblio_service_request);
 

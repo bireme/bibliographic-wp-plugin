@@ -64,6 +64,8 @@ if ($response){
     $year_list = $response_json->diaServerResponse[0]->facet_counts->facet_fields->publication_year;
 }
 
+#print_r($docs_list);
+
 $params  = !empty($format) ? '&format=' . $format : '';
 $params .= $count != 2 ? '&count=' . $count : '';
 $params .= !empty($_GET['sort']) ? '&sort=' . $_GET['sort'] : '';
@@ -119,9 +121,10 @@ $pages->paginate($page_url_params);
 
                             <?php foreach ( $docs_list as $position => $docs) { $position++; ?>
                                 <article class="conteudo-loop">
+                                    <?php echo $docs->id; ?>
                                     <h2 class="h2-loop-tit">
                                         <div class="position"><?php echo $position + $start; ?>. </div>
-                                        <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/<?php echo $docs->django_id; ?>"><?php echo $docs->reference_title[0]; ?></a>
+                                        <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/?id=<?php echo $docs->id; ?>"><?php echo $docs->reference_title[0]; ?></a>
                                     </h2>
 
                                     <?php if ( $docs->author ): ?>
