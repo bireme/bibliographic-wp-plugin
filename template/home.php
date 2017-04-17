@@ -121,7 +121,6 @@ $pages->paginate($page_url_params);
 
                             <?php foreach ( $docs_list as $position => $docs) { $position++; ?>
                                 <article class="conteudo-loop">
-                                    <?php echo $docs->id; ?>
                                     <h2 class="h2-loop-tit">
                                         <div class="position"><?php echo $position + $start; ?>. </div>
                                         <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/?id=<?php echo $docs->id; ?>"><?php echo $docs->reference_title[0]; ?></a>
@@ -161,11 +160,13 @@ $pages->paginate($page_url_params);
 
                                     <?php if ( $docs->link ) : ?>
                                         <div class="row-fluid">
-                                            <span class="more">
-                                                <a href="<?php echo $docs->link[0]; ?>" target="_blank">
-                                                    <i class="fa fa-file" aria-hidden="true"></i> <?php _e('Fulltext','biblio'); ?>
-                                                </a>
-                                            </span>
+                                            <?php foreach ($docs->link as $link): ?>
+                                                <span class="more">
+                                                    <a href="<?php echo $link ?>" target="_blank">
+                                                        <i class="fa fa-file" aria-hidden="true"></i> <?php _e('Fulltext','biblio'); ?>
+                                                    </a>
+                                                </span>&nbsp;&nbsp;&nbsp;
+                                            <?php endforeach; ?>
                                         </div>
                                     <?php endif; ?>
                                 </article>

@@ -162,11 +162,13 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
 
                         <?php if ( $resource->link ) : ?>
                             <div class="row-fluid">
-                                <span class="more">
-                                    <a href="<?php echo $resource->link[0]; ?>" target="_blank">
-                                        <i class="fa fa-file" aria-hidden="true"></i> <?php _e('Fulltext','biblio'); ?>
-                                    </a>
-                                </span>
+                                <?php foreach ($resource->link as $link): ?>
+                                    <span class="more">
+                                        <a href="<?php echo $link ?>" target="_blank">
+                                            <i class="fa fa-file" aria-hidden="true"></i> <?php _e('Fulltext','biblio'); ?>
+                                        </a>
+                                    </span>&nbsp;&nbsp;&nbsp;
+                                <?php endforeach; ?>
                             </div>
                         <?php endif; ?>
 
