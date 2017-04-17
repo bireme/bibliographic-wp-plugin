@@ -32,9 +32,9 @@ function biblio_page_admin() {
                         </tr>
 
                         <tr valign="top">
-                            <td align="left">
-                                <span><?php _e('Display filters', 'biblio'); ?>:</span>
-                            </td>
+                            <th scope="row">
+                                <?php _e('Display filters', 'biblio'); ?>:
+                            </th>
                             <td>
                                 <fieldset>
                                     <label for="available_filter_main_subject">
