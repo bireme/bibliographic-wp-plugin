@@ -140,7 +140,7 @@ $pages->paginate($page_url_params);
                                             <?php
                                                 echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=journal:\"" . $docs->journal[0] . "\"'>" . $docs->journal[0] . "</a>";
                                                 if ( $docs->reference_source ):
-                                                    echo substr($docs->reference_source, strpos($docs->reference_source, ';'), 100);
+                                                    echo substr($docs->reference_source[0], strpos($docs->reference_source[0], ';'), 100);
                                                 endif;
                                             ?>
                                         </div>

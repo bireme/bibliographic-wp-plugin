@@ -30,7 +30,7 @@ if(!class_exists('Bibliographic_Plugin')) {
     class Bibliographic_Plugin {
 
         private $plugin_slug = 'biblio';
-        private $service_url = 'http://fi-admin.teste.bvsalud.org/';
+        private $service_url = 'http://fi-admin.bvsalud.org/';
 
         /**
          * Construct the plugin object

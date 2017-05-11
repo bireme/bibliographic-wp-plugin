@@ -117,7 +117,7 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                                 <?php
                                     echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=journal:\"" . $resource->journal[0] . "\"'>" . $resource->journal[0] . "</a>";
                                     if ( $resource->reference_source ):
-                                        echo substr($resource->reference_source, strpos($resource->reference_source, ';'), 100);
+                                        echo substr($resource->reference_source[0], strpos($resource->reference_source[0], ';'), 100);
                                     endif;
                                 ?>
                             </div>
