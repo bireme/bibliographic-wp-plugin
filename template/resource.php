@@ -44,13 +44,15 @@ $lang_dir = substr($site_language,0,2);
 
 $biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?id=' . $resource_id . '&op=related&lang=' . $lang_dir;
 
+//print $biblio_service_request;
+
 $response = @file_get_contents($biblio_service_request);
 
 if ($response){
     $response_json = json_decode($response);
-    //echo "<pre>"; print_r($response_json); echo "</pre>";
+    // echo "<pre>"; print_r($response_json); echo "</pre>";
     $resource = $response_json->diaServerResponse[0]->match->docs[0];
-    //$related_list = $response_json->diaServerResponse[0]->response->docs;
+    $related_list = $response_json->diaServerResponse[0]->response->docs;
 }
 
 $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
@@ -126,14 +128,12 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                         <div class="row-fluid">
                             <?php
                                 if ( $resource->publication_type ):
-                                    echo ucfirst( $resource->publication_type[0] );
                                     if ( $resource->publication_language ){
                                         echo __(' in ') . strtoupper(implode(', ', $resource->publication_language));
                                     }
                                     echo ' | ';
                                 endif;
-                                if ( $resource->database ) echo $resource->database[0] . ' | ';
-                                if ( $resource->django_id ) echo 'ID: ' . $resource->django_id;
+                                if ( $resource->django_id ) echo 'ID: BIBLIO-' . $resource->django_id;
                             ?>
                             <br/>
                         </div>
@@ -174,6 +174,20 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
 
                     </article>
                 </div>
+                <section class="row-fluid marginbottom25 widget_categories">
+                    <header class="row-fluid border-bottom marginbottom15">
+                        <h1 class="h1-header"><?php _e('Related','lis'); ?></h1>
+                    </header>
+                    <ul>
+                        <?php foreach ( $related_list as $related) { ?>
+                            <?php if (preg_match('/biblioref/', $related->django_ct)) : ?>
+                                <li class="cat-item">
+                                    <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/?id=<?php echo $related->id; ?>"><?php echo $related->reference_title[0] ?></a>
+                                </li>
+                            <?php endif; ?>
+                        <?php } ?>
+                    </ul>
+                </section>
             </section>
             <aside id="sidebar">
                 <?php if ( $resource->descriptor ): ?>

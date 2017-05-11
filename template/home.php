@@ -242,8 +242,7 @@ $pages->paginate($page_url_params);
                             </header>
                             <ul>
                                 <?php foreach ( $database_list as $db ) { ?>
-                                    <?php $class = ($index > 10) ? 'hide' : ''; ?>
-                                    <li class="cat-item <?php echo $class; ?>">
+                                    <li class="cat-item">
                                         <?php
                                             $filter_link = '?';
                                             if ($query != ''){
@@ -268,8 +267,7 @@ $pages->paginate($page_url_params);
                             </header>
                             <ul>
                                 <?php foreach ( $cp_list as $cp ) { ?>
-                                    <?php $class = ($index > 10) ? 'hide' : ''; ?>
-                                    <li class="cat-item <?php echo $class; ?>">
+                                    <li class="cat-item">
                                         <?php
                                             $filter_link = '?';
                                             if ($query != ''){
@@ -294,8 +292,7 @@ $pages->paginate($page_url_params);
                             </header>
                             <ul>
                                 <?php foreach ( $limit_list as $limit ) { ?>
-                                    <?php $class = ($index > 10) ? 'hide' : ''; ?>
-                                    <li class="cat-item <?php echo $class; ?>">
+                                    <li class="cat-item">
                                         <?php
                                             $filter_link = '?';
                                             if ($query != ''){
@@ -320,8 +317,7 @@ $pages->paginate($page_url_params);
                             </header>
                             <ul>
                                 <?php foreach ( $language_list as $lang ) { ?>
-                                    <?php $class = ($index > 10) ? 'hide' : ''; ?>
-                                    <li class="cat-item <?php echo $class; ?>">
+                                    <li class="cat-item">
                                         <?php
                                             $filter_link = '?';
                                             if ($query != ''){
@@ -346,8 +342,7 @@ $pages->paginate($page_url_params);
                             </header>
                             <ul>
                                 <?php foreach ( $journal_list as $journal ) { ?>
-                                    <?php $class = ($index > 10) ? 'hide' : ''; ?>
-                                    <li class="cat-item <?php echo $class; ?>">
+                                    <li class="cat-item">
                                         <?php
                                             $filter_link = '?';
                                             if ($query != ''){
@@ -372,8 +367,7 @@ $pages->paginate($page_url_params);
                             </header>
                             <ul>
                                 <?php foreach ( $year_list as $year ) { ?>
-                                    <?php $class = ($index > 10) ? 'hide' : ''; ?>
-                                    <li class="cat-item <?php echo $class; ?>">
+                                    <li class="cat-item">
                                         <?php
                                             $filter_link = '?';
                                             if ($query != ''){
