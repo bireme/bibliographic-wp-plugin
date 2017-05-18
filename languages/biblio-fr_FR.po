@@ -8,7 +8,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-05-18 16:08-0300\n"
+"PO-Revision-Date: 2017-05-18 17:13-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "X-Poedit-Language: French\n"
@@ -76,7 +76,7 @@ msgstr "Type de publication"
 #: settings.php:74
 #: template/home.php:245
 msgid "Database"
-msgstr ""
+msgstr "Base de données "
 
 #: settings.php:79
 #: template/home.php:270
@@ -126,21 +126,21 @@ msgstr ""
 #: template/home.php:84
 #: template/resource.php:73
 msgid "Home"
-msgstr ""
+msgstr "Accueil"
 
 #: template/home.php:89
 msgid "Search result"
-msgstr ""
+msgstr "Résultat de la recherche"
 
 #: template/home.php:102
 #: template/resource.php:87
 msgid "Enter one or more words"
-msgstr ""
+msgstr "Entrez un ou plusieurs mots"
 
 #: template/home.php:103
 #: template/resource.php:88
 msgid "Search"
-msgstr ""
+msgstr "Rechercher"
 
 #: template/home.php:104
 #: template/resource.php:89
@@ -153,24 +153,24 @@ msgstr ""
 
 #: template/home.php:116
 msgid "Results"
-msgstr ""
+msgstr "Résultats"
 
 #: template/home.php:118
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: template/home.php:172
 #: template/resource.php:168
 msgid "Fulltext"
-msgstr ""
+msgstr "Texte intégral"
 
 #: template/resource.php:136
 msgid "Publication year"
-msgstr ""
+msgstr "Année de publication"
 
 #: template/resource.php:143
 msgid "Abstract"
-msgstr ""
+msgstr "Résumé"
 
 #: template/resource.php:182
 msgid "Related"
