@@ -73,10 +73,19 @@ if(!class_exists('Bibliographic_Plugin')) {
         }
 
         function plugin_init() {
+            global $biblio_texts;
+
             $biblio_config = get_option('biblio_config');
+            $biblio_config['use_translation'] = true;
 
             if ($biblio_config && $biblio_config['plugin_slug'] != ''){
                 $this->plugin_slug = $biblio_config['plugin_slug'];
+            }
+            if ($biblio_config['use_translation']){
+                $site_language = strtolower(get_bloginfo('language'));
+                $lang = substr($site_language,0,2);
+
+                $biblio_texts = @parse_ini_file(BIBLIOGRAPHIC_PLUGIN_PATH . "/languages/texts_" . $lang . ".ini", true);
             }
 
         }

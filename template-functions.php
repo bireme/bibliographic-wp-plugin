@@ -42,30 +42,21 @@ if ( !function_exists('isUTF8') ) {
     }
 }
 
-if ( !function_exists('get_site_meta_tags') ) {
-    function get_site_meta_tags($url){
-
-        $site_title = array();
-
-        $fp = @file_get_contents($url);
-
-        if ($fp) {
-            $res = preg_match("/<title>(.*)<\/title>/siU", $fp, $title_matches);
-            if ($res) {
-                $site_title = preg_replace('/\s+/', ' ', $title_matches[1]);
-                $site_title = trim($site_title);
+if ( !function_exists('translate_label') ) {
+    function translate_label($texts, $label, $group=NULL) {
+        // labels on texts.ini must be array key without spaces
+        $label_norm = preg_replace('/[&,\'\s]+/', '_', $label);
+        if($group == NULL) {
+            if(isset($texts[$label_norm]) and $texts[$label_norm] != "") {
+                return $texts[$label_norm];
             }
-
-            $site_meta_tags = get_meta_tags($url);
-            $site_meta_tags['title'] = $site_title;
-
-            foreach ($site_meta_tags as $key => $value) {
-                if (!isUTF8($value)){
-                    $site_meta_tags[$key] = utf8_encode($value);
-                }
+        } else {
+            if(isset($texts[$group][$label_norm]) and $texts[$group][$label_norm] != "") {
+                return $texts[$group][$label_norm];
             }
         }
-        return $site_meta_tags;
+        // case translation not found return original label ucfirst
+        return ucfirst($label);
     }
 }
 

@@ -30,6 +30,7 @@ function biblio_page_admin() {
                             <th scope="row"><?php _e('Google Analytics code', 'biblio'); ?>:</th>
                             <td><input type="text" name="biblio_config[google_analytics_code]" value="<?php echo $config['google_analytics_code'] ?>" class="regular-text code"></td>
                         </tr>
+
                         <?php
                         if ( function_exists( 'pll_the_languages' ) ) {
                             $available_languages = pll_languages_list();
@@ -37,7 +38,6 @@ function biblio_page_admin() {
                             $count = 0;
                             foreach ($available_languages as $lang) {
                                 $key_name = 'plugin_title_' . $lang;
-                                print $config[$key_name];
                                 echo '<tr valign="top">';
                                 echo '    <th scope="row"> ' . __("Page title", "biblio") . ' (' . $available_languages_name[$count] . '):</th>';
                                 echo '    <td><input type="text" name="biblio_config[' . $key_name . ']" value="' . $config[$key_name] . '" class="regular-text code"></td>';

@@ -2,10 +2,9 @@
 /*
 Template Name: Bibliographic Home
 */
+global $biblio_service_url, $biblio_plugin_slug, $biblio_plugin_title, $biblio_texts;
 
 require_once(BIBLIOGRAPHIC_PLUGIN_PATH . '/lib/Paginator.php');
-
-global $biblio_service_url, $biblio_plugin_slug, $biblio_plugin_title;
 
 $order = array(
         'RELEVANCE' => 'score desc',
@@ -18,7 +17,7 @@ $biblio_initial_filter = $biblio_config['initial_filter'];
 $biblio_addthis_id     = $biblio_config['addthis_profile_id'];
 
 $site_language = strtolower(get_bloginfo('language'));
-$lang_dir = substr($site_language,0,2);
+$lang = substr($site_language,0,2);
 
 // set query using default param q (query) or s (wordpress search) or newexpr (metaiah)
 $query = $_GET['s'] . $_GET['q'];
@@ -43,7 +42,7 @@ if ($biblio_initial_filter != ''){
 }
 $start = ($page * $count) - $count;
 
-$biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&count=' . $count . '&sort=' . urlencode($sort) . '&lang=' . $lang_dir;
+$biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&count=' . $count . '&sort=' . urlencode($sort) . '&lang=' . $lang;
 
 //print $biblio_service_request;
 
@@ -63,6 +62,8 @@ if ($response){
     $journal_list = $response_json->diaServerResponse[0]->facet_counts->facet_fields->journal;
     $year_list = $response_json->diaServerResponse[0]->facet_counts->facet_fields->publication_year;
 }
+
+$lang_translate = array('pt' => __('Portuguese'), 'es' => _('Spanish'), 'en' => _('English'), 'fr' => _('French'));
 
 #print_r($docs_list);
 
@@ -93,7 +94,7 @@ $pages->paginate($page_url_params);
         <div class="ajusta2">
             <section class="header-search">
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($biblio_plugin_slug); ?>">
-                    <input type="hidden" name="lang" id="lang" value="<?php echo $lang_dir; ?>">
+                    <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
                     <input type="hidden" name="sort" id="sort" value="<?php echo $_GET['sort']; ?>">
                     <input type="hidden" name="format" id="format" value="<?php echo $format ? $format : 'summary'; ?>">
                     <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
@@ -102,6 +103,9 @@ $pages->paginate($page_url_params);
                     <input id="searchsubmit" value="<?php _e('Search', 'biblio'); ?>" type="submit">
                     <a href="#" title="<?php _e('Tip! You can do your search using boolean operators.', 'biblio'); ?>" class="help ketchup tooltip"><i class="fa fa-question-circle fa-2x"></i></a>
                 </form>
+                <div class="pull-right">
+                    <a href="<?php echo $feed_url ?>" target="blank"><img src="<?php echo BIBLIOGRAPHIC_PLUGIN_URL; ?>template/images/icon_rss.png" ></a>
+                </div>
             </section>
             <section id="conteudo">
                 <?php if ( isset($total) && strval($total) == 0 ) :?>
@@ -111,18 +115,14 @@ $pages->paginate($page_url_params);
                         <?php if ( ( $query != '' || $user_filter != '' ) && strval($total) > 0) :?>
                             <h1 class="h1-header"><?php _e('Results', 'biblio'); echo ': ' . $total ?></h1>
                         <?php else: ?>
-                            <h1 class="h1-header"><?php _e('Records', 'biblio'); echo ': ' . $total ?></h1>
+                            <h1 class="h1-header"><?php _e('Total', 'biblio'); echo ': ' . $total ?></h1>
                         <?php endif; ?>
-                        <div class="pull-right">
-				            <a href="<?php echo $feed_url ?>" target="blank"><img src="<?php echo BIBLIOGRAPHIC_PLUGIN_URL; ?>template/images/icon_rss.png" ></a>
-                        </div>
                     </header>
                     <div class="row-fluid">
 
                             <?php foreach ( $docs_list as $position => $docs) { $position++; ?>
                                 <article class="conteudo-loop">
                                     <h2 class="h2-loop-tit">
-                                        <div class="position"><?php echo $position + $start; ?>. </div>
                                         <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/?id=<?php echo $docs->id; ?>"><?php echo $docs->reference_title[0]; ?></a>
                                     </h2>
 
@@ -196,8 +196,7 @@ $pages->paginate($page_url_params);
                             </header>
                             <ul>
                                 <?php foreach ( $descriptor_list as $index => $descriptor ) { $index++; ?>
-                                    <?php $class = ($index > 10) ? 'hide' : ''; ?>
-                                    <li class="cat-item <?php echo $class; ?>">
+                                    <li class="cat-item">
                                         <?php
                                             $filter_link = '?';
                                             if ($query != ''){
@@ -222,8 +221,7 @@ $pages->paginate($page_url_params);
                             </header>
                             <ul>
                                 <?php foreach ( $type_list as $type ) { ?>
-                                    <?php $class = ($index > 10) ? 'hide' : ''; ?>
-                                    <li class="cat-item <?php echo $class; ?>">
+                                    <li class="cat-item">
                                         <?php
                                             $filter_link = '?';
                                             if ($query != ''){
@@ -234,7 +232,7 @@ $pages->paginate($page_url_params);
                                                 $filter_link .= ' AND ' . $user_filter ;
                                             }
                                         ?>
-                                        <a href='<?php echo $filter_link; ?>'><?php echo ucfirst( $type[0] ); ?></a>
+                                        <a href='<?php echo $filter_link; ?>'><?php echo translate_label($biblio_texts, $type[0], 'publication_type') ?></a>
                                         <span class="cat-item-count"><?php echo $type[1]; ?></span>
                                     </li>
                                 <?php } ?>
@@ -334,7 +332,7 @@ $pages->paginate($page_url_params);
                                                 $filter_link .= ' AND ' . $user_filter ;
                                             }
                                         ?>
-                                        <a href='<?php echo $filter_link; ?>'><?php echo strtoupper($lang[0]); ?></a>
+                                        <a href='<?php echo $filter_link; ?>'><?php echo $lang_translate[$lang[0]]; ?></a>
                                         <span class="cat-item-count"><?php echo $lang[1]; ?></span>
                                     </li>
                                 <?php } ?>

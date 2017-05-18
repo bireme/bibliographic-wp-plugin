@@ -31,11 +31,11 @@ a:visited{color:rgb(0,153,255);}
 .h1-header{float:left; line-height:30px; font-size:26px; color:#28367D !important; font-weight:normal; text-decoration:none;}
 .h2-loop-tit, .h2-loop-tit a {font-weight:bold;font-size:1.3em;line-height: 135%;color: #333; text-decoration: none; margin: 10px 0 10px;}
 .h2-loop-tit a:hover {color: #344c66;}
-.altLang {display:block;color:#999;font-style: italic;}
+.altLang {display:block;color:#999;}
 
 /* ALL */
 .site-main{overflow:auto;}
-.row-fluid{width:100%; float:left;}
+.row-fluid{width:100%; float:left; margin-top: 3px;}
 .pull-right{float:right !important;}
 .pull-left{float:left !important;}
 .ajusta{width:1090px; margin:0 auto; overflow:hidden;}
@@ -95,7 +95,7 @@ ol.doc-loop li p {font-size: .9rem; font-weight: normal; color:rgb(102,102,102);
 .more a:hover{color:rgb(0,153,255);}
 .abstract, .subjects {margin-top: 1rem;}
 .abstract strong, .subjects strong {color: #000;}
-.abstract-version {font-size: .9rem; font-weight: normal;}
+.abstract-version {font-weight: normal;}
 .abstract-version.altLang {margin-top: 10px;}
 .help {vertical-align: sub; margin-left:12px;}
 .breadcrumb-home {font-size: 60%;}

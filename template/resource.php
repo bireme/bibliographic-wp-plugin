@@ -62,7 +62,7 @@ foreach ($related_list as $related) {
         $has_related = true;
         break;
     }
- }
+}
 
 $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 
@@ -123,13 +123,10 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                             </div>
                         <?php endif; ?>
 
-                        <?php if ( $resource->journal ): ?>
+                        <?php if ( $resource->reference_source ): ?>
                             <div class="row-fluid">
                                 <?php
-                                    echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=journal:\"" . $resource->journal[0] . "\"'>" . $resource->journal[0] . "</a>";
-                                    if ( $resource->reference_source ):
-                                        echo substr($resource->reference_source[0], strpos($resource->reference_source[0], ';'), 100);
-                                    endif;
+                                    echo $resource->reference_source;
                                 ?>
                             </div>
                         <?php endif; ?>
@@ -179,10 +176,10 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                 </div>
             </section>
             <aside id="sidebar">
-                <?php if (has_related): ?>
+                <?php if ($has_related): ?>
                     <section class="row-fluid marginbottom25 widget_categories">
                         <header class="row-fluid border-bottom marginbottom15">
-                            <h1 class="h1-header"><?php _e('Related','lis'); ?></h1>
+                            <h1 class="h1-header"><?php _e('Related','biblio'); ?></h1>
                         </header>
                         <ul>
                             <?php foreach ( $related_list as $related) { ?>
