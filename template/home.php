@@ -5,7 +5,7 @@ Template Name: Bibliographic Home
 
 require_once(BIBLIOGRAPHIC_PLUGIN_PATH . '/lib/Paginator.php');
 
-global $biblio_service_url, $biblio_plugin_slug;
+global $biblio_service_url, $biblio_plugin_slug, $biblio_plugin_title;
 
 $order = array(
         'RELEVANCE' => 'score desc',
@@ -82,9 +82,9 @@ $pages->paginate($page_url_params);
     <div class="row-fluid breadcrumb">
         <a href="<?php echo real_site_url(); ?>"><?php _e('Home','biblio'); ?></a> >
         <?php if ($query == '' && $filter == ''): ?>
-            <?php _e('Bibliographic records', 'biblio') ?>
+            <?php echo $biblio_plugin_title ?>
         <?php else: ?>
-            <a href="<?php echo real_site_url($biblio_plugin_slug); ?>"><?php _e('Bibliographic records', 'biblio') ?> </a> >
+            <a href="<?php echo real_site_url($biblio_plugin_slug); ?>"><?php echo $biblio_plugin_title ?> </a> >
             <?php _e('Search result', 'biblio') ?>
         <?php endif; ?>
     </div>
@@ -127,7 +127,7 @@ $pages->paginate($page_url_params);
                                     </h2>
 
                                     <?php if ( $docs->author ): ?>
-                                        <div class="row-fluid">
+                                        <div class="row-fluid authors">
                                             <?php foreach ( $docs->author as $index => $author ):
                                                 echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=author:\"" . $author . "\"'>" . $author . "</a>";
                                                 echo count($docs->author)-1 != $index ? '; ' : '.';
@@ -143,6 +143,12 @@ $pages->paginate($page_url_params);
                                                     echo substr($docs->reference_source[0], strpos($docs->reference_source[0], ';'), 100);
                                                 endif;
                                             ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if ( $docs->reference_abstract ): ?>
+                                        <div class="row-fluid">
+                                            <?php echo substr($docs->reference_abstract[0], 0, 300) . '...' ?>
                                         </div>
                                     <?php endif; ?>
 

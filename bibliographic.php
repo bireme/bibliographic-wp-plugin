@@ -131,18 +131,18 @@ if(!class_exists('Bibliographic_Plugin')) {
         }
 
         function theme_slug_render_title() {
-            global $wp;
+            global $wp, $biblio_plugin_title;
             $pagename = $wp->query_vars["pagename"];
 
             if ($pagename == $this->plugin_slug || $pagename == $this->plugin_slug .'/resource') {
                 $biblio_config = get_option('biblio_config');
                 if ( function_exists( 'pll_the_languages' ) ) {
                     $current_lang = pll_current_language();
-                    $plugin_title = $biblio_config['plugin_title_' . $current_lang];
+                    $biblio_plugin_title = $biblio_config['plugin_title_' . $current_lang];
                 }else{
-                    $plugin_title = $biblio_config['plugin_title'];
+                    $biblio_plugin_title = $biblio_config['plugin_title'];
                 }
-                $title  = $plugin_title . " | " . get_bloginfo('name');
+                $title = $biblio_plugin_title . " | " . get_bloginfo('name');
                 print "<title>" . $title . "</title>";
             }
         }

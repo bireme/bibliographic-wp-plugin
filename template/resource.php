@@ -3,7 +3,7 @@
 Template Name: Bibliographic Detail
 */
 
-global $biblio_service_url, $biblio_plugin_slug;
+global $biblio_service_url, $biblio_plugin_slug, $biblio_plugin_title;
 
 $biblio_config         = get_option('biblio_config');
 $biblio_initial_filter = $biblio_config['initial_filter'];
@@ -55,6 +55,15 @@ if ($response){
     $related_list = $response_json->diaServerResponse[0]->response->docs;
 }
 
+// check in related list if has at least one of biblioref type
+$has_related = false;
+foreach ($related_list as $related) {
+    if (preg_match('/biblioref/', $related->django_ct)){
+        $has_related = true;
+        break;
+    }
+ }
+
 $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 
 ?>
@@ -62,7 +71,7 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
 <?php get_header('biblio');?>
     <div class="row-fluid breadcrumb">
         <a href="<?php echo real_site_url(); ?>"><?php _e('Home','biblio'); ?></a> >
-        <a href="<?php echo real_site_url($biblio_plugin_slug); ?>"><?php _e('Bibliographic records', 'biblio') ?> </a> >
+        <a href="<?php echo real_site_url($biblio_plugin_slug); ?>"><?php echo $biblio_plugin_title ?> </a> >
         <?php echo ( strlen($resource->reference_title[0]) > 90 ) ? substr($resource->reference_title[0],0,90) . '...' : $resource->reference_title[0]; ?>
     </div>
 
@@ -106,7 +115,7 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                         </h2>
 
                         <?php if ( $resource->author ): ?>
-                            <div class="row-fluid">
+                            <div class="row-fluid authors">
                                 <?php foreach ( $resource->author as $index => $author ):
                                     echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=author:\"" . $author . "\"'>" . $author . "</a>";
                                     echo count($resource->author)-1 != $index ? '; ' : '.';
@@ -127,13 +136,7 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
 
                         <div class="row-fluid">
                             <?php
-                                if ( $resource->publication_type ):
-                                    if ( $resource->publication_language ){
-                                        echo __(' in ') . strtoupper(implode(', ', $resource->publication_language));
-                                    }
-                                    echo ' | ';
-                                endif;
-                                if ( $resource->django_id ) echo 'ID: BIBLIO-' . $resource->django_id;
+                                echo _('Publication year') . ': ' . $resource->publication_year;
                             ?>
                             <br/>
                         </div>
@@ -174,129 +177,21 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
 
                     </article>
                 </div>
-                <section class="row-fluid marginbottom25 widget_categories">
-                    <header class="row-fluid border-bottom marginbottom15">
-                        <h1 class="h1-header"><?php _e('Related','lis'); ?></h1>
-                    </header>
-                    <ul>
-                        <?php foreach ( $related_list as $related) { ?>
-                            <?php if (preg_match('/biblioref/', $related->django_ct)) : ?>
-                                <li class="cat-item">
-                                    <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/?id=<?php echo $related->id; ?>"><?php echo $related->reference_title[0] ?></a>
-                                </li>
-                            <?php endif; ?>
-                        <?php } ?>
-                    </ul>
-                </section>
             </section>
             <aside id="sidebar">
-                <?php if ( $resource->descriptor ): ?>
-                    <section class="row-fluid widget_categories">
-                        <header class="row-fluid">
-                            <h1 class="h1-header"><?php _e('Main subject','biblio'); ?></h1>
+                <?php if (has_related): ?>
+                    <section class="row-fluid marginbottom25 widget_categories">
+                        <header class="row-fluid border-bottom marginbottom15">
+                            <h1 class="h1-header"><?php _e('Related','lis'); ?></h1>
                         </header>
                         <ul>
-                            <?php foreach ( $resource->descriptor as $subject ): ?>
-                                <li class="cat-item">
-                                    <?php echo $subject; ?>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </section>
-                <?php endif; ?>
-                <?php if ( $resource->publication_type ): ?>
-                    <section class="row-fluid widget_categories">
-                        <header class="row-fluid">
-                            <h1 class="h1-header"><?php _e('Publication type','biblio'); ?></h1>
-                        </header>
-                        <ul>
-                            <?php foreach ( $resource->publication_type as $type ): ?>
-                                <li class="cat-item">
-                                    <?php echo ucfirst($type); ?>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </section>
-                <?php endif; ?>
-                <?php if ( $resource->database ): ?>
-                    <section class="row-fluid widget_categories">
-                        <header class="row-fluid">
-                            <h1 class="h1-header"><?php _e('Database','biblio'); ?></h1>
-                        </header>
-                        <ul>
-                            <?php foreach ( $resource->database as $db ): ?>
-                                <li class="cat-item">
-                                    <?php echo $db; ?>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </section>
-                <?php endif; ?>
-                <?php if ( $resource->publication_country ): ?>
-                    <section class="row-fluid widget_categories">
-                        <header class="row-fluid">
-                            <h1 class="h1-header"><?php _e('Publication country','biblio'); ?></h1>
-                        </header>
-                        <ul>
-                            <?php foreach ( $resource->publication_country as $cp ): ?>
-                                <li class="cat-item">
-                                    <?php echo $cp; ?>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </section>
-                <?php endif; ?>
-                <?php if ( $resource->check_tags ): ?>
-                    <section class="row-fluid widget_categories">
-                        <header class="row-fluid">
-                            <h1 class="h1-header"><?php _e('Limits','biblio'); ?></h1>
-                        </header>
-                        <ul>
-                            <?php foreach ( $resource->check_tags as $limit ): ?>
-                                <li class="cat-item">
-                                    <?php echo $limit; ?>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </section>
-                <?php endif; ?>
-                <?php if ( $resource->publication_language ): ?>
-                    <section class="row-fluid widget_categories">
-                        <header class="row-fluid">
-                            <h1 class="h1-header"><?php _e('Language','biblio'); ?></h1>
-                        </header>
-                        <ul>
-                            <?php foreach ( $resource->publication_language as $lang ): ?>
-                                <li class="cat-item">
-                                    <?php echo strtoupper($lang); ?>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </section>
-                <?php endif; ?>
-                <?php if ( $resource->journal ): ?>
-                    <section class="row-fluid widget_categories">
-                        <header class="row-fluid">
-                            <h1 class="h1-header"><?php _e('Journal','biblio'); ?></h1>
-                        </header>
-                        <ul>
-                            <?php foreach ( $resource->journal as $journal ): ?>
-                                <li class="cat-item">
-                                    <?php echo $journal; ?>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </section>
-                <?php endif; ?>
-                <?php if ( $resource->publication_year ): ?>
-                    <section class="row-fluid widget_categories">
-                        <header class="row-fluid">
-                            <h1 class="h1-header"><?php _e('Year','biblio'); ?></h1>
-                        </header>
-                        <ul>
-                            <li class="cat-item">
-                                <?php echo $resource->publication_year; ?>
-                            </li>
+                            <?php foreach ( $related_list as $related) { ?>
+                                <?php if (preg_match('/biblioref/', $related->django_ct)) : ?>
+                                    <li class="cat-item">
+                                        <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/?id=<?php echo $related->id; ?>"><?php echo $related->reference_title[0] ?></a>
+                                    </li>
+                                <?php endif; ?>
+                            <?php } ?>
                         </ul>
                     </section>
                 <?php endif; ?>
