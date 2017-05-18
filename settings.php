@@ -30,6 +30,28 @@ function biblio_page_admin() {
                             <th scope="row"><?php _e('Google Analytics code', 'biblio'); ?>:</th>
                             <td><input type="text" name="biblio_config[google_analytics_code]" value="<?php echo $config['google_analytics_code'] ?>" class="regular-text code"></td>
                         </tr>
+                        <?php
+                        if ( function_exists( 'pll_the_languages' ) ) {
+                            $available_languages = pll_languages_list();
+                            $available_languages_name = pll_languages_list(array('fields' => 'name'));
+                            $count = 0;
+                            foreach ($available_languages as $lang) {
+                                $key_name = 'plugin_title_' . $lang;
+                                print $config[$key_name];
+                                echo '<tr valign="top">';
+                                echo '    <th scope="row"> ' . __("Page title", "biblio") . ' (' . $available_languages_name[$count] . '):</th>';
+                                echo '    <td><input type="text" name="biblio_config[' . $key_name . ']" value="' . $config[$key_name] . '" class="regular-text code"></td>';
+                                echo '</tr>';
+                                $count++;
+                            }
+                        }else{
+                            echo '<tr valign="top">';
+                            echo '   <th scope="row"><?php _e("Page title", "biblio"); ?>:</th>';
+                            echo '   <td><input type="text" name="biblio_config[plugin_title]" value="<?php echo $config["plugin_title"] ?>" class="regular-text code"></td>';
+                            echo '</tr>';
+                        }
+
+                        ?>
 
                         <tr valign="top">
                             <th scope="row">

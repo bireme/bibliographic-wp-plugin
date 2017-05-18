@@ -42,9 +42,9 @@ if(!class_exists('Bibliographic_Plugin')) {
             add_action( 'admin_menu', array(&$this, 'admin_menu'));
             add_action( 'plugins_loaded', array(&$this, 'plugin_init'));
             add_action( 'wp_head', array(&$this, 'google_analytics_code'));
+            add_action( 'wp_head', array(&$this, 'theme_slug_render_title'));
             add_action( 'template_redirect', array(&$this, 'template_redirect'));
             add_action( 'widgets_init', array(&$this, 'register_sidebars'));
-            add_filter( 'wp_title', array(&$this, 'page_title'), 20, 2);
             add_filter( 'get_search_form', array(&$this, 'search_form'));
 
 
@@ -130,15 +130,21 @@ if(!class_exists('Bibliographic_Plugin')) {
             register_sidebar( $args );
         }
 
-        function page_title($title, $sep){
+        function theme_slug_render_title() {
             global $wp;
             $pagename = $wp->query_vars["pagename"];
-            $title = $title ? $title : get_bloginfo();
 
-            if ( strpos($pagename, $this->plugin_slug) === 0 ) { //pagename starts with plugin slug
-                return __('Bibliographic records')  . ' | ' . $title;
+            if ($pagename == $this->plugin_slug || $pagename == $this->plugin_slug .'/resource') {
+                $biblio_config = get_option('biblio_config');
+                if ( function_exists( 'pll_the_languages' ) ) {
+                    $current_lang = pll_current_language();
+                    $plugin_title = $biblio_config['plugin_title_' . $current_lang];
+                }else{
+                    $plugin_title = $biblio_config['plugin_title'];
+                }
+                $title  = $plugin_title . " | " . get_bloginfo('name');
+                print "<title>" . $title . "</title>";
             }
-
         }
 
         function search_form( $form ) {
