@@ -166,13 +166,22 @@ $pages->paginate($page_url_params);
 
                                     <?php if ( $docs->link ) : ?>
                                         <div class="row-fluid">
-                                            <?php foreach ($docs->link as $link): ?>
+                                            <?php if (count($docs->link) > 1): ?>
+                                                <?php foreach ($docs->link as $index => $link): ?>
+                                                    <span class="more">
+                                                        <a href="<?php echo $link ?>" target="_blank">
+                                                            <i class="fa fa-file" aria-hidden="true"> </i>
+                                                            <?php ( ($index == 0) ? _e('Fulltext (primary link)','biblio') : _e('Fulltext (alternative link)','biblio')); ?>
+                                                        </a>
+                                                    </span>&nbsp;&nbsp;&nbsp;
+                                                <?php endforeach; ?>
+                                            <?php else: ?>
                                                 <span class="more">
                                                     <a href="<?php echo $link ?>" target="_blank">
-                                                        <i class="fa fa-file" aria-hidden="true"></i> <?php _e('Fulltext','biblio'); ?>
+                                                        <i class="fa fa-file" aria-hidden="true"> </i> <?php _e('Fulltext','biblio'); ?>
                                                     </a>
-                                                </span>&nbsp;&nbsp;&nbsp;
-                                            <?php endforeach; ?>
+                                                </span>
+                                            <?php endif; ?>
                                         </div>
                                     <?php endif; ?>
                                 </article>
