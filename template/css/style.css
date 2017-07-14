@@ -61,7 +61,7 @@ a:visited{color:rgb(0,153,255);}
 .header-contato:hover{text-decoration:underline; color:rgb(255,255,255);}
 .header-logo{width:314px; height:79px; float:left; background-position:0px 0px; text-indent:-999px; font-size:11px; margin:15px 0 0 15px;}
 .breadcrumb{padding:10px 10px 10px 0px !important;}
-.header-search{display: flex;padding: 30px 0;border-bottom: 1px solid #EAEAEA;}
+.header-search{padding: 30px 0;border-bottom: 1px solid #EAEAEA;}
 .header-search form {margin:0 auto;}
 .header-search .input-search{width:330px; min-height:19px; float: left; padding:8px 10px; border:1px solid rgb(132,132,132);margin-right:.4rem;}
 .header-colabore:hover{text-decoration:none;}
@@ -117,14 +117,7 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 	background-image: -moz-linear-gradient(bottom, #426684 14%, #29B3FD 60%, #0E85CA 85%);
 	background-image: -webkit-linear-gradient(bottom, #426684 14%, #29B3FD 60%, #0E85CA 85%);
 	background-image: -ms-linear-gradient(bottom, #426684 14%, #29B3FD 60%, #0E85CA 85%);
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0.14, #426684),
-		color-stop(0.6, #29B3FD),
-		color-stop(0.85, #0E85CA)
-	);
+	background-image: -webkit-gradient(linear,left bottom, left top, color-stop(0.14, #426684),color-stop(0.6, #29B3FD),color-stop(0.85, #0E85CA));
 }
 
 
@@ -258,7 +251,7 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 	.bar{padding:4px 0;}
 	.h2-loop-tit{width:100%;}
 	.h1-header{width:100%; float:left; margin-bottom:7px;}
-	.header-search{width:95%; margin:15px 2.5%;}
+	.header-search{width:95%; margin:5px 2.5%;}
 	.input-search{width:230px;}
 	.conteudo-loop-rates{position:relative; right:0px; top:0px; float:left; width:100%; margin-top:7px;}
 	header .pagination{display: none;}
@@ -278,8 +271,10 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 
 @media (max-width: 479px) {
 	.container {width: 97%;}
-	.header-search .input-search {width:50%;}
+	.header-search .input-search {width:70%;}
 	#searchsubmit {padding: 10px 10px;}
-    .help {margin-left: 2px;}
+  .help {margin-left: 2px;}
 	/*#parent {margin-top: 40px;}*/
+	.more {display: table;	min-width: 190px;}
+	.rss, .tooltip { display: none;}
 }
