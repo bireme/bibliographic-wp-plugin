@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Bibliographic 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
 "POT-Creation-Date: 2017-05-22 14:42:04+00:00\n"
-"PO-Revision-Date: 2017-05-22 11:50-0300\n"
+"PO-Revision-Date: 2017-08-15 17:01-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -110,19 +110,19 @@ msgstr ""
 
 #: template/home.php:66
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugais"
 
 #: template/home.php:66
 msgid "Spanish"
-msgstr ""
+msgstr "Espanol"
 
 #: template/home.php:66
 msgid "English"
-msgstr ""
+msgstr "Anglais"
 
 #: template/home.php:66
 msgid "French"
-msgstr ""
+msgstr "Français"
 
 #: template/home.php:84
 #: template/resource.php:73

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bibliographic 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2017-05-22 14:42:04+00:00\n"
+"POT-Creation-Date: 2017-05-22 15:04:46+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -54,35 +54,35 @@ msgstr ""
 msgid "Display filters"
 msgstr ""
 
-#: settings.php:64 template/home.php:204
+#: settings.php:64 template/home.php:206
 msgid "Main subject"
 msgstr ""
 
-#: settings.php:69 template/home.php:229
+#: settings.php:69 template/home.php:231
 msgid "Publication type"
 msgstr ""
 
-#: settings.php:74 template/home.php:254
+#: settings.php:74 template/home.php:256
 msgid "Database"
 msgstr ""
 
-#: settings.php:79 template/home.php:279
+#: settings.php:79 template/home.php:281
 msgid "Publication country"
 msgstr ""
 
-#: settings.php:84 template/home.php:304
+#: settings.php:84 template/home.php:306
 msgid "Limits"
 msgstr ""
 
-#: settings.php:89 template/home.php:329
+#: settings.php:89 template/home.php:331
 msgid "Language"
 msgstr ""
 
-#: settings.php:94 template/home.php:354
+#: settings.php:94 template/home.php:356
 msgid "Journal"
 msgstr ""
 
-#: settings.php:99 template/home.php:379
+#: settings.php:99 template/home.php:381
 msgid "Year"
 msgstr ""
 
@@ -106,47 +106,47 @@ msgstr ""
 msgid "French"
 msgstr ""
 
-#: template/home.php:84 template/resource.php:73
+#: template/home.php:86 template/resource.php:73
 msgid "Home"
 msgstr ""
 
-#: template/home.php:89
+#: template/home.php:91
 msgid "Search result"
 msgstr ""
 
-#: template/home.php:102 template/resource.php:87
+#: template/home.php:104 template/resource.php:87
 msgid "Enter one or more words"
 msgstr ""
 
-#: template/home.php:103 template/resource.php:88
+#: template/home.php:105 template/resource.php:88
 msgid "Search"
 msgstr ""
 
-#: template/home.php:104 template/resource.php:89
+#: template/home.php:106 template/resource.php:89
 msgid "Tip! You can do your search using boolean operators."
 msgstr ""
 
-#: template/home.php:112
+#: template/home.php:114
 msgid "No results found"
 msgstr ""
 
-#: template/home.php:116
+#: template/home.php:118
 msgid "Results"
 msgstr ""
 
-#: template/home.php:118
+#: template/home.php:120
 msgid "Total"
 msgstr ""
 
-#: template/home.php:174 template/resource.php:170
+#: template/home.php:176 template/resource.php:170
 msgid "Fulltext (primary link)"
 msgstr ""
 
-#: template/home.php:174 template/resource.php:170
+#: template/home.php:176 template/resource.php:170
 msgid "Fulltext (alternative link)"
 msgstr ""
 
-#: template/home.php:181 template/resource.php:177
+#: template/home.php:183 template/resource.php:177
 msgid "Fulltext"
 msgstr ""
 

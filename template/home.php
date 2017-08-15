@@ -63,9 +63,7 @@ if ($response){
     $year_list = $response_json->diaServerResponse[0]->facet_counts->facet_fields->publication_year;
 }
 
-$lang_translate = array('pt' => gettext('Portuguese'), 'es' => gettext('Spanish'), 'en' => gettext('English'), 'fr' => gettext('French'));
-
-#print_r($docs_list);
+$lang_translate = array('pt' => __('Portuguese', 'biblio'), 'es' => __('Spanish', 'biblio'), 'en' => __('English', 'biblio'), 'fr' => __('French', 'biblio'));
 
 $params  = !empty($format) ? '&format=' . $format : '';
 $params .= $count != 2 ? '&count=' . $count : '';
@@ -103,7 +101,7 @@ $pages->paginate($page_url_params);
                     <input id="searchsubmit" value="<?php _e('Search', 'biblio'); ?>" type="submit">
                     <a href="#" title="<?php _e('Tip! You can do your search using boolean operators.', 'biblio'); ?>" class="help ketchup tooltip"><i class="fa fa-question-circle fa-2x"></i></a>
                 </form>
-                <div class="pull-right rss">
+                <div class="pull-right">
                     <a href="<?php echo $feed_url ?>" target="blank"><img src="<?php echo BIBLIOGRAPHIC_PLUGIN_URL; ?>template/images/icon_rss.png" ></a>
                 </div>
             </section>
