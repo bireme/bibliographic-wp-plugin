@@ -99,30 +99,33 @@ if(!class_exists('Bibliographic_Plugin')) {
 
         function template_redirect() {
             global $wp, $biblio_service_url, $biblio_plugin_slug;
-            $pagename = $wp->query_vars["pagename"];
 
-            $biblio_service_url = $this->service_url;
-            $biblio_plugin_slug = $this->plugin_slug;
+            if ( is_404() ){
+                $pagename = $wp->request;
 
-            if ($pagename == $this->plugin_slug || $pagename == $this->plugin_slug . '/resource'
-                || $pagename == $this->plugin_slug . '/bibliographic-feed') {
+                $biblio_service_url = $this->service_url;
+                $biblio_plugin_slug = $this->plugin_slug;
 
-                add_action( 'wp_enqueue_scripts', array(&$this, 'page_template_styles_scripts'));
+                if ($pagename == $this->plugin_slug || $pagename == $this->plugin_slug . '/resource'
+                    || $pagename == $this->plugin_slug . '/bibliographic-feed') {
 
-                if ($pagename == $this->plugin_slug){
-                    $template = BIBLIOGRAPHIC_PLUGIN_PATH . '/template/home.php';
-                }elseif ($pagename == $this->plugin_slug . '/bibliographic-feed'){
-                    header("Content-Type: text/xml; charset=UTF-8");
-                    $template = BIBLIOGRAPHIC_PLUGIN_PATH . '/template/rss.php';
-                }else{
-                    $template = BIBLIOGRAPHIC_PLUGIN_PATH . '/template/resource.php';
+                    add_action( 'wp_enqueue_scripts', array(&$this, 'page_template_styles_scripts'));
+
+                    if ($pagename == $this->plugin_slug){
+                        $template = BIBLIOGRAPHIC_PLUGIN_PATH . '/template/home.php';
+                    }elseif ($pagename == $this->plugin_slug . '/bibliographic-feed'){
+                        header("Content-Type: text/xml; charset=UTF-8");
+                        $template = BIBLIOGRAPHIC_PLUGIN_PATH . '/template/rss.php';
+                    }else{
+                        $template = BIBLIOGRAPHIC_PLUGIN_PATH . '/template/resource.php';
+                    }
+                    // force status to 200 - OK
+                    status_header(200);
+
+                    // redirect to page and finish execution
+                    include($template);
+                    die();
                 }
-                // force status to 200 - OK
-                status_header(200);
-
-                // redirect to page and finish execution
-                include($template);
-                die();
             }
         }
 
