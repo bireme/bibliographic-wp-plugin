@@ -31,6 +31,7 @@ if(!class_exists('Bibliographic_Plugin')) {
 
         private $plugin_slug = 'biblio';
         private $service_url = 'http://fi-admin.bvsalud.org/';
+        private $similar_docs_url = 'http://basalto01.bireme.br:8180/SDService/SDService';
 
         /**
          * Construct the plugin object
@@ -101,7 +102,7 @@ if(!class_exists('Bibliographic_Plugin')) {
             global $wp, $biblio_service_url, $biblio_plugin_slug;
 
             if ( is_404() ){
-                $pagename = $wp->request;
+                $pagename = $wp->query_vars["pagename"];
 
                 $biblio_service_url = $this->service_url;
                 $biblio_plugin_slug = $this->plugin_slug;
