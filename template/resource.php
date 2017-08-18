@@ -3,7 +3,7 @@
 Template Name: Bibliographic Detail
 */
 
-global $biblio_service_url, $biblio_plugin_slug, $biblio_plugin_title;
+global $biblio_service_url, $biblio_plugin_slug, $biblio_plugin_title, $similar_docs_url;
 
 $biblio_config         = get_option('biblio_config');
 $biblio_initial_filter = $biblio_config['initial_filter'];
@@ -52,16 +52,26 @@ if ($response){
     $response_json = json_decode($response);
     // echo "<pre>"; print_r($response_json); echo "</pre>";
     $resource = $response_json->diaServerResponse[0]->match->docs[0];
-    $related_list = $response_json->diaServerResponse[0]->response->docs;
-}
+    $related_docs = $response_json->diaServerResponse[0]->response->docs;
 
-// check in related list if has at least one of biblioref type
-$has_related = false;
-foreach ($related_list as $related) {
-    if (preg_match('/biblioref/', $related->django_ct)){
-        $has_related = true;
-        break;
-    }
+    // find similar documents
+    $similar_docs_url = 'http://basalto01.bireme.br:8180/SDService/SDService';
+    $temp_id = time() . $resource->django_id;
+    $create_temp_profile_url = $similar_docs_url . '?psId=wpbiblioplugin&addProfile=' . $temp_id . '&sentence=' .  urlencode($resource->reference_title[0]);
+    $get_similar_docs_url = $similar_docs_url . '?psId=wpbiblioplugin&getSimDocs=' . $temp_id;
+    $delete_temp_profile_url = $similar_docs_url . '?psId=wpbiblioplugin&deleteProfile=' . $temp_id;
+
+    // create temp profile
+     @file_get_contents($create_temp_profile_url);
+    // get similar docs
+    $similar_docs_xml = @file_get_contents($get_similar_docs_url);
+    // transform to php array
+    $xml = simplexml_load_string($similar_docs_xml,'SimpleXMLElement',LIBXML_NOCDATA);
+    $json = json_encode($xml);
+    $similar_docs = json_decode($json, TRUE);
+    // delete temp profile
+    @file_get_contents($delete_temp_profile_url);
+
 }
 
 $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
@@ -185,18 +195,25 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                 </div>
             </section>
             <aside id="sidebar">
-                <?php if ($has_related): ?>
+                <?php if ( count($similar_docs['document']) > 0 ): ?>
                     <section class="row-fluid marginbottom25 widget_categories">
                         <header class="row-fluid border-bottom marginbottom15">
                             <h1 class="h1-header"><?php _e('Related','biblio'); ?></h1>
                         </header>
                         <ul>
-                            <?php foreach ( $related_list as $related) { ?>
-                                <?php if (preg_match('/biblioref/', $related->django_ct)) : ?>
-                                    <li class="cat-item">
-                                        <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/?id=<?php echo $related->id; ?>"><?php echo $related->reference_title[0] ?></a>
-                                    </li>
-                                <?php endif; ?>
+                            <?php foreach ( $similar_docs['document'] as $similar) { ?>
+                                <li class="cat-item">
+
+                                    <a href="http://pesquisa.bvsalud.org/portal/resource/<?php echo $lang_dir . '/' . $similar['id']; ?>" target="_blank">
+                                        <?php
+                                            if ( $similar['ti_' . $lang_dir] ){
+                                                echo $similar['ti_' . $lang_dir];
+                                            }else{
+                                                echo $similar['ti_en'];
+                                            }
+                                        ?>
+                                    </a>
+                                </li>
                             <?php } ?>
                         </ul>
                     </section>
