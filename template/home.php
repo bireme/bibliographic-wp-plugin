@@ -175,7 +175,7 @@ $pages->paginate($page_url_params);
                                                 <?php endforeach; ?>
                                             <?php else: ?>
                                                 <span class="more">
-                                                    <a href="<?php echo $link ?>" target="_blank">
+                                                    <a href="<?php echo $docs->link[0] ?>" target="_blank">
                                                         <i class="fa fa-file" aria-hidden="true"> </i> <?php _e('Fulltext','biblio'); ?>
                                                     </a>
                                                 </span>
