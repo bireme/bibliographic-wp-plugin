@@ -63,8 +63,6 @@ if ($response){
     $year_list = $response_json->diaServerResponse[0]->facet_counts->facet_fields->publication_year;
 }
 
-$lang_translate = array('pt' => __('Portuguese', 'biblio'), 'es' => __('Spanish', 'biblio'), 'en' => __('English', 'biblio'), 'fr' => __('French', 'biblio'));
-
 $params  = !empty($format) ? '&format=' . $format : '';
 $params .= $count != 2 ? '&count=' . $count : '';
 $params .= !empty($_GET['sort']) ? '&sort=' . $_GET['sort'] : '';
@@ -289,7 +287,7 @@ $pages->paginate($page_url_params);
                                                 $filter_link .= ' AND ' . $user_filter ;
                                             }
                                         ?>
-                                        <a href='<?php echo $filter_link; ?>'><?php echo $cp[0]; ?></a>
+                                        <a href='<?php echo $filter_link; ?>'><?php print_lang_value($cp[0], $site_language); ?></a>
                                         <span class="cat-item-count"><?php echo $cp[1]; ?></span>
                                     </li>
                                 <?php } ?>
@@ -339,7 +337,7 @@ $pages->paginate($page_url_params);
                                                 $filter_link .= ' AND ' . $user_filter ;
                                             }
                                         ?>
-                                        <a href='<?php echo $filter_link; ?>'><?php echo $lang_translate[$lang[0]]; ?></a>
+                                        <a href='<?php echo $filter_link; ?>'><?php print_lang_value($lang[0], $site_language); ?></a>
                                         <span class="cat-item-count"><?php echo $lang[1]; ?></span>
                                     </li>
                                 <?php } ?>
