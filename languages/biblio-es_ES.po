@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bibliographic 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2017-05-22 15:04:46+00:00\n"
-"PO-Revision-Date: 2017-08-15 16:59-0300\n"
+"POT-Creation-Date: 2017-10-10 20:13:39+00:00\n"
+"PO-Revision-Date: 2017-10-10 17:15-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -15,17 +15,17 @@ msgstr ""
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-Country: SPAIN\n"
 
-#: bibliographic.php:94
+#: bibliographic.php:95
 #: settings.php:9
 msgid "Bibliographic record settings"
 msgstr "Configuración del registro bibliográfico"
 
-#: bibliographic.php:94
+#: bibliographic.php:95
 #: template/rss.php:51
 msgid "Bibliographic records"
 msgstr "Registro bibliográfico"
 
-#: bibliographic.php:131
+#: bibliographic.php:135
 msgid "Bibliographic sidebar"
 msgstr ""
 
@@ -56,134 +56,123 @@ msgstr "ID de AddThis"
 msgid "Google Analytics code"
 msgstr "Código de Google Analytics"
 
-#: settings.php:42
-msgid "Page title"
-msgstr ""
-
-#: settings.php:58
-msgid "Display filters"
-msgstr "Mostrar filtros"
-
-#: settings.php:64
-#: template/home.php:206
-msgid "Main subject"
-msgstr "Asunto principal"
-
-#: settings.php:69
-#: template/home.php:231
-msgid "Publication type"
-msgstr "Tipo de publicación"
-
-#: settings.php:74
-#: template/home.php:256
-msgid "Database"
-msgstr "Base de datos"
-
-#: settings.php:79
-#: template/home.php:281
-msgid "Publication country"
-msgstr "País de publicación"
-
-#: settings.php:84
-#: template/home.php:306
-msgid "Limits"
-msgstr "Límites"
-
-#: settings.php:89
-#: template/home.php:331
-msgid "Language"
-msgstr "Idioma"
-
-#: settings.php:94
-#: template/home.php:356
-msgid "Journal"
-msgstr "Revista"
-
-#: settings.php:99
-#: template/home.php:381
-msgid "Year"
-msgstr "Año"
-
-#: settings.php:110
-msgid "Save changes"
-msgstr "Guardar cambios"
-
-#: template/home.php:66
-msgid "Portuguese"
-msgstr "Portugués"
-
-#: template/home.php:66
-msgid "Spanish"
-msgstr "Español"
-
-#: template/home.php:66
-msgid "English"
-msgstr "Inglés"
-
-#: template/home.php:66
-msgid "French"
-msgstr "Francés"
-
-#: template/home.php:86
-#: template/resource.php:73
-msgid "Home"
-msgstr "Inicio"
-
-#: template/home.php:91
-msgid "Search result"
-msgstr "Resultado de la búsqueda"
-
-#: template/home.php:104
-#: template/resource.php:87
-msgid "Enter one or more words"
-msgstr "Ingrese una o más palabras"
-
-#: template/home.php:105
-#: template/resource.php:88
-msgid "Search"
-msgstr "Buscar"
-
-#: template/home.php:106
-#: template/resource.php:89
-msgid "Tip! You can do your search using boolean operators."
-msgstr "Puedes realizar la búsqueda utilizando operadores booleanos."
-
-#: template/home.php:114
-msgid "No results found"
-msgstr "No se han encontrado resultados"
-
-#: template/home.php:118
-msgid "Results"
-msgstr "Resultados"
-
-#: template/home.php:120
-msgid "Total"
-msgstr "Total"
-
-#: template/home.php:176
-#: template/resource.php:170
-msgid "Fulltext (primary link)"
-msgstr "Texto completo (enlace principal)"
-
-#: template/home.php:176
-#: template/resource.php:170
-msgid "Fulltext (alternative link)"
-msgstr "Texto completo (enlace alternativo)"
-
-#: template/home.php:183
-#: template/resource.php:177
+#: settings.php:34
+#: template/home.php:178
+#: template/resource.php:187
 msgid "Fulltext"
 msgstr "Texto completo"
 
-#: template/resource.php:136
+#: settings.php:38
+msgid "Present alternative fulltext links"
+msgstr "Presentar enlaces alternativo del  texto completo"
+
+#: settings.php:51
+msgid "Page title"
+msgstr ""
+
+#: settings.php:67
+msgid "Display filters"
+msgstr "Mostrar filtros"
+
+#: settings.php:73
+#: template/home.php:201
+msgid "Main subject"
+msgstr "Asunto principal"
+
+#: settings.php:78
+#: template/home.php:226
+msgid "Publication type"
+msgstr "Tipo de publicación"
+
+#: settings.php:83
+#: template/home.php:251
+msgid "Database"
+msgstr "Base de datos"
+
+#: settings.php:88
+#: template/home.php:276
+msgid "Publication country"
+msgstr "País de publicación"
+
+#: settings.php:93
+#: template/home.php:301
+msgid "Limits"
+msgstr "Límites"
+
+#: settings.php:98
+#: template/home.php:326
+msgid "Language"
+msgstr "Idioma"
+
+#: settings.php:103
+#: template/home.php:351
+msgid "Journal"
+msgstr "Revista"
+
+#: settings.php:108
+#: template/home.php:376
+msgid "Year"
+msgstr "Año"
+
+#: settings.php:119
+msgid "Save changes"
+msgstr "Guardar cambios"
+
+#: template/home.php:81
+#: template/resource.php:83
+msgid "Home"
+msgstr "Inicio"
+
+#: template/home.php:86
+msgid "Search result"
+msgstr "Resultado de la búsqueda"
+
+#: template/home.php:99
+#: template/resource.php:97
+msgid "Enter one or more words"
+msgstr "Ingrese una o más palabras"
+
+#: template/home.php:100
+#: template/resource.php:98
+msgid "Search"
+msgstr "Buscar"
+
+#: template/home.php:101
+#: template/resource.php:99
+msgid "Tip! You can do your search using boolean operators."
+msgstr "Puedes realizar la búsqueda utilizando operadores booleanos."
+
+#: template/home.php:109
+msgid "No results found"
+msgstr "No se han encontrado resultados"
+
+#: template/home.php:113
+msgid "Results"
+msgstr "Resultados"
+
+#: template/home.php:115
+msgid "Total"
+msgstr "Total"
+
+#: template/home.php:171
+#: template/resource.php:180
+msgid "Fulltext (primary link)"
+msgstr "Texto completo (enlace principal)"
+
+#: template/home.php:171
+#: template/resource.php:180
+msgid "Fulltext (alternative link)"
+msgstr "Texto completo (enlace alternativo)"
+
+#: template/resource.php:146
 msgid "Publication year"
 msgstr "Año de publicación"
 
-#: template/resource.php:143
+#: template/resource.php:153
 msgid "Abstract"
 msgstr "Resumen"
 
-#: template/resource.php:191
+#: template/resource.php:201
 msgid "Related"
 msgstr "Relacionados"
 
@@ -206,6 +195,18 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "http://reddes.bvsalud.org/"
 msgstr ""
+
+#~ msgid "Portuguese"
+#~ msgstr "Portugués"
+
+#~ msgid "Spanish"
+#~ msgstr "Español"
+
+#~ msgid "English"
+#~ msgstr "Inglés"
+
+#~ msgid "French"
+#~ msgstr "Francés"
 
 #~ msgid "Records"
 #~ msgstr "Registros"

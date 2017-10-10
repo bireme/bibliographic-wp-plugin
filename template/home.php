@@ -15,6 +15,7 @@ $order = array(
 $biblio_config         = get_option('biblio_config');
 $biblio_initial_filter = $biblio_config['initial_filter'];
 $biblio_addthis_id     = $biblio_config['addthis_profile_id'];
+$alternative_links     = (bool)$biblio_config['alternative_links'];
 
 $site_language = strtolower(get_bloginfo('language'));
 $lang = substr($site_language,0,2);
@@ -162,7 +163,7 @@ $pages->paginate($page_url_params);
 
                                     <?php if ( $docs->link ) : ?>
                                         <div class="row-fluid">
-                                            <?php if (count($docs->link) > 1): ?>
+                                            <?php if ( $alternative_links && count($docs->link) > 1): ?>
                                                 <?php foreach ($docs->link as $index => $link): ?>
                                                     <span class="more">
                                                         <a href="<?php echo $link ?>" target="_blank">

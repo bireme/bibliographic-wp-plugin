@@ -30,6 +30,15 @@ function biblio_page_admin() {
                             <th scope="row"><?php _e('Google Analytics code', 'biblio'); ?>:</th>
                             <td><input type="text" name="biblio_config[google_analytics_code]" value="<?php echo $config['google_analytics_code'] ?>" class="regular-text code"></td>
                         </tr>
+                        <tr valign="top">
+                            <th scope="row"><?php _e('Fulltext', 'biblio'); ?>:</th>
+                            <td>
+                                <label for="present_alternative_links">
+                                    <input type="checkbox" name="biblio_config[alternative_links]" value="true" id="present_alternative_links" <?php echo (isset($config['alternative_links']) ?  " checked='true'" : '') ;?> ></input>
+                                    <?php _e('Present alternative fulltext links', 'biblio'); ?>
+                                </label>
+                            </td>
+                        </tr>
 
                         <?php
                         if ( function_exists( 'pll_the_languages' ) ) {

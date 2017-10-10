@@ -10,6 +10,7 @@ $biblio_initial_filter = $biblio_config['initial_filter'];
 $biblio_addthis_id     = $biblio_config['addthis_profile_id'];
 $biblio_about          = $biblio_config['about'];
 $biblio_tutorials      = $biblio_config['tutorials'];
+$alternative_links     = (bool)$biblio_config['alternative_links'];
 
 $referer = wp_get_referer();
 $path = parse_url($referer);
@@ -71,7 +72,6 @@ if ($response){
     $similar_docs = json_decode($json, TRUE);
     // delete temp profile
     @file_get_contents($delete_temp_profile_url);
-
 }
 
 $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
@@ -172,7 +172,7 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
 
                         <?php if ( $resource->link ) : ?>
                             <div class="row-fluid">
-                                <?php if (count($resource->link) > 10): ?>
+                                <?php if ($alternative_links && count($resource->link) > 10): ?>
                                     <?php foreach ($resource->link as $index => $link): ?>
                                         <span class="more">
                                             <a href="<?php echo $link ?>" target="_blank">
@@ -208,7 +208,7 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                                         <?php
                                             $preferred_lang_list = array($lang_dir, 'en', 'es', 'pt');
                                             // start with more generic title
-                                            $similar_title = $similar['ti'];
+                                            $similar_title = is_array($similar['ti']) ? $similar['ti'][0] : $similar['ti'];
                                             // search for title in different languages
                                             foreach ($preferred_lang_list as $lang){
                                                 $field_lang = 'ti_' . $lang;
