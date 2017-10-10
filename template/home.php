@@ -198,7 +198,7 @@ $pages->paginate($page_url_params);
                     <?php if ( in_array('main_subject', $biblio_config['available_filter']) && $descriptor_list ): ?>
                         <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Main subject','biblio'); ?></h1>
+                                <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'main subject', 'filter') ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $descriptor_list as $index => $descriptor ) { $index++; ?>
@@ -223,7 +223,7 @@ $pages->paginate($page_url_params);
                     <?php if ( in_array('publication_type', $biblio_config['available_filter']) && $type_list ): ?>
                         <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Publication type','biblio'); ?></h1>
+                                <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'publication type', 'filter') ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $type_list as $type ) { ?>
@@ -248,7 +248,7 @@ $pages->paginate($page_url_params);
                     <?php if ( in_array('database', $biblio_config['available_filter']) && $database_list ): ?>
                         <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Database','biblio'); ?></h1>
+                                <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'database', 'filter'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $database_list as $db ) { ?>
@@ -273,7 +273,7 @@ $pages->paginate($page_url_params);
                     <?php if ( in_array('publication_country', $biblio_config['available_filter']) && $cp_list ): ?>
                         <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Publication country','biblio'); ?></h1>
+                                <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'publication country', 'filter'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $cp_list as $cp ) { ?>
@@ -298,7 +298,7 @@ $pages->paginate($page_url_params);
                     <?php if ( in_array('limit', $biblio_config['available_filter']) && $limit_list ): ?>
                         <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Limits','biblio'); ?></h1>
+                                <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'limits', 'filter');  ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $limit_list as $limit ) { ?>
@@ -323,7 +323,7 @@ $pages->paginate($page_url_params);
                     <?php if ( in_array('language', $biblio_config['available_filter']) && $language_list ): ?>
                         <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Language','biblio'); ?></h1>
+                                <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'language', 'filter'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $language_list as $lang ) { ?>
@@ -348,7 +348,7 @@ $pages->paginate($page_url_params);
                     <?php if ( in_array('journal', $biblio_config['available_filter']) && $journal_list ): ?>
                         <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Journal','biblio'); ?></h1>
+                                <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'journal', 'filter'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $journal_list as $journal ) { ?>
@@ -373,7 +373,7 @@ $pages->paginate($page_url_params);
                     <?php if ( in_array('year', $biblio_config['available_filter']) && $year_list ): ?>
                         <section class="row-fluid widget_categories">
                             <header class="row-fluid border-bottom marginbottom15">
-                                <h1 class="h1-header"><?php _e('Year','biblio'); ?></h1>
+                                <h1 class="h1-header"><?php  echo translate_label($biblio_texts, 'year', 'filter'); ?></h1>
                             </header>
                             <ul>
                                 <?php foreach ( $year_list as $year ) { ?>
