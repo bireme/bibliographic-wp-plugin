@@ -172,7 +172,7 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
 
                         <?php if ( $resource->link ) : ?>
                             <div class="row-fluid">
-                                <?php if (count($resource->link) > 1): ?>
+                                <?php if (count($resource->link) > 10): ?>
                                     <?php foreach ($resource->link as $index => $link): ?>
                                         <span class="more">
                                             <a href="<?php echo $link ?>" target="_blank">
@@ -206,11 +206,18 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
 
                                     <a href="http://pesquisa.bvsalud.org/portal/resource/<?php echo $lang_dir . '/' . $similar['id']; ?>" target="_blank">
                                         <?php
-                                            if ( $similar['ti_' . $lang_dir] ){
-                                                echo $similar['ti_' . $lang_dir];
-                                            }else{
-                                                echo $similar['ti_en'];
+                                            $preferred_lang_list = array($lang_dir, 'en', 'es', 'pt');
+                                            // start with more generic title
+                                            $similar_title = $similar['ti'];
+                                            // search for title in different languages
+                                            foreach ($preferred_lang_list as $lang){
+                                                $field_lang = 'ti_' . $lang;
+                                                if ($similar[$field_lang]){
+                                                    $similar_title = $similar[$field_lang];
+                                                    break;
+                                                }
                                             }
+                                            echo $similar_title;
                                         ?>
                                     </a>
                                 </li>
