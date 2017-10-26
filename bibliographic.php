@@ -102,7 +102,7 @@ if(!class_exists('Bibliographic_Plugin')) {
             global $wp, $biblio_service_url, $biblio_plugin_slug;
 
             if ( is_404() ){
-                $pagename = $wp->query_vars["pagename"];
+                $pagename = isset($wp->query_vars["name"]) ? $wp->query_vars["name"] : $wp->query_vars["pagename"];
 
                 $biblio_service_url = $this->service_url;
                 $biblio_plugin_slug = $this->plugin_slug;
