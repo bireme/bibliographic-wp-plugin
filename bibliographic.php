@@ -100,9 +100,15 @@ if(!class_exists('Bibliographic_Plugin')) {
 
         function template_redirect() {
             global $wp, $biblio_service_url, $biblio_plugin_slug;
+            $pagename = '';
 
-            if ( is_404() ){
-                $pagename = isset($wp->query_vars["name"]) ? $wp->query_vars["name"] : $wp->query_vars["pagename"];
+            // check if request contains plugin slug string
+            $pos_slug = strpos($wp->request, $this->plugin_slug);
+            if ( $pos_slug !== false ){
+                $pagename = substr($wp->request, $pos_init);
+            }
+
+            if ( is_404() && $pos_slug !== false ){
 
                 $biblio_service_url = $this->service_url;
                 $biblio_plugin_slug = $this->plugin_slug;
