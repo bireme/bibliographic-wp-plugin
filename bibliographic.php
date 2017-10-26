@@ -105,7 +105,7 @@ if(!class_exists('Bibliographic_Plugin')) {
             // check if request contains plugin slug string
             $pos_slug = strpos($wp->request, $this->plugin_slug);
             if ( $pos_slug !== false ){
-                $pagename = substr($wp->request, $pos_init);
+                $pagename = substr($wp->request, $pos_slug);
             }
 
             if ( is_404() && $pos_slug !== false ){
@@ -151,9 +151,15 @@ if(!class_exists('Bibliographic_Plugin')) {
 
         function theme_slug_render_title() {
             global $wp, $biblio_plugin_title;
-            $pagename = $wp->query_vars["pagename"];
+            $pagename = '';
 
-            if ($pagename == $this->plugin_slug || $pagename == $this->plugin_slug .'/resource') {
+            // check if request contains plugin slug string
+            $pos_slug = strpos($wp->request, $this->plugin_slug);
+            if ( $pos_slug !== false ){
+                $pagename = substr($wp->request, $pos_slug);
+            }
+
+            if ( is_404() && $pos_slug !== false ){
                 $biblio_config = get_option('biblio_config');
                 if ( function_exists( 'pll_the_languages' ) ) {
                     $current_lang = pll_current_language();
