@@ -74,11 +74,13 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'bibliographic-feed?q=' . urlen
 $pages = new Paginator($total, $start);
 $pages->paginate($page_url_params);
 
+$home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_url_' . $lang] : real_site_url();
+
 ?>
 
 <?php get_header('biblio');?>
     <div class="row-fluid breadcrumb">
-        <a href="<?php echo real_site_url(); ?>"><?php _e('Home','biblio'); ?></a> >
+        <a href="<?php echo $home_url ?>"><?php _e('Home','biblio'); ?></a> >
         <?php if ($query == '' && $filter == ''): ?>
             <?php echo $biblio_plugin_title ?>
         <?php else: ?>

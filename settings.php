@@ -47,6 +47,13 @@ function biblio_page_admin() {
                             $count = 0;
                             foreach ($available_languages as $lang) {
                                 $key_name = 'plugin_title_' . $lang;
+                                $home_url = 'home_url_' . $lang;
+
+                                echo '<tr valign="top">';
+                                echo '    <th scope="row"> ' . __("Home URL", "biblio") . ' (' . $available_languages_name[$count] . '):</th>';
+                                echo '    <td><input type="text" name="biblio_config[' . $home_url . ']" value="' . $config[$home_url] . '" class="regular-text code"></td>';
+                                echo '</tr>';
+
                                 echo '<tr valign="top">';
                                 echo '    <th scope="row"> ' . __("Page title", "biblio") . ' (' . $available_languages_name[$count] . '):</th>';
                                 echo '    <td><input type="text" name="biblio_config[' . $key_name . ']" value="' . $config[$key_name] . '" class="regular-text code"></td>';

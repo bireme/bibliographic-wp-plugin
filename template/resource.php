@@ -41,9 +41,9 @@ $request_parts = explode('/', $request_uri);
 $resource_id   = $_GET['id'];
 
 $site_language = strtolower(get_bloginfo('language'));
-$lang_dir = substr($site_language,0,2);
+$lang = substr($site_language,0,2);
 
-$biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?id=' . $resource_id . '&op=related&lang=' . $lang_dir;
+$biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?id=' . $resource_id . '&op=related&lang=' . $lang;
 
 //print $biblio_service_request;
 
@@ -56,31 +56,23 @@ if ($response){
     $related_docs = $response_json->diaServerResponse[0]->response->docs;
 
     // find similar documents
-    $similar_docs_url = 'http://basalto01.bireme.br:8180/SDService/SDService';
-    $temp_id = time() . $resource->django_id;
-    $create_temp_profile_url = $similar_docs_url . '?psId=wpbiblioplugin&addProfile=' . $temp_id . '&sentence=' .  urlencode($resource->reference_title[0]);
-    $get_similar_docs_url = $similar_docs_url . '?psId=wpbiblioplugin&getSimDocs=' . $temp_id;
-    $delete_temp_profile_url = $similar_docs_url . '?psId=wpbiblioplugin&deleteProfile=' . $temp_id;
-
-    // create temp profile
-     @file_get_contents($create_temp_profile_url);
+    $similar_docs_url = 'http://similardocs.bireme.org/SDService?adhocSimilarDocs=' . urlencode($resource->reference_title[0]);
     // get similar docs
-    $similar_docs_xml = @file_get_contents($get_similar_docs_url);
+    $similar_docs_xml = @file_get_contents($similar_docs_url);
     // transform to php array
     $xml = simplexml_load_string($similar_docs_xml,'SimpleXMLElement',LIBXML_NOCDATA);
     $json = json_encode($xml);
     $similar_docs = json_decode($json, TRUE);
-    // delete temp profile
-    @file_get_contents($delete_temp_profile_url);
 }
 
 $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 
+$home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_url_' . $lang] : real_site_url();
 ?>
 
 <?php get_header('biblio');?>
     <div class="row-fluid breadcrumb">
-        <a href="<?php echo real_site_url(); ?>"><?php _e('Home','biblio'); ?></a> >
+        <a href="<?php echo $home_url ?>"><?php _e('Home','biblio'); ?></a> >
         <a href="<?php echo real_site_url($biblio_plugin_slug); ?>"><?php echo $biblio_plugin_title ?> </a> >
         <?php echo ( strlen($resource->reference_title[0]) > 90 ) ? substr($resource->reference_title[0],0,90) . '...' : $resource->reference_title[0]; ?>
     </div>
@@ -89,7 +81,7 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
         <div class="ajusta2">
             <section class="header-search">
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($biblio_plugin_slug); ?>">
-                    <input type="hidden" name="lang" id="lang" value="<?php echo $lang_dir; ?>">
+                    <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
                     <input type="hidden" name="sort" id="sort" value="">
                     <input type="hidden" name="format" id="format" value="summary">
                     <input type="hidden" name="count" id="count" value="10">
@@ -204,9 +196,9 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
                             <?php foreach ( $similar_docs['document'] as $similar) { ?>
                                 <li class="cat-item">
 
-                                    <a href="http://pesquisa.bvsalud.org/portal/resource/<?php echo $lang_dir . '/' . $similar['id']; ?>" target="_blank">
+                                    <a href="http://pesquisa.bvsalud.org/portal/resource/<?php echo $lang . '/' . $similar['id']; ?>" target="_blank">
                                         <?php
-                                            $preferred_lang_list = array($lang_dir, 'en', 'es', 'pt');
+                                            $preferred_lang_list = array($lang, 'en', 'es', 'pt');
                                             // start with more generic title
                                             $similar_title = is_array($similar['ti']) ? $similar['ti'][0] : $similar['ti'];
                                             // search for title in different languages
