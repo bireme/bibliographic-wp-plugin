@@ -54,7 +54,7 @@ a:visited{color:rgb(0,153,255);}
 .marginbottom25{margin-bottom:25px;}
 
 /* HEADER */
-.header{width:100%; float:left; height:120px; border:none;}
+.header{width:100%; float:left; height:180px; border:none;}
 #header-barra-topo{height:30px; overflow:hidden; background:rgb(46,62,79); line-height:30px;}
 .header .bar {width: auto !important;padding: 0px !important;margin-top:0px !important;}
 .header-contato{float:left; margin:0 90px 0 30px; color:rgb(255,255,255); font-weight:bold; text-decoration:none;}
