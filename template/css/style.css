@@ -283,3 +283,48 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 	.more {display: table;	min-width: 190px;}
 	.rss, .tooltip { display: none;}
 }
+
+.mobile-menu{
+    border: solid 1px #ccc;
+    width: 150px;
+    background-color: rgb(245,245,245);
+    float: left;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.menu-bar {
+    display: inline-block;
+    cursor: pointer;
+    float: left;
+    margin: 5px;
+}
+.menu-item{
+    float: left;
+    font-size: 1.5rem;
+    margin: 10px 0 0 10px;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 4px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+/* Rotate first bar */
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+    transform: rotate(-45deg) translate(-9px, 6px) ;
+}
+
+/* Fade out the second bar */
+.change .bar2 {
+    opacity: 0;
+}
+
+/* Rotate last bar */
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+    transform: rotate(45deg) translate(-8px, -8px) ;
+}

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bibliographic 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2017-10-10 20:13:39+00:00\n"
-"PO-Revision-Date: 2017-10-10 17:15-0300\n"
+"POT-Creation-Date: 2017-11-09 14:40:13+00:00\n"
+"PO-Revision-Date: 2017-11-09 12:45-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -25,7 +25,7 @@ msgstr "Ajustes registro bibliográfico"
 msgid "Bibliographic records"
 msgstr "Registros bibliográficos"
 
-#: bibliographic.php:135
+#: bibliographic.php:141
 msgid "Bibliographic sidebar"
 msgstr ""
 
@@ -57,8 +57,8 @@ msgid "Google Analytics code"
 msgstr "Código Google Analytics"
 
 #: settings.php:34
-#: template/home.php:178
-#: template/resource.php:187
+#: template/home.php:181
+#: template/resource.php:180
 msgid "Fulltext"
 msgstr "Texto completo"
 
@@ -66,113 +66,113 @@ msgstr "Texto completo"
 msgid "Present alternative fulltext links"
 msgstr "Apresentar links de texto completo alternativos"
 
-#: settings.php:51
+#: settings.php:53
+msgid "Home URL"
+msgstr ""
+
+#: settings.php:58
 msgid "Page title"
 msgstr "Título da página"
 
-#: settings.php:67
+#: settings.php:74
 msgid "Display filters"
 msgstr "Mostrar filtros"
 
-#: settings.php:73
-#: template/home.php:201
+#: settings.php:80
 msgid "Main subject"
 msgstr "Assunto principal"
 
-#: settings.php:78
-#: template/home.php:226
+#: settings.php:85
 msgid "Publication type"
 msgstr "Tipo de publicação"
 
-#: settings.php:83
-#: template/home.php:251
+#: settings.php:90
 msgid "Database"
 msgstr "Base de dados"
 
-#: settings.php:88
-#: template/home.php:276
+#: settings.php:95
 msgid "Publication country"
 msgstr "País de publicação"
 
-#: settings.php:93
-#: template/home.php:301
+#: settings.php:100
 msgid "Limits"
 msgstr "Límite"
 
-#: settings.php:98
-#: template/home.php:326
+#: settings.php:105
 msgid "Language"
 msgstr "Idioma"
 
-#: settings.php:103
-#: template/home.php:351
+#: settings.php:110
 msgid "Journal"
 msgstr "Revista"
 
-#: settings.php:108
-#: template/home.php:376
+#: settings.php:115
 msgid "Year"
 msgstr "Ano"
 
-#: settings.php:119
+#: settings.php:126
 msgid "Save changes"
 msgstr "Guardar alterações"
 
-#: template/home.php:81
-#: template/resource.php:83
+#: template/home.php:83
+#: template/resource.php:75
 msgid "Home"
 msgstr "Ínicio"
 
-#: template/home.php:86
+#: template/home.php:88
 msgid "Search result"
 msgstr "Resultado da busca"
 
-#: template/home.php:99
-#: template/resource.php:97
+#: template/home.php:101
+#: template/resource.php:89
 msgid "Enter one or more words"
 msgstr "Entre uma ou mais palavras"
 
-#: template/home.php:100
-#: template/resource.php:98
+#: template/home.php:102
+#: template/resource.php:90
 msgid "Search"
 msgstr "Pesquisar"
 
-#: template/home.php:101
-#: template/resource.php:99
+#: template/home.php:103
+#: template/resource.php:91
 msgid "Tip! You can do your search using boolean operators."
 msgstr "Dica! Você pode pesquisar usando operadores booleanos."
 
-#: template/home.php:109
+#: template/home.php:112
 msgid "No results found"
 msgstr "Nenhum resultado encontrado"
 
-#: template/home.php:113
+#: template/home.php:116
 msgid "Results"
 msgstr "Resultados"
 
-#: template/home.php:115
+#: template/home.php:118
 msgid "Total"
 msgstr "Total"
 
-#: template/home.php:171
-#: template/resource.php:180
+#: template/home.php:174
+#: template/resource.php:173
 msgid "Fulltext (primary link)"
 msgstr "Texto completo (link principal)"
 
-#: template/home.php:171
-#: template/resource.php:180
+#: template/home.php:174
+#: template/resource.php:173
 msgid "Fulltext (alternative link)"
 msgstr "Texto completo (link alternativo)"
 
-#: template/resource.php:146
+#: template/home.php:210
+msgid "Filters"
+msgstr "Filtros"
+
+#: template/resource.php:139
 msgid "Publication year"
 msgstr "Ano de publicação"
 
-#: template/resource.php:153
+#: template/resource.php:146
 msgid "Abstract"
 msgstr "Resumo"
 
-#: template/resource.php:201
+#: template/resource.php:194
 msgid "Related"
 msgstr "Relacionados"
 

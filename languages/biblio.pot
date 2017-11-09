@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bibliographic 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2017-10-10 20:13:39+00:00\n"
+"POT-Creation-Date: 2017-11-09 14:40:13+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Bibliographic records"
 msgstr ""
 
-#: bibliographic.php:135
+#: bibliographic.php:141
 msgid "Bibliographic sidebar"
 msgstr ""
 
@@ -46,7 +46,7 @@ msgstr ""
 msgid "Google Analytics code"
 msgstr ""
 
-#: settings.php:34 template/home.php:178 template/resource.php:187
+#: settings.php:34 template/home.php:181 template/resource.php:180
 msgid "Fulltext"
 msgstr ""
 
@@ -54,99 +54,107 @@ msgstr ""
 msgid "Present alternative fulltext links"
 msgstr ""
 
-#: settings.php:51
+#: settings.php:53
+msgid "Home URL"
+msgstr ""
+
+#: settings.php:58
 msgid "Page title"
 msgstr ""
 
-#: settings.php:67
+#: settings.php:74
 msgid "Display filters"
 msgstr ""
 
-#: settings.php:73 template/home.php:201
+#: settings.php:80
 msgid "Main subject"
 msgstr ""
 
-#: settings.php:78 template/home.php:226
+#: settings.php:85
 msgid "Publication type"
 msgstr ""
 
-#: settings.php:83 template/home.php:251
+#: settings.php:90
 msgid "Database"
 msgstr ""
 
-#: settings.php:88 template/home.php:276
+#: settings.php:95
 msgid "Publication country"
 msgstr ""
 
-#: settings.php:93 template/home.php:301
+#: settings.php:100
 msgid "Limits"
 msgstr ""
 
-#: settings.php:98 template/home.php:326
+#: settings.php:105
 msgid "Language"
 msgstr ""
 
-#: settings.php:103 template/home.php:351
+#: settings.php:110
 msgid "Journal"
 msgstr ""
 
-#: settings.php:108 template/home.php:376
+#: settings.php:115
 msgid "Year"
 msgstr ""
 
-#: settings.php:119
+#: settings.php:126
 msgid "Save changes"
 msgstr ""
 
-#: template/home.php:81 template/resource.php:83
+#: template/home.php:83 template/resource.php:75
 msgid "Home"
 msgstr ""
 
-#: template/home.php:86
+#: template/home.php:88
 msgid "Search result"
 msgstr ""
 
-#: template/home.php:99 template/resource.php:97
+#: template/home.php:101 template/resource.php:89
 msgid "Enter one or more words"
 msgstr ""
 
-#: template/home.php:100 template/resource.php:98
+#: template/home.php:102 template/resource.php:90
 msgid "Search"
 msgstr ""
 
-#: template/home.php:101 template/resource.php:99
+#: template/home.php:103 template/resource.php:91
 msgid "Tip! You can do your search using boolean operators."
 msgstr ""
 
-#: template/home.php:109
+#: template/home.php:112
 msgid "No results found"
 msgstr ""
 
-#: template/home.php:113
+#: template/home.php:116
 msgid "Results"
 msgstr ""
 
-#: template/home.php:115
+#: template/home.php:118
 msgid "Total"
 msgstr ""
 
-#: template/home.php:171 template/resource.php:180
+#: template/home.php:174 template/resource.php:173
 msgid "Fulltext (primary link)"
 msgstr ""
 
-#: template/home.php:171 template/resource.php:180
+#: template/home.php:174 template/resource.php:173
 msgid "Fulltext (alternative link)"
 msgstr ""
 
-#: template/resource.php:146
+#: template/home.php:210
+msgid "Filters"
+msgstr ""
+
+#: template/resource.php:139
 msgid "Publication year"
 msgstr ""
 
-#: template/resource.php:153
+#: template/resource.php:146
 msgid "Abstract"
 msgstr ""
 
-#: template/resource.php:201
+#: template/resource.php:194
 msgid "Related"
 msgstr ""
 
