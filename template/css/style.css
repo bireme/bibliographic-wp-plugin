@@ -246,17 +246,20 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 
 @media (max-width: 525px) {
 	.ajusta, .ajusta3, .ajusta2, .bar .barInner {width:100%; margin:0;}
+    .content-area {display: flex;}
+    .result-list {flex-direction: column-reverse;}
+    .detail {flex-direction: column;}
 	.top, .footerArea {width: 93%;margin:0;}
 	#contact{display: none;}
 	.bar{padding:4px 0;}
 	.h2-loop-tit{width:100%;}
 	.h1-header{width:100%; float:left; margin-bottom:7px;}
-	.header-search{width:95%; margin:5px 2.5%;}
+	.header-search{width:95%; margin:5px 2.5%;  }
 	.input-search{width:230px;}
 	.conteudo-loop-rates{position:relative; right:0px; top:0px; float:left; width:100%; margin-top:7px;}
 	header .pagination{display: none;}
 	.breadcrumb{display: none;}
-	#sidebar, .header-colabore{display:none;}
+	#sidebar{float: left; width: 95%; margin: 0 2.5%;}
 	#conteudo{width:95%; margin:0 2.5%;}
 	#conteudo header.border-bottom{padding:3px 0;}
 	.conteudo-loop-icons{max-height:100% !important;}
@@ -267,6 +270,8 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 	#left{float:left !important;}
 	.tablet{display:block;}
 	.menu-mapa-do-site-pt-container {width:auto;}
+    #filters {display: none;}
+    #filter-link {display: block !important;}
 }
 
 @media (max-width: 479px) {

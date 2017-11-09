@@ -91,134 +91,136 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                     <a href="#" title="<?php _e('Tip! You can do your search using boolean operators.', 'biblio'); ?>" class="help ketchup tooltip"><i class="fa fa-question-circle fa-2x"></i></a>
                 </form>
             </section>
-            <section id="conteudo">
-                <div class="row-fluid">
-                    <!-- AddThis Button BEGIN -->
-                    <div class="addthis_toolbox addthis_default_style">
-                        <a class="addthis_button_facebook"></a>
-                        <a class="addthis_button_delicious"></a>
-                        <a class="addthis_button_google_plusone_share"></a>
-                        <a class="addthis_button_favorites"></a>
-                        <a class="addthis_button_compact"></a>
-                    </div>
-                    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-                    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $biblio_addthis_id; ?>"></script>
-                    <!-- AddThis Button END -->
-                </div>
-                <div class="row-fluid">
-                    <article class="conteudo-loop">
-                        <h2 class="h2-loop-tit">
-                            <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/<?php echo $resource->django_id; ?>"><?php echo $resource->reference_title[0]; ?></a>
-                            <?php foreach ( $resource->reference_title as $index => $title ): ?>
-                                <?php if ( $index != 0 ): ?>
-                                    <div class="altLang"><?php echo $title; ?></div>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </h2>
-
-                        <?php if ( $resource->author ): ?>
-                            <div class="row-fluid authors">
-                                <?php foreach ( $resource->author as $index => $author ):
-                                    echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=author:\"" . $author . "\"'>" . $author . "</a>";
-                                    echo count($resource->author)-1 != $index ? '; ' : '.';
-                                endforeach; ?>
-                            </div>
-                        <?php endif; ?>
-
-                        <?php if ( $resource->reference_source ): ?>
-                            <div class="row-fluid">
-                                <?php
-                                    echo $resource->reference_source;
-                                ?>
-                            </div>
-                        <?php endif; ?>
-
-                        <div class="row-fluid">
-                            <?php
-                                echo _('Publication year') . ': ' . $resource->publication_year;
-                            ?>
-                            <br/>
+            <div class="content-area detail">
+                <section id="conteudo">
+                    <div class="row-fluid">
+                        <!-- AddThis Button BEGIN -->
+                        <div class="addthis_toolbox addthis_default_style">
+                            <a class="addthis_button_facebook"></a>
+                            <a class="addthis_button_delicious"></a>
+                            <a class="addthis_button_google_plusone_share"></a>
+                            <a class="addthis_button_favorites"></a>
+                            <a class="addthis_button_compact"></a>
                         </div>
-
-                        <?php if ( $resource->reference_abstract ): ?>
-                            <div class="row-fluid abstract">
-                                <strong><?php _e('Abstract','biblio'); ?></strong>
-                                <?php foreach ( $resource->reference_abstract as $index => $abs ): ?>
-                                    <?php $class = $index != 0 ? 'altLang' : ''; ?>
-                                    <div class="abstract-version <?php echo $class; ?>"><?php echo $abs; ?></div>
+                        <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $biblio_addthis_id; ?>"></script>
+                        <!-- AddThis Button END -->
+                    </div>
+                    <div class="row-fluid">
+                        <article class="conteudo-loop">
+                            <h2 class="h2-loop-tit">
+                                <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/<?php echo $resource->django_id; ?>"><?php echo $resource->reference_title[0]; ?></a>
+                                <?php foreach ( $resource->reference_title as $index => $title ): ?>
+                                    <?php if ( $index != 0 ): ?>
+                                        <div class="altLang"><?php echo $title; ?></div>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
-                            </div>
-                        <?php endif; ?>
+                            </h2>
 
-                        <?php if ($resource->descriptor ) : ?>
-                            <div class="row-fluid subjects">
-                                <strong><i class="fa fa-tags" aria-hidden="true"></i></strong>
-                                <?php
-                                    $subjects = array();
-                                    foreach ( $resource->descriptor as $index => $subject ):
-                                        echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=descriptor:\"" . $subject . "\"'>" . $subject . "</a>";
-                                        echo $index != count($resource->descriptor)-1 ? ', ' : '';
+                            <?php if ( $resource->author ): ?>
+                                <div class="row-fluid authors">
+                                    <?php foreach ( $resource->author as $index => $author ):
+                                        echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=author:\"" . $author . "\"'>" . $author . "</a>";
+                                        echo count($resource->author)-1 != $index ? '; ' : '.';
                                     endforeach; ?>
-                            </div>
-                        <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
 
-                        <?php if ( $resource->link ) : ?>
+                            <?php if ( $resource->reference_source ): ?>
+                                <div class="row-fluid">
+                                    <?php
+                                        echo $resource->reference_source;
+                                    ?>
+                                </div>
+                            <?php endif; ?>
+
                             <div class="row-fluid">
-                                <?php if ($alternative_links && count($resource->link) > 10): ?>
-                                    <?php foreach ($resource->link as $index => $link): ?>
-                                        <span class="more">
-                                            <a href="<?php echo $link ?>" target="_blank">
-                                                <i class="fa fa-file" aria-hidden="true"> </i>
-                                                <?php ( ($index == 0) ? _e('Fulltext (primary link)','biblio') : _e('Fulltext (alternative link)','biblio')); ?>
-                                            </a>
-                                        </span>&nbsp;&nbsp;&nbsp;
-                                    <?php endforeach; ?>
-                                <?php else: ?>
-                                    <span class="more">
-                                        <a href="<?php echo $resource->link[0] ?>" target="_blank">
-                                            <i class="fa fa-file" aria-hidden="true"> </i> <?php _e('Fulltext','biblio'); ?>
-                                        </a>
-                                    </span>
-                                <?php endif; ?>
+                                <?php
+                                    echo _('Publication year') . ': ' . $resource->publication_year;
+                                ?>
+                                <br/>
                             </div>
-                        <?php endif; ?>
 
-                    </article>
-                </div>
-            </section>
-            <aside id="sidebar">
-                <?php if ( count($similar_docs['document']) > 0 ): ?>
-                    <section class="row-fluid marginbottom25 widget_categories">
-                        <header class="row-fluid border-bottom marginbottom15">
-                            <h1 class="h1-header"><?php _e('Related','biblio'); ?></h1>
-                        </header>
-                        <ul>
-                            <?php foreach ( $similar_docs['document'] as $similar) { ?>
-                                <li class="cat-item">
+                            <?php if ( $resource->reference_abstract ): ?>
+                                <div class="row-fluid abstract">
+                                    <strong><?php _e('Abstract','biblio'); ?></strong>
+                                    <?php foreach ( $resource->reference_abstract as $index => $abs ): ?>
+                                        <?php $class = $index != 0 ? 'altLang' : ''; ?>
+                                        <div class="abstract-version <?php echo $class; ?>"><?php echo $abs; ?></div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
 
-                                    <a href="http://pesquisa.bvsalud.org/portal/resource/<?php echo $lang . '/' . $similar['id']; ?>" target="_blank">
-                                        <?php
-                                            $preferred_lang_list = array($lang, 'en', 'es', 'pt');
-                                            // start with more generic title
-                                            $similar_title = is_array($similar['ti']) ? $similar['ti'][0] : $similar['ti'];
-                                            // search for title in different languages
-                                            foreach ($preferred_lang_list as $lang){
-                                                $field_lang = 'ti_' . $lang;
-                                                if ($similar[$field_lang]){
-                                                    $similar_title = $similar[$field_lang];
-                                                    break;
+                            <?php if ($resource->descriptor ) : ?>
+                                <div class="row-fluid subjects">
+                                    <strong><i class="fa fa-tags" aria-hidden="true"></i></strong>
+                                    <?php
+                                        $subjects = array();
+                                        foreach ( $resource->descriptor as $index => $subject ):
+                                            echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=descriptor:\"" . $subject . "\"'>" . $subject . "</a>";
+                                            echo $index != count($resource->descriptor)-1 ? ', ' : '';
+                                        endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ( $resource->link ) : ?>
+                                <div class="row-fluid">
+                                    <?php if ($alternative_links && count($resource->link) > 10): ?>
+                                        <?php foreach ($resource->link as $index => $link): ?>
+                                            <span class="more">
+                                                <a href="<?php echo $link ?>" target="_blank">
+                                                    <i class="fa fa-file" aria-hidden="true"> </i>
+                                                    <?php ( ($index == 0) ? _e('Fulltext (primary link)','biblio') : _e('Fulltext (alternative link)','biblio')); ?>
+                                                </a>
+                                            </span>&nbsp;&nbsp;&nbsp;
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <span class="more">
+                                            <a href="<?php echo $resource->link[0] ?>" target="_blank">
+                                                <i class="fa fa-file" aria-hidden="true"> </i> <?php _e('Fulltext','biblio'); ?>
+                                            </a>
+                                        </span>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+
+                        </article>
+                    </div>
+                </section>
+                <aside id="sidebar">
+                    <?php if ( count($similar_docs['document']) > 0 ): ?>
+                        <section class="row-fluid marginbottom25 widget_categories">
+                            <header class="row-fluid border-bottom marginbottom15">
+                                <h1 class="h1-header"><?php _e('Related','biblio'); ?></h1>
+                            </header>
+                            <ul>
+                                <?php foreach ( $similar_docs['document'] as $similar) { ?>
+                                    <li class="cat-item">
+
+                                        <a href="http://pesquisa.bvsalud.org/portal/resource/<?php echo $lang . '/' . $similar['id']; ?>" target="_blank">
+                                            <?php
+                                                $preferred_lang_list = array($lang, 'en', 'es', 'pt');
+                                                // start with more generic title
+                                                $similar_title = is_array($similar['ti']) ? $similar['ti'][0] : $similar['ti'];
+                                                // search for title in different languages
+                                                foreach ($preferred_lang_list as $lang){
+                                                    $field_lang = 'ti_' . $lang;
+                                                    if ($similar[$field_lang]){
+                                                        $similar_title = $similar[$field_lang];
+                                                        break;
+                                                    }
                                                 }
-                                            }
-                                            echo $similar_title;
-                                        ?>
-                                    </a>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                    </section>
-                <?php endif; ?>
-            </aside>
-            <div class="spacer"></div>
-        </div>
+                                                echo $similar_title;
+                                            ?>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </section>
+                    <?php endif; ?>
+                </aside>
+                <div class="spacer"></div>
+            </div> <!-- close DIV.detail-area -->
+        </div> <!-- close DIV.detail-area -->
     </div>
 <?php get_footer(); ?>
