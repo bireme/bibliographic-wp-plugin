@@ -8,7 +8,7 @@ Version: 0.1
 Author URI: http://reddes.bvsalud.org/
 */
 
-define('BIBLIOGRAPHIC_PLUGIN_VERSION', '1.0' );
+define('BIBLIOGRAPHIC_PLUGIN_VERSION', '1.1' );
 
 define('BIBLIOGRAPHIC_SYMBOLIC_LINK', false );
 define('BIBLIOGRAPHIC_PLUGIN_DIRNAME', 'bibliographic' );

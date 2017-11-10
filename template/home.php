@@ -102,7 +102,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                     <input id="searchsubmit" value="<?php _e('Search', 'biblio'); ?>" type="submit">
                     <a href="#" title="<?php _e('Tip! You can do your search using boolean operators.', 'biblio'); ?>" class="help ketchup tooltip"><i class="fa fa-question-circle fa-2x"></i></a>
                 </form>
-                <div class="pull-right">
+                <div class="pull-right rss">
                     <a href="<?php echo $feed_url ?>" target="blank"><img src="<?php echo BIBLIOGRAPHIC_PLUGIN_URL; ?>template/images/icon_rss.png" ></a>
                 </div>
             </section>

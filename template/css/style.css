@@ -286,7 +286,7 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 
 .mobile-menu{
     border: solid 1px #ccc;
-    width: 150px;
+    width: 135px;
     background-color: rgb(245,245,245);
     float: left;
     border-radius: 5px;
@@ -300,23 +300,23 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 }
 .menu-item{
     float: left;
-    font-size: 26px;
+    font-size: 20px;
     font-weight: normal;
-    margin: 10px 0 0 10px;
+    margin: 7px 0 0 10px;
 }
 
 .bar1, .bar2, .bar3 {
-    width: 35px;
-    height: 4px;
+    width: 28px;
+    height: 3px;
     background-color: #333;
-    margin: 6px 0;
+    margin: 5px 0;
     transition: 0.4s;
 }
 
 /* Rotate first bar */
 .change .bar1 {
-    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
-    transform: rotate(-45deg) translate(-9px, 6px) ;
+    -webkit-transform: rotate(-45deg) translate(-6px, 4px) ;
+    transform: rotate(-45deg) translate(-6px, 4px) ;
 }
 
 /* Fade out the second bar */
@@ -326,6 +326,6 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 
 /* Rotate last bar */
 .change .bar3 {
-    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
-    transform: rotate(45deg) translate(-8px, -8px) ;
+    -webkit-transform: rotate(45deg) translate(-6px, -6px) ;
+    transform: rotate(45deg) translate(-6px, -6px) ;
 }
