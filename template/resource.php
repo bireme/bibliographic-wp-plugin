@@ -56,7 +56,7 @@ if ($response){
     $related_docs = $response_json->diaServerResponse[0]->response->docs;
 
     // find similar documents
-    $similar_docs_url = 'http://similardocs.bireme.org/SDService?adhocSimilarDocs=' . urlencode($resource->reference_title[0]);
+    $similar_docs_url = $similar_docs_url . '?adhocSimilarDocs=' . urlencode($resource->reference_title[0]);
     // get similar docs
     $similar_docs_xml = @file_get_contents($similar_docs_url);
     // transform to php array

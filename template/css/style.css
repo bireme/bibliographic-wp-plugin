@@ -228,7 +228,7 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 	.h2-loop-tit{width:110%;}
 	.conteudo-loop-rates{position:relative; right:0px; top:0px; float:left; width:100%; margin-top:7px;}
 	.header-search{width:100%; margin:15px 2.5%;}
-	.input-search{width:275px;}
+	.input-search{width:270px;}
 	.header-colabore{display:none;}
 	#conteudo{width:95%; margin:0 2.5%;}
 	.breadcrumb {margin-left: 8px;}
@@ -255,7 +255,7 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 	.h2-loop-tit{width:100%;}
 	.h1-header{width:100%; float:left; margin-bottom:7px;}
 	.header-search{width:95%; margin:5px 2.5%;  }
-	.input-search{width:230px;}
+	.input-search{width:225px;}
 	.conteudo-loop-rates{position:relative; right:0px; top:0px; float:left; width:100%; margin-top:7px;}
 	header .pagination{display: none;}
 	.breadcrumb{display: none;}
@@ -276,7 +276,7 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 
 @media (max-width: 479px) {
 	.container {width: 97%;}
-	.header-search .input-search {width:70%;}
+	.header-search .input-search {width:60%;}
 	#searchsubmit {padding: 10px 10px;}
   .help {margin-left: 2px;}
 	/*#parent {margin-top: 40px;}*/
@@ -300,7 +300,8 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 }
 .menu-item{
     float: left;
-    font-size: 1.5rem;
+    font-size: 26px;
+    font-weight: normal;
     margin: 10px 0 0 10px;
 }
 

@@ -8,7 +8,7 @@ Version: 0.1
 Author URI: http://reddes.bvsalud.org/
 */
 
-define('BIBLIOGRAPHIC_PLUGIN_VERSION', '0.1' );
+define('BIBLIOGRAPHIC_PLUGIN_VERSION', '1.0' );
 
 define('BIBLIOGRAPHIC_SYMBOLIC_LINK', false );
 define('BIBLIOGRAPHIC_PLUGIN_DIRNAME', 'bibliographic' );
@@ -31,7 +31,7 @@ if(!class_exists('Bibliographic_Plugin')) {
 
         private $plugin_slug = 'biblio';
         private $service_url = 'http://fi-admin.bvsalud.org/';
-        private $similar_docs_url = 'http://basalto01.bireme.br:8180/SDService/SDService';
+        private $similar_docs_url = 'http://similardocs.bireme.org/SDService';
 
         /**
          * Construct the plugin object
@@ -99,7 +99,7 @@ if(!class_exists('Bibliographic_Plugin')) {
         }
 
         function template_redirect() {
-            global $wp, $biblio_service_url, $biblio_plugin_slug;
+            global $wp, $biblio_service_url, $biblio_plugin_slug, $similar_docs_url;
             $pagename = '';
 
             // check if request contains plugin slug string
@@ -112,6 +112,7 @@ if(!class_exists('Bibliographic_Plugin')) {
 
                 $biblio_service_url = $this->service_url;
                 $biblio_plugin_slug = $this->plugin_slug;
+                $similar_docs_url = $this->similar_docs_url;
 
                 if ($pagename == $this->plugin_slug || $pagename == $this->plugin_slug . '/resource'
                     || $pagename == $this->plugin_slug . '/bibliographic-feed') {
@@ -185,10 +186,10 @@ if(!class_exists('Bibliographic_Plugin')) {
 
         function page_template_styles_scripts(){
             wp_enqueue_script('biblio-tooltipster',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/js/jquery.tooltipster.min.js');
-            wp_enqueue_script('biblio',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/js/functions.js');
+            wp_enqueue_script('biblio',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/js/functions.js', array(), BIBLIOGRAPHIC_PLUGIN_VERSION);
             wp_enqueue_style ('font-awesome', BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/font-awesome/css/font-awesome.min.css');
             wp_enqueue_style ('biblio-tooltipster',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/tooltipster.css');
-            wp_enqueue_style ('biblio',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/style.css');
+            wp_enqueue_style ('biblio',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/style.css', array(), BIBLIOGRAPHIC_PLUGIN_VERSION);
         }
 
 
