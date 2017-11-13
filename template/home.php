@@ -148,7 +148,10 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
 
                                         <?php if ( $docs->reference_abstract ): ?>
                                             <div class="row-fluid">
-                                                <?php echo substr($docs->reference_abstract[0], 0, 300) . '...' ?>
+                                                <?php
+                                                    $ab_clean = str_replace(array("\\r\\n", "\\t", "\\r", "\\n"), '' ,$docs->reference_abstract[0]);
+                                                    echo substr($ab_clean, 0, 305) . '...';
+                                                ?>
                                             </div>
                                         <?php endif; ?>
 

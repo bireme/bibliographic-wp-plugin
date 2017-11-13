@@ -144,9 +144,14 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                             <?php if ( $resource->reference_abstract ): ?>
                                 <div class="row-fluid abstract">
                                     <strong><?php _e('Abstract','biblio'); ?></strong>
-                                    <?php foreach ( $resource->reference_abstract as $index => $abs ): ?>
+                                    <?php foreach ( $resource->reference_abstract as $index => $ab ): ?>
                                         <?php $class = $index != 0 ? 'altLang' : ''; ?>
-                                        <div class="abstract-version <?php echo $class; ?>"><?php echo $abs; ?></div>
+                                        <div class="abstract-version <?php echo $class; ?>">
+                                            <?php
+                                                $ab_clean = str_replace(array("\\r\\n", "\\t", "\\r", "\\n"), '' , $ab);
+                                                echo $ab_clean;
+                                            ?>
+                                        </div>
                                     <?php endforeach; ?>
                                 </div>
                             <?php endif; ?>
