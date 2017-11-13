@@ -152,14 +152,14 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                             </div>
                                         <?php endif; ?>
 
-                                        <?php if ($docs->descriptor ) : ?>
+                                        <?php if ($docs->mh ) : ?>
                                             <div class="row-fluid subjects">
                                                 <strong><i class="fa fa-tags" aria-hidden="true"></i></strong>
                                                 <?php
                                                     $subjects = array();
-                                                    foreach ( $docs->descriptor as $index => $subject ):
+                                                    foreach ( $docs->mh as $index => $subject ):
                                                         echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=descriptor:\"" . $subject . "\"'>" . $subject . "</a>";
-                                                        echo $index != count($docs->descriptor)-1 ? ', ' : '';
+                                                        echo $index != count($docs->mh)-1 ? ', ' : '';
                                                     endforeach; ?>
                                             </div>
                                         <?php endif; ?>
