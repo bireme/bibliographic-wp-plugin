@@ -161,7 +161,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                                 <?php
                                                     $subjects = array();
                                                     foreach ( $docs->mh as $index => $subject ):
-                                                        echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=descriptor:\"" . $subject . "\"'>" . $subject . "</a>";
+                                                        echo "<a href='" . real_site_url($biblio_plugin_slug) . "?q=mh:\"" . $subject . "\"'>" . $subject . "</a>";
                                                         echo $index != count($docs->mh)-1 ? ', ' : '';
                                                     endforeach; ?>
                                             </div>
