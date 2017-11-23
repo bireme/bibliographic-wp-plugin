@@ -45,6 +45,18 @@ $start = ($page * $count) - $count;
 
 $biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&count=' . $count . '&sort=' . urlencode($sort) . '&lang=' . $lang;
 
+if ( $user_filter != '' ) {
+    $user_filter_list = preg_split("/ AND /", $user_filter);
+    $applied_filter_list = array();
+    foreach($user_filter_list as $filter){
+        preg_match('/([a-z_]+):(.+)/',$filter, $filter_parts);
+        if ($filter_parts){
+            // convert to internal format
+            $applied_filter_list[$filter_parts[1]][] = str_replace('"', '', $filter_parts[2]);
+        }
+    }
+}
+
 //print $biblio_service_request;
 
 $response = @file_get_contents($biblio_service_request);
@@ -216,10 +228,45 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                            </div>
                         </div>
                         <div id="filters">
+
+                            <?php if ($applied_filter_list) :?>
+                                <section class="row-fluid widget_categories">
+                                    <header class="row-fluid marginbottom15">
+                                        <h1 class="h1-header"><?php echo _e('Selected filters', 'biblio') ?></h1>
+                                    </header>
+                                    <form method="get" name="searchFilter" id="formFilters" action="<?php echo real_site_url($biblio_plugin_slug); ?>">
+                                        <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
+                                        <input type="hidden" name="sort" id="sort" value="<?php echo $sort; ?>">
+                                        <input type="hidden" name="format" id="format" value="<?php echo $format; ?>">
+                                        <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
+                                        <input type="hidden" name="q" id="query" value="<?php echo $query; ?>" >
+                                        <input type="hidden" name="filter" id="filter" value="" >
+
+                                        <?php foreach ( $applied_filter_list as $filter => $filter_values ) :?>
+                                            <strong><?php echo translate_label($biblio_texts, $filter, 'filter') ?></strong>
+                                            <ul>
+                                            <?php foreach ( $filter_values as $value ) :?>
+                                                <input type="hidden" name="apply_filter" class="apply_filter"
+                                                        id="<?php echo md5($value) ?>" value='<?php echo $filter . ':"' . $value . '"'; ?>' >
+                                                <li>
+                                                    <span class="filter-item"><?php echo $value; ?></span>
+                                                    <span class="filter-item-del">
+                                                        <a href="javascript:remove_filter('<?php echo md5($value) ?>')">
+                                                            <img src="<?php echo BIBLIOGRAPHIC_PLUGIN_URL; ?>template/images/del.png">
+                                                        </a>
+                                                    </span>
+                                                </li>
+                                            <?php endforeach; ?>
+                                            </ul>
+                                        <?php endforeach; ?>
+                                    </form>
+                                </section>
+                            <?php endif; ?>
+
                             <?php if ( in_array('main_subject', $biblio_config['available_filter']) && $descriptor_list ): ?>
                                 <section class="row-fluid widget_categories">
                                     <header class="row-fluid border-bottom marginbottom15">
-                                        <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'main subject', 'filter') ?></h1>
+                                        <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'mj', 'filter') ?></h1>
                                     </header>
                                     <ul>
                                         <?php foreach ( $descriptor_list as $index => $descriptor ) { $index++; ?>
@@ -229,7 +276,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                                     if ($query != ''){
                                                         $filter_link .= 'q=' . $query . '&';
                                                     }
-                                                    $filter_link .= 'filter=descriptor:"' . $descriptor[0] . '"';
+                                                    $filter_link .= 'filter=mj:"' . $descriptor[0] . '"';
                                                     if ($user_filter != ''){
                                                         $filter_link .= ' AND ' . $user_filter ;
                                                     }

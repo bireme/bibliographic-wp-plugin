@@ -130,6 +130,8 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 .tagcloud{float:left; width:100%;}
 .tagcloud a{width:100%; float:left; color:rgb(102,102,102); font-size:13px !important; margin-bottom:4px; padding-bottom:4px; border-bottom:1px solid rgb(229,229,229);}
 .cat-item-count{width:36px; font-size:12px !important; line-height:20px !important; position:absolute; right:0; top:1px; overflow:hidden; border-radius:11px; text-align:center; background:rgb(172,172,172); color:rgb(255,255,255);}
+.filter-item{width: 85%; float: left;}
+.filter-item-del{background-image: url('image/del.png');width:36px; line-height:20px !important; position:absolute; right:0; top:1px; overflow:hidden; border-radius:11px; text-align:center; }
 .more-items {text-align: right;}
 .more-items a {color: #000;}
 
