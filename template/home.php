@@ -249,7 +249,17 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                                 <input type="hidden" name="apply_filter" class="apply_filter"
                                                         id="<?php echo md5($value) ?>" value='<?php echo $filter . ':"' . $value . '"'; ?>' >
                                                 <li>
-                                                    <span class="filter-item"><?php echo $value; ?></span>
+                                                    <span class="filter-item">
+                                                        <?php
+                                                            if ($filter == 'publication_language' || $filter == 'publication_country'){
+                                                                echo print_lang_value($value, $site_language);
+                                                            }elseif ($filter == 'publication_type'){
+                                                                echo translate_label($biblio_texts, $value, $filter);
+                                                            }else{
+                                                                echo $value;
+                                                            }
+                                                        ?>
+                                                    </span>
                                                     <span class="filter-item-del">
                                                         <a href="javascript:remove_filter('<?php echo md5($value) ?>')">
                                                             <img src="<?php echo BIBLIOGRAPHIC_PLUGIN_URL; ?>template/images/del.png">
