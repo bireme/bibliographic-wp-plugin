@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bibliographic 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2017-11-09 14:40:13+00:00\n"
-"PO-Revision-Date: 2017-11-09 12:45-0300\n"
+"POT-Creation-Date: 2017-11-23 18:57:50+00:00\n"
+"PO-Revision-Date: 2017-11-23 16:58-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -25,7 +25,7 @@ msgstr "Ajustes registro bibliográfico"
 msgid "Bibliographic records"
 msgstr "Registros bibliográficos"
 
-#: bibliographic.php:141
+#: bibliographic.php:142
 msgid "Bibliographic sidebar"
 msgstr ""
 
@@ -57,8 +57,8 @@ msgid "Google Analytics code"
 msgstr "Código Google Analytics"
 
 #: settings.php:34
-#: template/home.php:181
-#: template/resource.php:180
+#: template/home.php:196
+#: template/resource.php:185
 msgid "Fulltext"
 msgstr "Texto completo"
 
@@ -114,55 +114,59 @@ msgstr "Ano"
 msgid "Save changes"
 msgstr "Guardar alterações"
 
-#: template/home.php:83
+#: template/home.php:95
 #: template/resource.php:75
 msgid "Home"
 msgstr "Ínicio"
 
-#: template/home.php:88
+#: template/home.php:100
 msgid "Search result"
 msgstr "Resultado da busca"
 
-#: template/home.php:101
+#: template/home.php:113
 #: template/resource.php:89
 msgid "Enter one or more words"
 msgstr "Entre uma ou mais palavras"
 
-#: template/home.php:102
+#: template/home.php:114
 #: template/resource.php:90
 msgid "Search"
 msgstr "Pesquisar"
 
-#: template/home.php:103
+#: template/home.php:115
 #: template/resource.php:91
 msgid "Tip! You can do your search using boolean operators."
 msgstr "Dica! Você pode pesquisar usando operadores booleanos."
 
-#: template/home.php:112
+#: template/home.php:124
 msgid "No results found"
 msgstr "Nenhum resultado encontrado"
 
-#: template/home.php:116
+#: template/home.php:128
 msgid "Results"
 msgstr "Resultados"
 
-#: template/home.php:118
+#: template/home.php:130
 msgid "Total"
 msgstr "Total"
 
-#: template/home.php:174
-#: template/resource.php:173
+#: template/home.php:189
+#: template/resource.php:178
 msgid "Fulltext (primary link)"
 msgstr "Texto completo (link principal)"
 
-#: template/home.php:174
-#: template/resource.php:173
+#: template/home.php:189
+#: template/resource.php:178
 msgid "Fulltext (alternative link)"
 msgstr "Texto completo (link alternativo)"
 
-#: template/home.php:210
+#: template/home.php:225
 msgid "Filters"
 msgstr "Filtros"
+
+#: template/home.php:235
+msgid "Selected filters"
+msgstr "Filtros selecionados"
 
 #: template/resource.php:139
 msgid "Publication year"
@@ -172,7 +176,7 @@ msgstr "Ano de publicação"
 msgid "Abstract"
 msgstr "Resumo"
 
-#: template/resource.php:194
+#: template/resource.php:199
 msgid "Related"
 msgstr "Relacionados"
 
