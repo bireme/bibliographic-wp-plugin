@@ -97,6 +97,7 @@ ol.doc-loop li p {font-size: .9rem; font-weight: normal; color:rgb(102,102,102);
 .abstract strong, .subjects strong {color: #000;}
 .abstract-version {font-weight: normal;}
 .abstract-version.altLang {margin-top: 10px;}
+.abstract h2{color: #3A8EBE !important; font-weight: normal; margin: 5px 0 5px;}
 .help {vertical-align: sub; margin-left:12px;}
 .breadcrumb-home {font-size: 60%;}
 .count-docs {margin-top: 12px;}

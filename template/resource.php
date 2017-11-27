@@ -149,7 +149,9 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                         <div class="abstract-version <?php echo $class; ?>">
                                             <?php
                                                 $ab_clean = str_replace(array("\\r\\n", "\\t", "\\r", "\\n"), '' , $ab);
-                                                echo $ab_clean;
+                                                // mark abstract sections
+                                                $ab_mark = preg_replace("/(\A|\.)([\p{Lu}\s]+:)/u", "$1<h2>$2</h2>", $ab_clean);
+                                                echo $ab_mark;
                                             ?>
                                         </div>
                                     <?php endforeach; ?>
