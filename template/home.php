@@ -80,7 +80,7 @@ $params  = !empty($format) ? '&format=' . $format : '';
 $params .= $count != 2 ? '&count=' . $count : '';
 $params .= !empty($_GET['sort']) ? '&sort=' . $_GET['sort'] : '';
 
-$page_url_params = real_site_url($biblio_plugin_slug) . '?q=' . urlencode($query) . '&filter=' . urlencode($filter) . $params;
+$page_url_params = real_site_url($biblio_plugin_slug) . '?q=' . urlencode($query) . '&filter=' . urlencode($user_filter) . $params;
 $feed_url = real_site_url($biblio_plugin_slug) . 'bibliographic-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 
 $pages = new Paginator($total, $start);
