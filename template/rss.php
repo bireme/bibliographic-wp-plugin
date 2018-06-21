@@ -56,12 +56,12 @@ $page_url_params = home_url($biblio_plugin_slug) . '?q=' . urlencode($query) . '
             foreach ( $docs_list as $doc ) {
                 echo "<item>\n";
                 echo "   <title><![CDATA[" . htmlspecialchars(implode("/", $doc->reference_title)) . "]]></title>\n";
-                if ( $docs->author ){
+                if ( $doc->author ){
                     echo "   <author><![CDATA[" . implode(", ", $doc->author) . "]]></author>\n";
                 }
                 echo "   <link>" . home_url($biblio_plugin_slug) .'/resource/' . $doc->django_id . "</link>\n";
                 if ( $doc->reference_abstract ) {
-                    echo "   <description><![CDATA[" . implode("<br /><br />", $docs->reference_abstract) . "]]></description>\n";
+                    echo "   <description><![CDATA[" . implode("<br /><br />", $doc->reference_abstract) . "]]></description>\n";
                 }
                 echo "   <guid isPermaLink=\"false\">" . $doc->django_id . "</guid>\n";
 
