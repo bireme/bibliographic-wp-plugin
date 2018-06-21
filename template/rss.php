@@ -59,7 +59,7 @@ $page_url_params = home_url($biblio_plugin_slug) . '?q=' . urlencode($query) . '
                 if ( $doc->author ){
                     echo "   <author><![CDATA[" . implode(", ", $doc->author) . "]]></author>\n";
                 }
-                echo "   <link>" . home_url($biblio_plugin_slug) .'/resource/' . $doc->django_id . "</link>\n";
+                echo "   <link>" . home_url($biblio_plugin_slug) .'/resource/?id=' . $doc->id . "</link>\n";
                 if ( $doc->reference_abstract ) {
                     echo "   <description><![CDATA[" . implode("<br /><br />", $doc->reference_abstract) . "]]></description>\n";
                 }
