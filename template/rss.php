@@ -51,6 +51,7 @@ $page_url_params = home_url($biblio_plugin_slug) . '?q=' . urlencode($query) . '
         <title><?php _e('Bibliographic records', 'biblio') ?> <?php echo ($query != '' ? '|' . $query : '') ?></title>
         <link><?php echo htmlspecialchars($page_url_params) ?></link>
         <description><?php echo $query ?></description>
+        <lastBuildDate><?php echo date_format(date_create(), 'D, d M Y H:i:s T');?></lastBuildDate>
         <?php
             foreach ( $docs_list as $doc ) {
                 echo "<item>\n";
@@ -63,6 +64,13 @@ $page_url_params = home_url($biblio_plugin_slug) . '?q=' . urlencode($query) . '
                     echo "   <description><![CDATA[" . implode("<br /><br />", $docs->reference_abstract) . "]]></description>\n";
                 }
                 echo "   <guid isPermaLink=\"false\">" . $doc->django_id . "</guid>\n";
+
+                $pub_date = ($doc->updated_date != '' ? $doc->updated_date : $doc->created_date);
+                echo "   <pubDate>";
+                if ($pub_date != ''){
+                    echo date_format(date_create($pub_date), 'D, d M Y H:i:s T');
+                }
+                echo "</pubDate>\n";
                 echo "</item>\n";
             }
         ?>
