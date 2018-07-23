@@ -102,14 +102,14 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                             <a class="addthis_button_favorites"></a>
                             <a class="addthis_button_compact"></a>
                         </div>
-                        <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+                        <script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>
                         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $biblio_addthis_id; ?>"></script>
                         <!-- AddThis Button END -->
                     </div>
                     <div class="row-fluid">
                         <article class="conteudo-loop">
                             <h2 class="h2-loop-tit">
-                                <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/<?php echo $resource->django_id; ?>"><?php echo $resource->reference_title[0]; ?></a>
+                                <a href="#"><?php echo $resource->reference_title[0]; ?></a>
                                 <?php foreach ( $resource->reference_title as $index => $title ): ?>
                                     <?php if ( $index != 0 ): ?>
                                         <div class="altLang"><?php echo $title; ?></div>

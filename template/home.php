@@ -109,7 +109,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                     <input type="hidden" name="sort" id="sort" value="<?php echo $_GET['sort']; ?>">
                     <input type="hidden" name="format" id="format" value="<?php echo $format ? $format : 'summary'; ?>">
                     <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
-                    <input type="hidden" name="page" id="page" value="<?php echo $page; ?>">
+                    <input type="hidden" name="page" id="page" value="1">
                     <input value='<?php echo $query; ?>' name="q" class="input-search" id="s" type="text" placeholder="<?php _e('Enter one or more words', 'biblio'); ?>">
                     <input id="searchsubmit" value="<?php _e('Search', 'biblio'); ?>" type="submit">
                     <a href="#" title="<?php _e('Tip! You can do your search using boolean operators.', 'biblio'); ?>" class="help ketchup tooltip"><i class="fa fa-question-circle fa-2x"></i></a>
@@ -152,7 +152,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                                 <?php
                                                     echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=journal:\"" . $docs->journal[0] . "\"'>" . $docs->journal[0] . "</a>";
                                                     if ( $docs->reference_source ):
-                                                        echo substr($docs->reference_source[0], strpos($docs->reference_source[0], ';'), 100);
+                                                        echo substr($docs->reference_source, strpos($docs->reference_source, ';'), 100);
                                                     endif;
                                                 ?>
                                             </div>
@@ -474,7 +474,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                 </section>
                             <?php endif; ?>
                         </div> <!-- close DIV.filters -->
-                    <? endif; ?>
+                    <?php endif; ?>
                 </aside>
                 <div class="spacer"></div>
             </div> <!-- close DIV.result-area -->
