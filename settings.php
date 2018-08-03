@@ -62,8 +62,8 @@ function biblio_page_admin() {
                             }
                         }else{
                             echo '<tr valign="top">';
-                            echo '   <th scope="row"><?php _e("Page title", "biblio"); ?>:</th>';
-                            echo '   <td><input type="text" name="biblio_config[plugin_title]" value="<?php echo $config["plugin_title"] ?>" class="regular-text code"></td>';
+                            echo '   <th scope="row">' . __("Page title", "biblio") . ':</th>';
+                            echo '   <td><input type="text" name="biblio_config[plugin_title]" value="' . $config["plugin_title"] . '" class="regular-text code"></td>';
                             echo '</tr>';
                         }
 

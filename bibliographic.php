@@ -8,12 +8,12 @@ Version: 0.1
 Author URI: http://reddes.bvsalud.org/
 */
 
-define('BIBLIOGRAPHIC_PLUGIN_VERSION', '1.2' );
+define('BIBLIOGRAPHIC_PLUGIN_VERSION', '1.3' );
 
 define('BIBLIOGRAPHIC_SYMBOLIC_LINK', false );
 define('BIBLIOGRAPHIC_PLUGIN_DIRNAME', 'bibliographic' );
 
-if(BIBLIOGRAPHIC_PLUGIN_SYMBOLIC_LINK == true) {
+if(BIBLIOGRAPHIC_SYMBOLIC_LINK == true) {
     define('BIBLIOGRAPHIC_PLUGIN_PATH',  ABSPATH . 'wp-content/plugins/' . BIBLIOGRAPHIC_PLUGIN_DIRNAME );
 } else {
     define('BIBLIOGRAPHIC_PLUGIN_PATH',  plugin_dir_path(__FILE__) );
@@ -43,10 +43,10 @@ if(!class_exists('Bibliographic_Plugin')) {
             add_action( 'admin_menu', array(&$this, 'admin_menu'));
             add_action( 'plugins_loaded', array(&$this, 'plugin_init'));
             add_action( 'wp_head', array(&$this, 'google_analytics_code'));
-            add_action( 'wp_head', array(&$this, 'theme_slug_render_title'));
             add_action( 'template_redirect', array(&$this, 'template_redirect'));
             add_action( 'widgets_init', array(&$this, 'register_sidebars'));
             add_filter( 'get_search_form', array(&$this, 'search_form'));
+            add_filter( 'document_title_parts', array(&$this, 'theme_slug_render_title'));
 
 
         } // END public function __construct
@@ -150,7 +150,8 @@ if(!class_exists('Bibliographic_Plugin')) {
             register_sidebar( $args );
         }
 
-        function theme_slug_render_title() {
+
+        function theme_slug_render_title($title) {
             global $wp, $biblio_plugin_title;
             $pagename = '';
 
@@ -168,9 +169,10 @@ if(!class_exists('Bibliographic_Plugin')) {
                 }else{
                     $biblio_plugin_title = $biblio_config['plugin_title'];
                 }
-                $title = $biblio_plugin_title . " | " . get_bloginfo('name');
-                print "<title>" . $title . "</title>";
+                $title['title'] = $biblio_plugin_title;
             }
+
+            return $title;
         }
 
         function search_form( $form ) {
