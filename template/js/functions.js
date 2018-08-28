@@ -74,3 +74,19 @@ function remove_filter(id) {
     $('#filter').val(filter);
     $("#formFilters").submit();
 }
+function show_similar(url){
+    //$j("#ajax").load(url);
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+           document.getElementById("ajax").innerHTML = this.responseText;
+
+        }else {
+           document.getElementById("ajax").innerHTML = '<li class="cat-item"><div class="loader"></div></li>';
+
+        }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+    
+}
