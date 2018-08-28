@@ -198,7 +198,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                     </ul>
                     </section>
 <?php
-$url=OER_PLUGIN_URL.'template/similar.php?query='.$similar_query.'&lang='.$lang;
+$url = BIBLIOGRAPHIC_PLUGIN_URL.'template/similar.php?query='.$similar_query.'&lang='.$lang;
 ?>
 <script type="text/javascript">
     show_similar("<?php echo $url; ?>");
