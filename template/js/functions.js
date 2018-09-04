@@ -90,3 +90,12 @@ function show_similar(url){
     xmlhttp.send();
     
 }
+s
+function tabs(tab) {
+    $j('.abstract-version').hide();
+    $j('#tab-'+tab).show();
+    $j('li').removeClass('active');
+    $j('li').click(function(){
+        $j(this).addClass('active');
+    });
+}
