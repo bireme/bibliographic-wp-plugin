@@ -334,7 +334,6 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 }
 
 /* loader */
-
 .loader {
     border: 2px solid #f3f3f3; /* Light grey */
     border-top: 2px solid #3498db; /* Blue */
@@ -348,13 +347,15 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
+/* tab menu */
+#tabs ul {
+	list-style: none;
+}
 #tabs ul li button:active , #tabs ul li button:hover, #tabs ul li button:focus, #tabs ul li button{
     border: transparent;
     background: transparent;
     box-shadow: none;
 }
-
 #tabs ul li button {
     float: left;
     margin-right: 20px;
@@ -362,8 +363,5 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
     font-weight: bold;
 }
 #tabs ul li button:hover {
-    color: #000;
-}
-#tabs ul li.active button {
     color: #000;
 }
