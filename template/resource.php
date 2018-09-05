@@ -16,7 +16,7 @@ $referer = wp_get_referer();
 $path = parse_url($referer);
 if ( array_key_exists( 'query', $path ) ) {
     $path = parse_str($path['query'], $output);
-    //echo "<pre>"; print_r($output); echo "</pre>";
+    // echo "<pre>"; print_r($output); echo "</pre>";
     if ( array_key_exists( 'q', $output ) && !empty( $output['q'] ) ) {
         $query = $output['q'];
         $q = ( strlen($output['q']) > 10 ? substr($output['q'],0,10) . '...' : $output['q'] );
@@ -135,17 +135,45 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                 <br/>
                             </div>
 
-                            <?php if ( $resource->reference_abstract ): ?>
-                                <div class="row-fluid abstract">
-                                    <strong><?php _e('Abstract','biblio'); ?></strong>
-                                    <?php foreach ( $resource->reference_abstract as $index => $ab ): ?>
+                            <?php if ( $resource->abstract_language ): ?>
+                                <div class="row-fluid abstract" id="tabs">
+
+                                    <ul>
+                                      <?php foreach ( $resource->abstract_language as $index => $ab ):
+                                              $language = explode('|', $ab);
+                                              switch ($language[0]) {
+                                                case 'pt':
+                                                  $abstract = 'Resumo';
+                                                  break;
+                                                case 'en':
+                                                  $abstract = 'Abstract';
+                                                  break;
+                                                case 'es':
+                                                  $abstract = 'Resumen';
+                                                  break;
+                                                case 'fr':
+                                                  $abstract = 'Résumé';
+                                                  break;
+
+                                                default:
+                                                  $abstract = 'Abstract';
+                                                  break;
+                                              }
+                                              $class = $index == 0 ? 'active' : ''; ?>
+                                        <li class="<?php echo $class; ?>"><button  onclick="tabs(<?php echo $index; ?>);"><?php echo $abstract; ?></button></li>
+                                      <?php endforeach; ?>
+                                    </ul>
+                                    <hr>
+
+                                    <?php foreach ( $resource->abstract_language as $index => $ab ): ?>
                                         <?php $class = $index != 0 ? 'altLang' : ''; ?>
-                                        <div class="abstract-version <?php echo $class; ?>">
+                                        <div class="abstract-version <?php echo $class; ?>" id="tab-<?php echo $index; ?>">
                                             <?php
-                                                $ab_clean = str_replace(array("\\r\\n", "\\t", "\\r", "\\n"), '' , $ab);
+                                                $ab_clean = str_replace(array("\\r\\n", "\\t", "\\r", "\\n", "pt|", "en|", "es|", "fr|"), '' , $ab);
                                                 // mark abstract sections
-                                                $ab_mark = preg_replace("/(\A|\.)([\p{Lu}\s]+:)/u", "$1<h2>$2</h2>", $ab_clean);
+                                                $ab_mark = preg_replace("/(\A|\.)([\w{Lu}\s]+:)/u", "$1<h2>$2</h2>", $ab_clean);
                                                 echo $ab_mark;
+
                                             ?>
                                         </div>
                                     <?php endforeach; ?>
@@ -194,7 +222,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                             <h1 class="h1-header"><?php _e('Related','biblio'); ?></h1>
                         </header>
                     <ul id="ajax">
-                        
+
                     </ul>
                     </section>
 <?php

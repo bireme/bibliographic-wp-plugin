@@ -31,7 +31,7 @@ a:visited{color:rgb(0,153,255);}
 .h1-header{float:left; line-height:30px; font-size:26px; color:#28367D !important; font-weight:normal; text-decoration:none;}
 .h2-loop-tit, .h2-loop-tit a {font-weight:bold;font-size:1.3em;line-height: 135%;color: #333; text-decoration: none; margin: 10px 0 10px;}
 .h2-loop-tit a:hover {color: #344c66;}
-.altLang {display:block;color:#999;}
+.altLang {display:none}
 
 /* ALL */
 .site-main{overflow:auto;}
@@ -347,4 +347,27 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+#tabs ul {
+	list-style: none;
+}
+#tabs ul li button:active , #tabs ul li button:hover, #tabs ul li button:focus, #tabs ul li button{
+    border: transparent;
+    background: transparent;
+    box-shadow: none;
+}
+
+#tabs ul li button {
+    float: left;
+    margin-right: 20px;
+    color: #ccc;
+    font-weight: bold;		
+		font-size: 12px;
+}
+#tabs ul li button:hover {
+    color: #000;
+}
+#tabs ul li.active button {
+    color: #000;
+
 }

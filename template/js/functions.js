@@ -1,4 +1,4 @@
-var $j = jQuery;
+var $j = jQuery.noConflict();
 
 $j(window).load(function(){
 	showTips();
@@ -62,17 +62,17 @@ function show_more_list(){
 
 function remove_filter(id) {
     // remove hidden field
-    $("#"+id).remove();
+    $j("#"+id).remove();
     var filter = '';
 
-    $('.apply_filter').each(function(i){
+    $j('.apply_filter').each(function(i){
         filter += this.value + ' AND ';
     });
     // remove last AND of string
     filter = filter.replace(/\sAND\s$/, "");
 
-    $('#filter').val(filter);
-    $("#formFilters").submit();
+    $j('#filter').val(filter);
+    $j("#formFilters").submit();
 }
 function show_similar(url){
     //$j("#ajax").load(url);
@@ -80,13 +80,18 @@ function show_similar(url){
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
            document.getElementById("ajax").innerHTML = this.responseText;
-
         }else {
            document.getElementById("ajax").innerHTML = '<li class="cat-item"><div class="loader"></div></li>';
-
         }
     };
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
-    
+}
+function tabs(tab) {
+    $j('.abstract-version').hide();
+    $j('#tab-'+tab).show();
+    $j('li').removeClass('active');
+    $j('li').click(function(){
+        $j(this).addClass('active');
+    });
 }
