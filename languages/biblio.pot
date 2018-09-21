@@ -102,6 +102,14 @@ msgstr ""
 msgid "Save changes"
 msgstr ""
 
+#: settings.php:81
+msgid "Available"
+msgstr ""
+
+#: settings.php:100
+msgid "Selected"
+msgstr ""
+
 #: template/home.php:95 template/resource.php:75
 msgid "Home"
 msgstr ""

@@ -5,23 +5,20 @@ msgstr ""
 "Project-Id-Version: Bibliographic 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
 "POT-Creation-Date: 2017-11-23 18:57:50+00:00\n"
-"PO-Revision-Date: 2017-11-23 16:59-0300\n"
+"PO-Revision-Date: 2018-09-21 11:48-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Spanish\n"
-"X-Poedit-Country: SPAIN\n"
+"X-Generator: Poedit 2.0.6\n"
 
-#: bibliographic.php:95
-#: settings.php:9
+#: bibliographic.php:95 settings.php:9
 msgid "Bibliographic record settings"
 msgstr "Configuración del registro bibliográfico"
 
-#: bibliographic.php:95
-#: template/rss.php:51
+#: bibliographic.php:95 template/rss.php:51
 msgid "Bibliographic records"
 msgstr "Registro bibliográfico"
 
@@ -29,14 +26,9 @@ msgstr "Registro bibliográfico"
 msgid "Bibliographic sidebar"
 msgstr ""
 
-#: lib/Paginator.php:35
-#: lib/Paginator.php:36
-#: lib/Paginator.php:47
-#: lib/Paginator.php:53
-#: lib/Paginator.php:62
-#: lib/Paginator.php:63
-#: lib/Paginator.php:69
-#: lib/Paginator.php:70
+#: lib/Paginator.php:35 lib/Paginator.php:36 lib/Paginator.php:47
+#: lib/Paginator.php:53 lib/Paginator.php:62 lib/Paginator.php:63
+#: lib/Paginator.php:69 lib/Paginator.php:70
 msgid "go to page"
 msgstr "ir a la página"
 
@@ -56,9 +48,7 @@ msgstr "ID de AddThis"
 msgid "Google Analytics code"
 msgstr "Código de Google Analytics"
 
-#: settings.php:34
-#: template/home.php:196
-#: template/resource.php:185
+#: settings.php:34 template/home.php:196 template/resource.php:185
 msgid "Fulltext"
 msgstr "Texto completo"
 
@@ -115,8 +105,15 @@ msgstr "Año"
 msgid "Save changes"
 msgstr "Guardar cambios"
 
-#: template/home.php:95
-#: template/resource.php:75
+#: settings.php:81
+msgid "Available"
+msgstr "Disponible"
+
+#: settings.php:100
+msgid "Selected"
+msgstr "Seleccionados"
+
+#: template/home.php:95 template/resource.php:75
 msgid "Home"
 msgstr "Inicio"
 
@@ -124,18 +121,15 @@ msgstr "Inicio"
 msgid "Search result"
 msgstr "Resultado de la búsqueda"
 
-#: template/home.php:113
-#: template/resource.php:89
+#: template/home.php:113 template/resource.php:89
 msgid "Enter one or more words"
 msgstr "Ingrese una o más palabras"
 
-#: template/home.php:114
-#: template/resource.php:90
+#: template/home.php:114 template/resource.php:90
 msgid "Search"
 msgstr "Buscar"
 
-#: template/home.php:115
-#: template/resource.php:91
+#: template/home.php:115 template/resource.php:91
 msgid "Tip! You can do your search using boolean operators."
 msgstr "Puedes realizar la búsqueda utilizando operadores booleanos."
 
@@ -151,13 +145,11 @@ msgstr "Resultados"
 msgid "Total"
 msgstr "Total"
 
-#: template/home.php:189
-#: template/resource.php:178
+#: template/home.php:189 template/resource.php:178
 msgid "Fulltext (primary link)"
 msgstr "Texto completo (enlace principal)"
 
-#: template/home.php:189
-#: template/resource.php:178
+#: template/home.php:189 template/resource.php:178
 msgid "Fulltext (alternative link)"
 msgstr "Texto completo (enlace alternativo)"
 
