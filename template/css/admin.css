@@ -1,0 +1,12 @@
+#sortable1 , #sortable2 {
+	width: 200px;
+	min-height: 300px;
+	background: #fff;
+	border: 1px solid #ccc;
+}
+#sortable2 li, #sortable1 li {
+  border: 1px solid #ccc;
+margin: 4px;
+padding: 5px;
+background: #f3f3f3;
+}
