@@ -102,19 +102,7 @@ msgstr ""
 msgid "Save changes"
 msgstr ""
 
-<<<<<<< HEAD
-#: settings.php:81
-msgid "Available"
-msgstr ""
-
-#: settings.php:100
-msgid "Selected"
-msgstr ""
-
-#: template/home.php:95 template/resource.php:75
-=======
 #: template/home.php:95 template/resource.php:69
->>>>>>> upstream/master
 msgid "Home"
 msgstr ""
 
