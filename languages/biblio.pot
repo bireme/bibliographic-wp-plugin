@@ -1,14 +1,14 @@
-# Copyright (C) 2017 Bibliographic
+# Copyright (C) 2018 Bibliographic
 # This file is distributed under the same license as the Bibliographic package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Bibliographic 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2017-11-23 18:57:50+00:00\n"
+"POT-Creation-Date: 2018-09-04 12:59:58+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
@@ -16,7 +16,7 @@ msgstr ""
 msgid "Bibliographic record settings"
 msgstr ""
 
-#: bibliographic.php:95 template/rss.php:51
+#: bibliographic.php:95 template/rss.php:52
 msgid "Bibliographic records"
 msgstr ""
 
@@ -46,7 +46,7 @@ msgstr ""
 msgid "Google Analytics code"
 msgstr ""
 
-#: settings.php:34 template/home.php:196 template/resource.php:185
+#: settings.php:34 template/home.php:196 template/resource.php:181
 msgid "Fulltext"
 msgstr ""
 
@@ -58,7 +58,7 @@ msgstr ""
 msgid "Home URL"
 msgstr ""
 
-#: settings.php:58
+#: settings.php:58 settings.php:65
 msgid "Page title"
 msgstr ""
 
@@ -102,6 +102,7 @@ msgstr ""
 msgid "Save changes"
 msgstr ""
 
+<<<<<<< HEAD
 #: settings.php:81
 msgid "Available"
 msgstr ""
@@ -111,6 +112,9 @@ msgid "Selected"
 msgstr ""
 
 #: template/home.php:95 template/resource.php:75
+=======
+#: template/home.php:95 template/resource.php:69
+>>>>>>> upstream/master
 msgid "Home"
 msgstr ""
 
@@ -118,15 +122,15 @@ msgstr ""
 msgid "Search result"
 msgstr ""
 
-#: template/home.php:113 template/resource.php:89
+#: template/home.php:113 template/resource.php:83
 msgid "Enter one or more words"
 msgstr ""
 
-#: template/home.php:114 template/resource.php:90
+#: template/home.php:114 template/resource.php:84
 msgid "Search"
 msgstr ""
 
-#: template/home.php:115 template/resource.php:91
+#: template/home.php:115 template/resource.php:85
 msgid "Tip! You can do your search using boolean operators."
 msgstr ""
 
@@ -142,11 +146,11 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-#: template/home.php:189 template/resource.php:178
+#: template/home.php:189 template/resource.php:174
 msgid "Fulltext (primary link)"
 msgstr ""
 
-#: template/home.php:189 template/resource.php:178
+#: template/home.php:189 template/resource.php:174
 msgid "Fulltext (alternative link)"
 msgstr ""
 
@@ -158,15 +162,15 @@ msgstr ""
 msgid "Selected filters"
 msgstr ""
 
-#: template/resource.php:139
+#: template/resource.php:133
 msgid "Publication year"
 msgstr ""
 
-#: template/resource.php:146
+#: template/resource.php:140
 msgid "Abstract"
 msgstr ""
 
-#: template/resource.php:199
+#: template/resource.php:194
 msgid "Related"
 msgstr ""
 
