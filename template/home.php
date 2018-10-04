@@ -273,7 +273,11 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                 </section>
                             <?php endif; ?>
 
-                            <?php if ( in_array('main_subject', $biblio_config['available_filter']) && $descriptor_list ): ?>
+                            <?php
+                                $order = explode(';', $biblio_config['available_filter']);
+                                foreach($order as $index=>$content) {
+                            ?>
+                            <?php if ($content == 'Main subject' && $descriptor_list ): ?>
                                 <section class="row-fluid widget_categories">
                                     <header class="row-fluid border-bottom marginbottom15">
                                         <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'mj', 'filter') ?></h1>
@@ -298,7 +302,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                     </ul>
                                 </section>
                             <?php endif; ?>
-                            <?php if ( in_array('publication_type', $biblio_config['available_filter']) && $type_list ): ?>
+                            <?php if ( $content == 'Publication type' && $type_list ): ?>
                                 <section class="row-fluid widget_categories">
                                     <header class="row-fluid border-bottom marginbottom15">
                                         <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'publication type', 'filter') ?></h1>
@@ -323,7 +327,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                     </ul>
                                 </section>
                             <?php endif; ?>
-                            <?php if ( in_array('database', $biblio_config['available_filter']) && $database_list ): ?>
+                            <?php if ( $content == 'Database' && $database_list ): ?>
                                 <section class="row-fluid widget_categories">
                                     <header class="row-fluid border-bottom marginbottom15">
                                         <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'database', 'filter'); ?></h1>
@@ -348,7 +352,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                     </ul>
                                 </section>
                             <?php endif; ?>
-                            <?php if ( in_array('publication_country', $biblio_config['available_filter']) && $cp_list ): ?>
+                            <?php if ($content == 'Publication country' && $cp_list ): ?>
                                 <section class="row-fluid widget_categories">
                                     <header class="row-fluid border-bottom marginbottom15">
                                         <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'publication country', 'filter'); ?></h1>
@@ -373,7 +377,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                     </ul>
                                 </section>
                             <?php endif; ?>
-                            <?php if ( in_array('limit', $biblio_config['available_filter']) && $limit_list ): ?>
+                            <?php if ( $content == 'Limits' && $limit_list ): ?>
                                 <section class="row-fluid widget_categories">
                                     <header class="row-fluid border-bottom marginbottom15">
                                         <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'limits', 'filter');  ?></h1>
@@ -398,7 +402,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                     </ul>
                                 </section>
                             <?php endif; ?>
-                            <?php if ( in_array('language', $biblio_config['available_filter']) && $language_list ): ?>
+                            <?php if ( $content == 'Language' && $language_list ): ?>
                                 <section class="row-fluid widget_categories">
                                     <header class="row-fluid border-bottom marginbottom15">
                                         <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'language', 'filter'); ?></h1>
@@ -423,7 +427,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                     </ul>
                                 </section>
                             <?php endif; ?>
-                            <?php if ( in_array('journal', $biblio_config['available_filter']) && $journal_list ): ?>
+                            <?php if ( $content == 'Journal' && $journal_list ): ?>
                                 <section class="row-fluid widget_categories">
                                     <header class="row-fluid border-bottom marginbottom15">
                                         <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'journal', 'filter'); ?></h1>
@@ -448,7 +452,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                     </ul>
                                 </section>
                             <?php endif; ?>
-                            <?php if ( in_array('year', $biblio_config['available_filter']) && $year_list ): ?>
+                            <?php if ( $content == 'Year' && $year_list ): ?>
                                 <section class="row-fluid widget_categories">
                                     <header class="row-fluid border-bottom marginbottom15">
                                         <h1 class="h1-header"><?php  echo translate_label($biblio_texts, 'year', 'filter'); ?></h1>
@@ -473,6 +477,7 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
                                     </ul>
                                 </section>
                             <?php endif; ?>
+                          <?php } ?>
                         </div> <!-- close DIV.filters -->
                     <?php endif; ?>
                 </aside>

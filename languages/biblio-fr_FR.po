@@ -4,24 +4,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bibliographic 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2017-11-23 18:57:50+00:00\n"
-"PO-Revision-Date: 2017-11-23 16:59-0300\n"
+"POT-Creation-Date: 2018-09-04 12:59:58+00:00\n"
+"PO-Revision-Date: 2018-10-03 13:52-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: French\n"
-"X-Poedit-Country: FRANCE\n"
+"X-Generator: Poedit 2.0.6\n"
 
-#: bibliographic.php:95
-#: settings.php:9
+#: bibliographic.php:95 settings.php:9
 msgid "Bibliographic record settings"
 msgstr ""
 
-#: bibliographic.php:95
-#: template/rss.php:51
+#: bibliographic.php:95 template/rss.php:52
 msgid "Bibliographic records"
 msgstr ""
 
@@ -29,14 +26,9 @@ msgstr ""
 msgid "Bibliographic sidebar"
 msgstr ""
 
-#: lib/Paginator.php:35
-#: lib/Paginator.php:36
-#: lib/Paginator.php:47
-#: lib/Paginator.php:53
-#: lib/Paginator.php:62
-#: lib/Paginator.php:63
-#: lib/Paginator.php:69
-#: lib/Paginator.php:70
+#: lib/Paginator.php:35 lib/Paginator.php:36 lib/Paginator.php:47
+#: lib/Paginator.php:53 lib/Paginator.php:62 lib/Paginator.php:63
+#: lib/Paginator.php:69 lib/Paginator.php:70
 msgid "go to page"
 msgstr ""
 
@@ -56,9 +48,7 @@ msgstr ""
 msgid "Google Analytics code"
 msgstr ""
 
-#: settings.php:34
-#: template/home.php:196
-#: template/resource.php:185
+#: settings.php:34 template/home.php:196 template/resource.php:181
 msgid "Fulltext"
 msgstr "Texte intégral"
 
@@ -71,7 +61,7 @@ msgstr "Présenter des liens alternatifs en texte intégral"
 msgid "Home URL"
 msgstr "Accueil"
 
-#: settings.php:58
+#: settings.php:58 settings.php:65
 msgid "Page title"
 msgstr ""
 
@@ -115,8 +105,15 @@ msgstr "Année"
 msgid "Save changes"
 msgstr ""
 
-#: template/home.php:95
-#: template/resource.php:75
+#: settings.php:91
+msgid "Available"
+msgstr "Disponible"
+
+#: settings.php:125
+msgid "Selected"
+msgstr "Sélectionnés"
+
+#: template/home.php:95 template/resource.php:69
 msgid "Home"
 msgstr "Accueil"
 
@@ -124,18 +121,15 @@ msgstr "Accueil"
 msgid "Search result"
 msgstr "Résultat de la recherche"
 
-#: template/home.php:113
-#: template/resource.php:89
+#: template/home.php:113 template/resource.php:83
 msgid "Enter one or more words"
 msgstr "Entrez un ou plusieurs mots"
 
-#: template/home.php:114
-#: template/resource.php:90
+#: template/home.php:114 template/resource.php:84
 msgid "Search"
 msgstr "Rechercher"
 
-#: template/home.php:115
-#: template/resource.php:91
+#: template/home.php:115 template/resource.php:85
 msgid "Tip! You can do your search using boolean operators."
 msgstr ""
 
@@ -151,13 +145,11 @@ msgstr "Résultats"
 msgid "Total"
 msgstr "Total"
 
-#: template/home.php:189
-#: template/resource.php:178
+#: template/home.php:189 template/resource.php:174
 msgid "Fulltext (primary link)"
 msgstr "Texte intégral (lien principal)"
 
-#: template/home.php:189
-#: template/resource.php:178
+#: template/home.php:189 template/resource.php:174
 msgid "Fulltext (alternative link)"
 msgstr "Texte intégral (lien alternatif)"
 
@@ -169,15 +161,15 @@ msgstr "Filtres"
 msgid "Selected filters"
 msgstr "Filtres sélectionnés"
 
-#: template/resource.php:139
+#: template/resource.php:133
 msgid "Publication year"
 msgstr "Année de publication"
 
-#: template/resource.php:146
+#: template/resource.php:140
 msgid "Abstract"
 msgstr "Résumé"
 
-#: template/resource.php:199
+#: template/resource.php:194
 msgid "Related"
 msgstr "Similaires"
 
