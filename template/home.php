@@ -103,6 +103,13 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
 
     <div id="content" class="row-fluid">
         <div class="ajusta2">
+            <!-- Start sidebar bibliographic-header -->
+            <div class="row-fluid">
+                <?php dynamic_sidebar('biblio-header');?>
+            </div>
+            <div class="spacer"></div>
+            <!-- end sidebar bibliographic-header -->
+
             <section class="header-search">
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($biblio_plugin_slug); ?>">
                     <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">

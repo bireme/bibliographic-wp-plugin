@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bibliographic 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2018-09-04 12:59:58+00:00\n"
-"PO-Revision-Date: 2018-10-03 11:53-0300\n"
+"POT-Creation-Date: 2018-10-30 14:28:20+00:00\n"
+"PO-Revision-Date: 2018-10-30 11:28-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -22,9 +22,13 @@ msgstr "Ajustes registro bibliográfico"
 msgid "Bibliographic records"
 msgstr "Registros bibliográficos"
 
-#: bibliographic.php:142
+#: bibliographic.php:144
 msgid "Bibliographic sidebar"
-msgstr ""
+msgstr "Registros bibliográficos barra lateral"
+
+#: bibliographic.php:155
+msgid "Bibliographic header"
+msgstr "Registros bibliográficos cabeçalho"
 
 #: lib/Paginator.php:35 lib/Paginator.php:36 lib/Paginator.php:47
 #: lib/Paginator.php:53 lib/Paginator.php:62 lib/Paginator.php:63
@@ -48,7 +52,7 @@ msgstr "ID do AddThis"
 msgid "Google Analytics code"
 msgstr "Código Google Analytics"
 
-#: settings.php:34 template/home.php:196 template/resource.php:181
+#: settings.php:34 template/home.php:203 template/resource.php:209
 msgid "Fulltext"
 msgstr "Texto completo"
 
@@ -58,59 +62,27 @@ msgstr "Apresentar links de texto completo alternativos"
 
 #: settings.php:53
 msgid "Home URL"
-msgstr ""
+msgstr "Link homepage"
 
 #: settings.php:58 settings.php:65
 msgid "Page title"
 msgstr "Título da página"
 
-#: settings.php:74
-msgid "Display filters"
-msgstr "Mostrar filtros"
+#: settings.php:72
+msgid "Search filters"
+msgstr "Filtros de pesquisa"
 
-#: settings.php:80
-msgid "Main subject"
-msgstr "Assunto principal"
-
-#: settings.php:85
-msgid "Publication type"
-msgstr "Tipo de publicação"
-
-#: settings.php:90
-msgid "Database"
-msgstr "Base de dados"
-
-#: settings.php:95
-msgid "Publication country"
-msgstr "País de publicação"
-
-#: settings.php:100
-msgid "Limits"
-msgstr "Límite"
-
-#: settings.php:105
-msgid "Language"
-msgstr "Idioma"
-
-#: settings.php:110
-msgid "Journal"
-msgstr "Revista"
-
-#: settings.php:115
-msgid "Year"
-msgstr "Ano"
-
-#: settings.php:126
-msgid "Save changes"
-msgstr "Guardar alterações"
-
-#: settings.php:91
+#: settings.php:89
 msgid "Available"
 msgstr "Disponíveis"
 
-#: settings.php:125
+#: settings.php:123
 msgid "Selected"
 msgstr "Selecionados"
+
+#: settings.php:144
+msgid "Save changes"
+msgstr "Guardar alterações"
 
 #: template/home.php:95 template/resource.php:69
 msgid "Home"
@@ -120,43 +92,43 @@ msgstr "Início"
 msgid "Search result"
 msgstr "Resultado da busca"
 
-#: template/home.php:113 template/resource.php:83
+#: template/home.php:120 template/resource.php:83
 msgid "Enter one or more words"
 msgstr "Entre uma ou mais palavras"
 
-#: template/home.php:114 template/resource.php:84
+#: template/home.php:121 template/resource.php:84
 msgid "Search"
 msgstr "Pesquisar"
 
-#: template/home.php:115 template/resource.php:85
+#: template/home.php:122 template/resource.php:85
 msgid "Tip! You can do your search using boolean operators."
 msgstr "Dica! Você pode pesquisar usando operadores booleanos."
 
-#: template/home.php:124
+#: template/home.php:131
 msgid "No results found"
 msgstr "Nenhum resultado encontrado"
 
-#: template/home.php:128
+#: template/home.php:135
 msgid "Results"
 msgstr "Resultados"
 
-#: template/home.php:130
+#: template/home.php:137
 msgid "Total"
 msgstr "Total"
 
-#: template/home.php:189 template/resource.php:174
+#: template/home.php:196 template/resource.php:202
 msgid "Fulltext (primary link)"
 msgstr "Texto completo (link principal)"
 
-#: template/home.php:189 template/resource.php:174
+#: template/home.php:196 template/resource.php:202
 msgid "Fulltext (alternative link)"
 msgstr "Texto completo (link alternativo)"
 
-#: template/home.php:225
+#: template/home.php:232
 msgid "Filters"
 msgstr "Filtros"
 
-#: template/home.php:235
+#: template/home.php:242
 msgid "Selected filters"
 msgstr "Filtros selecionados"
 
@@ -164,11 +136,7 @@ msgstr "Filtros selecionados"
 msgid "Publication year"
 msgstr "Ano de publicação"
 
-#: template/resource.php:140
-msgid "Abstract"
-msgstr "Resumo"
-
-#: template/resource.php:194
+#: template/resource.php:222
 msgid "Related"
 msgstr "Relacionados"
 
@@ -191,6 +159,36 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "http://reddes.bvsalud.org/"
 msgstr ""
+
+#~ msgid "Display filters"
+#~ msgstr "Mostrar filtros"
+
+#~ msgid "Main subject"
+#~ msgstr "Assunto principal"
+
+#~ msgid "Publication type"
+#~ msgstr "Tipo de publicação"
+
+#~ msgid "Database"
+#~ msgstr "Base de dados"
+
+#~ msgid "Publication country"
+#~ msgstr "País de publicação"
+
+#~ msgid "Limits"
+#~ msgstr "Límite"
+
+#~ msgid "Language"
+#~ msgstr "Idioma"
+
+#~ msgid "Journal"
+#~ msgstr "Revista"
+
+#~ msgid "Year"
+#~ msgstr "Ano"
+
+#~ msgid "Abstract"
+#~ msgstr "Resumo"
 
 #~ msgid "Portuguese"
 #~ msgstr "Português"

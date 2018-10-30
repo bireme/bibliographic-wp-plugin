@@ -4,11 +4,11 @@ Plugin Name: Bibliographic
 Plugin URI: http://reddes.bvsalud.org/projects/fi-admin/
 Description: Search bibliographic records from FI-ADMIN.
 Author: BIREME/OPAS/OMS
-Version: 0.1
+Version: 1.4
 Author URI: http://reddes.bvsalud.org/
 */
 
-define('BIBLIOGRAPHIC_PLUGIN_VERSION', '1.3' );
+define('BIBLIOGRAPHIC_PLUGIN_VERSION', '1.4' );
 
 define('BIBLIOGRAPHIC_SYMBOLIC_LINK', false );
 define('BIBLIOGRAPHIC_PLUGIN_DIRNAME', 'bibliographic' );
@@ -141,13 +141,23 @@ if(!class_exists('Bibliographic_Plugin')) {
             $args = array(
                 'name' => __('Bibliographic sidebar', 'biblio'),
                 'id'   => 'biblio-home',
-                'description' => 'Bibligraphic Area',
                 'before_widget' => '<section id="%1$s" class="row-fluid marginbottom25 widget_categories">',
                 'after_widget'  => '</section>',
                 'before_title'  => '<header class="row-fluid border-bottom marginbottom15"><h1 class="h1-header">',
                 'after_title'   => '</h1></header>',
             );
             register_sidebar( $args );
+
+            $args2 = array(
+                'name' => __('Bibliographic header', 'biblio'),
+                'id'   => 'biblio-header',
+                'before_widget' => '<section id="%1$s" class="row-fluid widget %2$s">',
+                'after_widget'  => '</section>',
+                'before_title'  => '<header class="row-fluid border-bottom marginbottom15"><h1 class="h1-header">',
+                'after_title'   => '</h1></header>',
+            );
+            register_sidebar( $args2 );
+
         }
 
 
