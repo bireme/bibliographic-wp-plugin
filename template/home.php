@@ -2,7 +2,7 @@
 /*
 Template Name: Bibliographic Home
 */
-global $biblio_service_url, $biblio_plugin_slug, $biblio_plugin_title, $biblio_texts;
+global $biblio_service_url, $biblio_plugin_slug, $biblio_texts;
 
 require_once(BIBLIOGRAPHIC_PLUGIN_PATH . '/lib/Paginator.php');
 
@@ -87,22 +87,25 @@ $pages = new Paginator($total, $start);
 $pages->paginate($page_url_params);
 
 $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_url_' . $lang] : real_site_url();
+$plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_config['plugin_title_' . $lang] : $biblio_config['plugin_title'];
 
 ?>
 
 <?php get_header('biblio');?>
-    <div class="row-fluid breadcrumb">
-        <a href="<?php echo $home_url ?>"><?php _e('Home','biblio'); ?></a> >
-        <?php if ($query == '' && $filter == ''): ?>
-            <?php echo $biblio_plugin_title ?>
-        <?php else: ?>
-            <a href="<?php echo real_site_url($biblio_plugin_slug); ?>"><?php echo $biblio_plugin_title ?> </a> >
-            <?php _e('Search result', 'biblio') ?>
-        <?php endif; ?>
-    </div>
 
     <div id="content" class="row-fluid">
         <div class="ajusta2">
+            <div class="row-fluid breadcrumb">
+                <a href="<?php echo $home_url ?>"><?php _e('Home','biblio'); ?></a> >
+                <?php if ($query == '' && $filter == ''): ?>
+                    <?php echo $plugin_breadcrumb ?>
+                <?php else: ?>
+                    <a href="<?php echo real_site_url($biblio_plugin_slug); ?>"><?php echo $plugin_breadcrumb ?> </a> >
+                    <?php _e('Search result', 'biblio') ?>
+                <?php endif; ?>
+            </div>
+
+
             <!-- Start sidebar bibliographic-header -->
             <div class="row-fluid">
                 <?php dynamic_sidebar('biblio-header');?>

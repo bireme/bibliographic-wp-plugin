@@ -3,7 +3,7 @@
 Template Name: Bibliographic Detail
 */
 
-global $biblio_service_url, $biblio_plugin_slug, $biblio_plugin_title, $similar_docs_url;
+global $biblio_service_url, $biblio_plugin_slug, $similar_docs_url;
 
 $biblio_config         = get_option('biblio_config');
 $biblio_initial_filter = $biblio_config['initial_filter'];
@@ -62,17 +62,19 @@ if ($response){
 $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 
 $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_url_' . $lang] : real_site_url();
+$plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_config['plugin_title_' . $lang] : $biblio_config['plugin_title'];
 ?>
 
 <?php get_header('biblio');?>
-    <div class="row-fluid breadcrumb">
-        <a href="<?php echo $home_url ?>"><?php _e('Home','biblio'); ?></a> >
-        <a href="<?php echo real_site_url($biblio_plugin_slug); ?>"><?php echo $biblio_plugin_title ?> </a> >
-        <?php echo ( strlen($resource->reference_title[0]) > 90 ) ? substr($resource->reference_title[0],0,90) . '...' : $resource->reference_title[0]; ?>
-    </div>
 
     <div id="content" class="row-fluid">
         <div class="ajusta2">
+            <div class="row-fluid breadcrumb">
+                <a href="<?php echo $home_url ?>"><?php _e('Home','biblio'); ?></a> >
+                <a href="<?php echo real_site_url($biblio_plugin_slug); ?>"><?php echo $plugin_breadcrumb ?> </a> >
+                <?php echo ( strlen($resource->reference_title[0]) > 90 ) ? substr($resource->reference_title[0],0,90) . '...' : $resource->reference_title[0]; ?>
+            </div>
+
             <section class="header-search">
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($biblio_plugin_slug); ?>">
                     <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
