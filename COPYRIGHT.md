@@ -17,3 +17,12 @@ Observation: Information may be subject to alteration.
 * MIT license
 * https://opensource.org/licenses/MIT
 ***
+3. Font Awesome » 4.4.0
+
+* Icons: CC BY 4.0 License
+  * https://creativecommons.org/licenses/by/4.0/
+* Fonts: SIL OFL 1.1 License
+  * https://scripts.sil.org/OFL
+* Code: MIT license
+  * https://opensource.org/licenses/MIT
+***
