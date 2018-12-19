@@ -7,17 +7,18 @@ Follows a list of the Open Source Softwares and their respective applicable Open
 Observation: Information may be subject to alteration.
 
 ***
-1.jQuery UI » 1.12.1
+1. jQuery UI » 1.12.1
 
 * MIT license
 * https://opensource.org/licenses/MIT
 ***
-2.Tooltipster » 3.3.0
+2. Tooltipster » 3.3.0
 
 * MIT license
 * https://opensource.org/licenses/MIT
 ***
 3. Font Awesome » 4.4.0
+
 * Icons: CC BY 4.0 License
   * https://creativecommons.org/licenses/by/4.0/
 * Fonts: SIL OFL 1.1 License
