@@ -51,11 +51,14 @@ $response = @file_get_contents($biblio_service_request);
 
 if ($response){
     $response_json = json_decode($response);
-    // echo "<pre>"; print_r($response_json); echo "</pre>";
     $resource = $response_json->diaServerResponse[0]->match->docs[0];
-    $related_docs = $response_json->diaServerResponse[0]->response->docs;
-    // find similar documents
-    $similar_docs_url = $similar_docs_url . '?adhocSimilarDocs='.urlencode($resource->reference_title[0]);
+    // create param to find similars
+    $similar_text = $resource->reference_title[0];
+    if (isset($resource->mh)){
+        $similar_text .= ' ' . implode(' ', $resource->mh);
+    }
+
+    $similar_docs_url = $similar_docs_url . '?adhocSimilarDocs=' . urlencode($similar_text);
     $similar_query = urlencode($similar_docs_url);
 }
 
