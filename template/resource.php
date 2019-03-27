@@ -135,7 +135,7 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
 
                             <div class="row-fluid">
                                 <?php
-                                    echo _('Publication year') . ': ' . $resource->publication_year;
+                                    echo _('Publication year') . ': <strong>' . $resource->publication_year . '</strong>';
                                 ?>
                                 <br/>
                             </div>
