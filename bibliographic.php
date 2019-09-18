@@ -207,8 +207,8 @@ if(!class_exists('Bibliographic_Plugin')) {
 
         function register_settings(){
             register_setting('biblio-settings-group', 'biblio_config');
-            wp_enqueue_style ('biblio' ,  BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/admin.css');
-            wp_enqueue_script('biblio' ,  BIBLIOGRAPHIC_PLUGIN_URL . 'template/js/jquery-ui.js');
+            wp_enqueue_style('biblio' ,  BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/admin.css');
+            wp_enqueue_script('jquery-ui-sortable');
         }
 
         function google_analytics_code(){
