@@ -30,7 +30,7 @@ if(!class_exists('Bibliographic_Plugin')) {
     class Bibliographic_Plugin {
 
         private $plugin_slug = 'biblio';
-        private $service_url = 'https://fi-admin.bvsalud.org/';
+        private $service_url = 'http://fi-admin.data.bvsalud.org/';
         private $similar_docs_url = 'http://similardocs.bireme.org/SDService';
 
         /**
