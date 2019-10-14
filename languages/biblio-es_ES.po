@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bibliographic 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2018-10-30 14:28:20+00:00\n"
-"PO-Revision-Date: 2018-10-30 11:36-0300\n"
+"POT-Creation-Date: 2019-10-14 16:21-0300\n"
+"PO-Revision-Date: 2019-10-14 16:52-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -14,11 +14,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: bibliographic.php:95 settings.php:9
+#: bibliographic.php:97 settings.php:9
 msgid "Bibliographic record settings"
 msgstr "Configuración del registro bibliográfico"
 
-#: bibliographic.php:95 template/rss.php:52
+#: bibliographic.php:97 template/rss.php:52
 msgid "Bibliographic records"
 msgstr "Registro bibliográfico"
 
@@ -26,7 +26,7 @@ msgstr "Registro bibliográfico"
 msgid "Bibliographic sidebar"
 msgstr "Barra latereal registros bibliograficos"
 
-#: bibliographic.php:155
+#: bibliographic.php:154
 msgid "Bibliographic header"
 msgstr "Encabezado del registro bibliográfico "
 
@@ -36,129 +36,131 @@ msgstr "Encabezado del registro bibliográfico "
 msgid "go to page"
 msgstr "ir a la página"
 
-#: settings.php:18
+#: settings.php:17
 msgid "Plugin page"
 msgstr "Pagina del plugin"
 
-#: settings.php:22
+#: settings.php:21
 msgid "Filter query"
 msgstr "Filtro de búsqueda"
 
-#: settings.php:26
+#: settings.php:25
 msgid "AddThis profile ID"
 msgstr "ID de AddThis"
 
-#: settings.php:30
+#: settings.php:29
 msgid "Google Analytics code"
 msgstr "Código de Google Analytics"
 
-#: settings.php:34 template/home.php:203 template/resource.php:209
+#: settings.php:33 template/home.php:206 template/resource.php:235
 msgid "Fulltext"
 msgstr "Texto completo"
 
-#: settings.php:38
+#: settings.php:37
 msgid "Present alternative fulltext links"
 msgstr "Presentar enlaces alternativo del  texto completo"
 
-#: settings.php:53
+#: settings.php:52
 msgid "Home URL"
 msgstr "Inicio"
 
-#: settings.php:58 settings.php:65
+#: settings.php:57 settings.php:64
 msgid "Page title"
 msgstr "Título de la página"
 
-#: settings.php:72
+#: settings.php:70
 msgid "Search filters"
 msgstr "Filtros de búsqueda"
 
-#: settings.php:89
+#: settings.php:83
 msgid "Available"
 msgstr "Disponible"
 
-#: settings.php:123
+#: settings.php:115
 msgid "Selected"
 msgstr "Seleccionados"
 
-#: settings.php:144
+#: settings.php:134
 msgid "Save changes"
 msgstr "Guardar cambios"
 
-#: template/home.php:95 template/resource.php:69
+#: template/home.php:99 template/resource.php:83
 msgid "Home"
 msgstr "Inicio"
 
-#: template/home.php:100
+#: template/home.php:104
 msgid "Search result"
 msgstr "Resultado de la búsqueda"
 
-#: template/home.php:120 template/resource.php:83
+#: template/home.php:123 template/resource.php:95
 msgid "Enter one or more words"
 msgstr "Ingrese una o más palabras"
 
-#: template/home.php:121 template/resource.php:84
+#: template/home.php:124 template/resource.php:96
 msgid "Search"
 msgstr "Buscar"
 
-#: template/home.php:122 template/resource.php:85
+#: template/home.php:125 template/resource.php:97
 msgid "Tip! You can do your search using boolean operators."
 msgstr "Puedes realizar la búsqueda utilizando operadores booleanos."
 
-#: template/home.php:131
+#: template/home.php:134
 msgid "No results found"
 msgstr "No se han encontrado resultados"
 
-#: template/home.php:135
+#: template/home.php:138
 msgid "Results"
 msgstr "Resultados"
 
-#: template/home.php:137
+#: template/home.php:140
 msgid "Total"
 msgstr "Total"
 
-#: template/home.php:196 template/resource.php:202
+#: template/home.php:199 template/resource.php:228
 msgid "Fulltext (primary link)"
 msgstr "Texto completo (enlace principal)"
 
-#: template/home.php:196 template/resource.php:202
+#: template/home.php:199 template/resource.php:228
 msgid "Fulltext (alternative link)"
 msgstr "Texto completo (enlace alternativo)"
 
-#: template/home.php:232
+#: template/home.php:235
 msgid "Filters"
 msgstr "Filtros"
 
-#: template/home.php:242
+#: template/home.php:245
 msgid "Selected filters"
 msgstr "Filtros seleccionados"
 
-#: template/resource.php:133
+#: template/resource.php:142
 msgid "Publication year"
 msgstr "Año de publicación"
 
-#: template/resource.php:222
+#: template/resource.php:149
+msgid ""
+"Theses and dissertations in %pub_lang% presented to the %institution% to "
+"obtain the academic title of %academic_title%. Leader: %leader%"
+msgstr ""
+"Tesis y disertaciones en %pub_lang% presentadas a la %institution% para "
+"obtener el título de %academic_title%. Líder: %leader%"
+
+#: template/resource.php:152
+msgid ""
+"Theses and dissertations presented to the %institution% to obtain the "
+"academic title of %academic_title%. Leader: %leader%"
+msgstr ""
+"Tesis y disertaciones presentadas a la %institution% para obtener el "
+"título de %academic_title%. Líder: %leader%"
+
+#: template/resource.php:248
 msgid "Related"
 msgstr "Relacionados"
 
-#. Plugin Name of the plugin/theme
-msgid "Bibliographic"
-msgstr "Bibliográfico"
+#~ msgid "Bibliographic"
+#~ msgstr "Bibliográfico"
 
-#. Plugin URI of the plugin/theme
-msgid "http://reddes.bvsalud.org/projects/fi-admin/"
-msgstr ""
-
-#. Description of the plugin/theme
-msgid "Search bibliographic records from FI-ADMIN."
-msgstr "Búsqueda de registros bibliográficos de FI-ADMIN."
-
-#. Author of the plugin/theme
-msgid "BIREME/OPAS/OMS"
-msgstr ""
-
-#. Author URI of the plugin/theme
-msgid "http://reddes.bvsalud.org/"
-msgstr ""
+#~ msgid "Search bibliographic records from FI-ADMIN."
+#~ msgstr "Búsqueda de registros bibliográficos de FI-ADMIN."
 
 #~ msgid "Display filters"
 #~ msgstr "Mostrar filtros"
