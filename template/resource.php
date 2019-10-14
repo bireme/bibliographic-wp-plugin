@@ -52,6 +52,7 @@ $response = @file_get_contents($biblio_service_request);
 if ($response){
     $response_json = json_decode($response);
     $resource = $response_json->diaServerResponse[0]->match->docs[0];
+    
     // create param to find similars
     $similar_text = $resource->reference_title[0];
     if (isset($resource->mh)){
@@ -60,6 +61,12 @@ if ($response){
 
     $similar_docs_url = $similar_docs_url . '?adhocSimilarDocs=' . urlencode($similar_text);
     $similar_query = urlencode($similar_docs_url);
+
+    // create param to find publication language
+    if (isset($resource->publication_language[0])){
+        $publication_language = explode('|', $resource->publication_language[0]);
+        $publication_language = get_publication_language($publication_language, $lang);
+    }
 }
 
 $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
@@ -127,18 +134,32 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
 
                             <?php if ( $resource->reference_source ): ?>
                                 <div class="row-fluid">
-                                    <?php
-                                        echo $resource->reference_source;
-                                    ?>
+                                    <?php echo $resource->reference_source; ?>
                                 </div>
                             <?php endif; ?>
 
                             <div class="row-fluid">
-                                <?php
-                                    echo _('Publication year') . ': ' . $resource->publication_year;
-                                ?>
-                                <br/>
+                                <?php echo __('Publication year', 'biblio') . ': ' . $resource->publication_year; ?>
                             </div>
+
+                            <?php if ( 'T' == $resource->publication_type[0] ) : ?>
+                                <div class="row-fluid pub-type">
+                                    <?php
+                                        if ( $publication_language ) {
+                                            $text = __('Theses and dissertations in %pub_lang% presented to the %institution% to obtain the academic title of %academic_title%. Leader: %leader%', 'biblio');
+                                            $text = str_replace('%pub_lang%', $publication_language, $text);
+                                        } else {
+                                            $text = __('Theses and dissertations presented to the %institution% to obtain the academic title of %academic_title%. Leader: %leader%', 'biblio');
+                                        }
+
+                                        $text = str_replace('%institution%', $resource->thesis_dissertation_institution[0], $text);
+                                        $text = str_replace('%academic_title%', $resource->thesis_dissertation_academic_title[0], $text);
+                                        $text = str_replace('%leader%', $resource->thesis_dissertation_leader[0], $text);
+
+                                        echo $text;
+                                    ?>
+                                </div>
+                            <?php endif; ?>
 
                             <?php if ( $resource->abstract_language ): ?>
                                 <div class="row-fluid abstract" id="tabs">

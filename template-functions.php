@@ -103,4 +103,21 @@ if ( !function_exists('real_site_url') ) {
     }
 }
 
+if ( !function_exists('get_publication_language') ) {
+    function get_publication_language($labels, $lang){
+        $publication_language = '';
+
+        if ( $labels ) {
+            foreach ($labels as $label) {
+                if (strpos($label, $lang) === 0) {
+                    $arr = explode('^', $label);
+                    $publication_language = $arr[1];
+                }
+            }
+        }
+
+        return $publication_language;
+    }
+}
+
 ?>
