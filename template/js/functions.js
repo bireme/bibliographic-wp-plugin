@@ -1,16 +1,5 @@
 var $j = jQuery.noConflict();
 
-$j(function(){
-    $j('#similares').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: false,
-        autoplaySpeed: 3000,
-        infinite: true,
-        dots: false
-    });
-});
-
 $j(window).load(function(){
 	showTips();
 	show_more_list();
