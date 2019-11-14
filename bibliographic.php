@@ -236,13 +236,15 @@ if(!class_exists('Bibliographic_Plugin')) {
         }
 
         function page_template_styles_scripts(){
-            wp_enqueue_script('biblio-tooltipster',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/js/jquery.tooltipster.min.js');
-            wp_enqueue_script('biblio',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/js/functions.js', array(), BIBLIOGRAPHIC_PLUGIN_VERSION);
+            wp_enqueue_script('biblio-tooltipster', BIBLIOGRAPHIC_PLUGIN_URL . 'template/js/jquery.tooltipster.min.js');
+            wp_enqueue_script('slick-css', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css');
+            wp_enqueue_script('slick-theme-css', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css');
+            wp_enqueue_script('biblio', BIBLIOGRAPHIC_PLUGIN_URL . 'template/js/functions.js', array(), BIBLIOGRAPHIC_PLUGIN_VERSION);
             wp_enqueue_style ('font-awesome', BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/font-awesome/css/font-awesome.min.css');
-            wp_enqueue_style ('biblio-tooltipster',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/tooltipster.css');
+            wp_enqueue_style ('biblio-tooltipster', BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/tooltipster.css');
+            wp_enqueue_style ('slick-js', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js');
             wp_enqueue_style ('biblio',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/style.css', array(), BIBLIOGRAPHIC_PLUGIN_VERSION);
         }
-
 
         function register_settings(){
             register_setting('biblio-settings-group', 'biblio_config');

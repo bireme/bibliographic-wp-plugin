@@ -60,6 +60,7 @@ if ($response){
     }
 
     $similar_docs_url = $similar_docs_url . '?adhocSimilarDocs=' . urlencode($similar_text);
+    $similar_docs_url = ( $biblio_config['default_filter_db'] ) ? $similar_docs_url . '&sources=' . $biblio_config['default_filter_db'] : $similar_docs_url;
     $similar_query = urlencode($similar_docs_url);
 
     // create param to find publication language

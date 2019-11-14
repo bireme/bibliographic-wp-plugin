@@ -3,6 +3,36 @@ function biblio_page_admin() {
 
     $config = get_option('biblio_config');
 
+    $filter_db = array(
+        "MEDLINE" => __("MEDLINE", "biblio"),
+        "LILACS" => __("LILACS", "biblio"),
+        "MedCarib" => __("MedCarib", "biblio"),
+        "BBO" => __("BBO - Dentistry", "biblio"),
+        "colecionaSUS" => __("Coleciona SUS", "biblio"),
+        "BDENF" => __("BDENF - Nursing", "biblio"),
+        "IBECS" => __("IBECS", "biblio"),
+        "tese" => __("Index Psychology - Theses", "biblio"),
+        "SIRPEP" => __("Index Psychology - Scientific divulgation", "biblio"),
+        "RIPSA-CONSULTA" => __("RIPSA", "biblio"),
+        "RIPSA-RELATORIOS" => __("RIPSA - Reports", "biblio"),
+        "RIPSA-PRODUTOS" => __("RIPSA - Products", "biblio"),
+        "fichasidb" => __("RIPSA - Qualification record", "biblio"),
+        "RIPSA-NORMATIVOS" => __("RIPSA - Normative acts", "biblio"),
+        "Puerto" => __("Theses - Puerto Rico", "biblio"),
+        "A_DOLEC" => __("ADOLEC - Adolescence", "biblio"),
+        "CidSaude" => __("CidSaúde - Healthy Cities", "biblio"),
+        "DESASTRES" => __("Desastres - Disasters", "biblio"),
+        "HANSENIASE" => __("Hanseníase - Leprosy", "biblio"),
+        "HISA" => __("HISA - History of Health", "biblio"),
+        "HomeoIndex" => __("HomeoIndex - Homeopathy", "biblio"),
+        "INDEXPSI" => __("Index Psychology - Scientific journals", "biblio"),
+        "REPIDISCA" => __("REPIDISCA", "biblio"),
+        "respostas_aps" => __("SOF - Formative Second Opinion", "biblio"),
+        "PAHO" => __("PAHO", "biblio"),
+        "WHOLIS" => __("WHO IRIS", "biblio"),
+        "CUMED" => __("CUMED", "biblio"),
+    );
+
     ?>
     <div class="wrap">
         <div id="icon-options-general" class="icon32"></div>
@@ -66,6 +96,13 @@ function biblio_page_admin() {
                             echo '</tr>';
                         }
                     ?>
+                    <tr valign="top">
+                        <th scope="row"><?php _e('Related documents filter', 'biblio'); ?>:</th>
+                        <td>
+                            <input type="text" name="biblio_config[default_filter_db]" value='<?php echo $config['default_filter_db']; ?>' class="regular-text code">
+                            <small style="display: block;">* <?php _e('The filters must be separated by commas.', 'biblio'); ?></small>
+                        </td>
+                    </tr>
                     <tr valign="top">
                         <th scope="row"><?php _e('Search filters', 'biblio');?>:</th>
                         <?php

@@ -1,5 +1,16 @@
 var $j = jQuery.noConflict();
 
+$j(function(){
+    $j('#similares').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: false,
+        autoplaySpeed: 3000,
+        infinite: true,
+        dots: false
+    });
+});
+
 $j(window).load(function(){
 	showTips();
 	show_more_list();
@@ -44,18 +55,17 @@ function show_more_list(){
 		if ( element.length ) {
 			element.each(function( index ) {
 				if ( index < 5 ) {
-  				$j(this).removeClass('hide');
-        }
-        else {
-          return false;
-        }
+  				    $j(this).removeClass('hide');
+                } else {
+                    return false;
+                }
 			});
 
-      var el = $j(this).parent().prev().children('.hide');
+            var el = $j(this).parent().prev().children('.hide');
 
-      if ( !el.length ) {
-        $j(this).parent().hide();
-      }
+            if ( !el.length ) {
+                $j(this).parent().hide();
+            }
 		}
 	});
 }
@@ -74,6 +84,7 @@ function remove_filter(id) {
     $j('#filter').val(filter);
     $j("#formFilters").submit();
 }
+
 function show_similar(url){
     //$j("#ajax").load(url);
     var xmlhttp = new XMLHttpRequest();
@@ -87,6 +98,7 @@ function show_similar(url){
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
+
 function tabs(tab) {
     $j('.abstract-version').hide();
     $j('#tab-'+tab).show();
