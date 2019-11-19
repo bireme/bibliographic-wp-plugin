@@ -218,6 +218,30 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 .addthis_default_style .addthis_separator { position: relative; top: -3px; }
 #contact a { color: #333; font-weight: normal; text-decoration: underline; padding-right: 10px; }
 
+.box4 {
+	background: #fff;
+    padding: 0 30px;
+    margin-bottom: 20px;
+}
+
+.slick-prev {
+    left: -5px !important;
+    z-index: 10;
+}
+
+.slick-next {
+    right: -5px !important;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: #30348d!important;
+}
+
+.related-docs ul li {
+	border-bottom: 1px solid rgb(229,229,229);
+	padding: 5px 0;
+}
+
 @media (min-width: 766px) and (max-width: 1099px) {
 	.ajusta, .ajusta3, .ajusta2, .top, .bar .barInner, .footerArea {width:100%; margin:0;}
 	.container{width:95% !important;margin: 0 2.5% !important;}

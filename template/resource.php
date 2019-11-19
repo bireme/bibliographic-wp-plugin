@@ -60,8 +60,9 @@ if ($response){
     }
 
     $similar_docs_url = $similar_docs_url . '?adhocSimilarDocs=' . urlencode($similar_text);
-    $similar_docs_url = ( $biblio_config['default_filter_db'] ) ? $similar_docs_url . '&sources=' . $biblio_config['default_filter_db'] : $similar_docs_url;
-    $similar_query = urlencode($similar_docs_url);
+    $similar_docs_request = ( $biblio_config['default_filter_db'] ) ? $similar_docs_url . '&sources=' . $biblio_config['default_filter_db'] : $similar_docs_url;
+    $similar_query = urlencode($similar_docs_request);
+    $related_query = urlencode($similar_docs_url);
 
     // create param to find publication language
     if (isset($resource->publication_language[0])){
@@ -239,18 +240,35 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                                     <?php endif; ?>
                                 </div>
                             <?php endif; ?>
-
                         </article>
                     </div>
+                    <div class="row-fluid">
+                        <header class="row-fluid border-bottom marginbottom15">
+                            <h1 class="h1-header"><?php _e('More related','biblio'); ?></h1>
+                        </header>
+                        <div id="loader" class="loader" style="display: inline-block;"></div>
+                    </div>
+                    <div class="row-fluid">
+                        <div id="async" class="related-docs">
+
+                        </div>
+                    </div>
+<?php
+$sources = ( $biblio_config['extra_filter_db'] ) ? $biblio_config['extra_filter_db'] : '';
+$url = BIBLIOGRAPHIC_PLUGIN_URL.'template/related.php?query='.$related_query.'&sources='.$sources.'&lang='.$lang;
+?>
+<script type="text/javascript">
+    show_related("<?php echo $url; ?>");
+</script>
                 </section>
                 <aside id="sidebar">
                     <section class="row-fluid marginbottom25 widget_categories">
                         <header class="row-fluid border-bottom marginbottom15">
                             <h1 class="h1-header"><?php _e('Related','biblio'); ?></h1>
                         </header>
-                    <ul id="ajax">
+                        <ul id="ajax">
 
-                    </ul>
+                        </ul>
                     </section>
 <?php
 $url = BIBLIOGRAPHIC_PLUGIN_URL.'template/similar.php?query='.$similar_query.'&lang='.$lang;
