@@ -238,7 +238,7 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 }
 
 .related-docs h2 {
-    color: #333;
+    color: #333 !important;
 }
 
 .related-docs ul {
