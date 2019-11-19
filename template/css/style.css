@@ -237,6 +237,10 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
     color: #30348d!important;
 }
 
+.related-docs h2 {
+    color: #333;
+}
+
 .related-docs ul {
 	list-style: none;
 }
