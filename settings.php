@@ -74,7 +74,7 @@ function biblio_page_admin() {
                         </td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><?php _e('More Related Documents filter', 'biblio'); ?>:</th>
+                        <th scope="row"><?php _e('More Related filter', 'biblio'); ?>:</th>
                         <td>
                             <input type="text" name="biblio_config[extra_filter_db]" value='<?php echo $config['extra_filter_db']; ?>' class="regular-text code">
                             <small style="display: block;">* <?php _e('The filters must be separated by commas.', 'biblio'); ?></small>
