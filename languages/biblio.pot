@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bibliographic 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2019-10-14 16:21-0300\n"
+"POT-Creation-Date: 2019-11-21 15:46-0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,11 +25,11 @@ msgstr ""
 msgid "Bibliographic records"
 msgstr ""
 
-#: bibliographic.php:144
+#: bibliographic.php:145
 msgid "Bibliographic sidebar"
 msgstr ""
 
-#: bibliographic.php:154
+#: bibliographic.php:155
 msgid "Bibliographic header"
 msgstr ""
 
@@ -55,7 +55,7 @@ msgstr ""
 msgid "Google Analytics code"
 msgstr ""
 
-#: settings.php:33 template/home.php:206 template/resource.php:235
+#: settings.php:33 template/home.php:206 template/resource.php:237
 msgid "Fulltext"
 msgstr ""
 
@@ -72,22 +72,34 @@ msgid "Page title"
 msgstr ""
 
 #: settings.php:70
+msgid "Related Documents filter"
+msgstr ""
+
+#: settings.php:73 settings.php:80
+msgid "The filters must be separated by commas."
+msgstr ""
+
+#: settings.php:77
+msgid "More Related filter"
+msgstr ""
+
+#: settings.php:84
 msgid "Search filters"
 msgstr ""
 
-#: settings.php:83
+#: settings.php:97
 msgid "Available"
 msgstr ""
 
-#: settings.php:115
+#: settings.php:129
 msgid "Selected"
 msgstr ""
 
-#: settings.php:134
+#: settings.php:148
 msgid "Save changes"
 msgstr ""
 
-#: template/home.php:99 template/resource.php:83
+#: template/home.php:99 template/resource.php:85
 msgid "Home"
 msgstr ""
 
@@ -95,15 +107,15 @@ msgstr ""
 msgid "Search result"
 msgstr ""
 
-#: template/home.php:123 template/resource.php:95
+#: template/home.php:123 template/resource.php:97
 msgid "Enter one or more words"
 msgstr ""
 
-#: template/home.php:124 template/resource.php:96
+#: template/home.php:124 template/resource.php:98
 msgid "Search"
 msgstr ""
 
-#: template/home.php:125 template/resource.php:97
+#: template/home.php:125 template/resource.php:99
 msgid "Tip! You can do your search using boolean operators."
 msgstr ""
 
@@ -119,11 +131,11 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-#: template/home.php:199 template/resource.php:228
+#: template/home.php:199 template/resource.php:230
 msgid "Fulltext (primary link)"
 msgstr ""
 
-#: template/home.php:199 template/resource.php:228
+#: template/home.php:199 template/resource.php:230
 msgid "Fulltext (alternative link)"
 msgstr ""
 
@@ -135,18 +147,26 @@ msgstr ""
 msgid "Selected filters"
 msgstr ""
 
-#: template/resource.php:142
+#: template/related.php:56 template/similar.php:41
+msgid "No related documents"
+msgstr ""
+
+#: template/resource.php:144
 msgid "Publication year"
 msgstr ""
 
-#: template/resource.php:149
+#: template/resource.php:151
 msgid "Theses and dissertations in %pub_lang% presented to the %institution% to obtain the academic title of %academic_title%. Leader: %leader%"
 msgstr ""
 
-#: template/resource.php:152
+#: template/resource.php:154
 msgid "Theses and dissertations presented to the %institution% to obtain the academic title of %academic_title%. Leader: %leader%"
 msgstr ""
 
-#: template/resource.php:248
+#: template/resource.php:247
+msgid "More related"
+msgstr ""
+
+#: template/resource.php:267
 msgid "Related"
 msgstr ""
