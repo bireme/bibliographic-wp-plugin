@@ -67,14 +67,14 @@ function biblio_page_admin() {
                         }
                     ?>
                     <tr valign="top">
-                        <th scope="row"><?php _e('Related documents filter', 'biblio'); ?>:</th>
+                        <th scope="row"><?php _e('Related Documents filter', 'biblio'); ?>:</th>
                         <td>
                             <input type="text" name="biblio_config[default_filter_db]" value='<?php echo $config['default_filter_db']; ?>' class="regular-text code">
                             <small style="display: block;">* <?php _e('The filters must be separated by commas.', 'biblio'); ?></small>
                         </td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><?php _e('More related documents filter', 'biblio'); ?>:</th>
+                        <th scope="row"><?php _e('More Related Documents filter', 'biblio'); ?>:</th>
                         <td>
                             <input type="text" name="biblio_config[extra_filter_db]" value='<?php echo $config['extra_filter_db']; ?>' class="regular-text code">
                             <small style="display: block;">* <?php _e('The filters must be separated by commas.', 'biblio'); ?></small>

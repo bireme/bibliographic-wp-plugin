@@ -55,8 +55,8 @@ if ($response){
     
     // create param to find similars
     $similar_text = $resource->reference_title[0];
-    if (isset($resource->mh)){
-        $similar_text .= ' ' . implode(' ', $resource->mh);
+    if (isset($resource->mj)){
+        $similar_text .= ' ' . implode(' ', $resource->mj);
     }
 
     $similar_docs_url = $similar_docs_url . '?adhocSimilarDocs=' . urlencode($similar_text);
