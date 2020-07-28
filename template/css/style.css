@@ -224,16 +224,22 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
     margin-bottom: 20px;
 }
 
-.slick-prev {
+.related-docs .slick-prev {
     left: -5px !important;
     z-index: 10;
 }
 
-.slick-next {
+.related-docs .slick-next {
     right: -5px !important;
 }
 
-.slick-prev:before, .slick-next:before {
+.related-docs .slick-prev:hover, .related-docs .slick-prev:focus, .related-docs .slick-next:hover, .related-docs .slick-next:focus {
+    color: transparent !important;
+    outline: none !important;
+    background: transparent !important;
+}
+
+.related-docs .slick-prev:before, .related-docs .slick-next:before {
     color: #30348d!important;
 }
 
