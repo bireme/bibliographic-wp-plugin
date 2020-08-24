@@ -27,7 +27,7 @@ $query = stripslashes( trim($query) );
 $user_filter = stripslashes($_GET['filter']);
 $page   = ( !empty($_GET['page']) ? $_GET['page'] : 1 );
 $format = ( !empty($_GET['format']) ? $_GET['format'] : '' );
-$sort   = ( !empty($_GET['sort']) ? $order[$_GET['sort']] : 'created_date desc' );
+$sort   = ( !empty($_GET['sort']) ? $order[$_GET['sort']] : '');
 $count  = ( !empty($_GET['count']) ? $_GET['count'] : 10 );
 $total  = 0;
 $filter = '';
@@ -43,7 +43,7 @@ if ($biblio_initial_filter != ''){
 }
 $start = ($page * $count) - $count;
 
-$biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&count=' . $count . '&sort=' . urlencode($sort) . '&lang=' . $lang;
+$biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&count=' . $count . '&lang=' . $lang;
 
 if ( $user_filter != '' ) {
     $user_filter_list = preg_split("/ AND /", $user_filter);
