@@ -1,9 +1,30 @@
 <?php
 function biblio_page_admin() {
+    global $biblio_texts;
 
     $config = get_option('biblio_config');
 
-    ?>
+    if ($biblio_texts['filter']){
+        $available_filter_list = $biblio_texts['filter'];
+    }else{
+        $available_filter_list = array(
+                                    'descriptor_filter' => translate('Main subject','biblio') ,
+                                    'publication_type' =>  translate('Publication type', 'biblio'),
+                                    'database' =>  translate('Database','biblio'),
+                                    'publication_country' =>  translate('Publication country', 'biblio'),
+                                    'publication_language' =>  translate('Language','biblio'),
+                                    'publication_year' =>  translate('Year','biblio'),
+                                    'journal' =>  translate('Journal','biblio')
+        );
+        $biblio_texts['filter'] = $available_filter_list;
+    }
+
+    if ( $config['available_filter'] ){
+        $config_filter_list = explode(';', $config['available_filter']);
+    }else{
+        $config_filter_list = array_keys($available_filter_list);
+    }
+?>
     <div class="wrap">
         <div id="icon-options-general" class="icon32"></div>
         <h2><?php _e('Bibliographic record settings', 'biblio'); ?></h2>
@@ -82,44 +103,17 @@ function biblio_page_admin() {
                     </tr>
                     <tr valign="top">
                         <th scope="row"><?php _e('Search filters', 'biblio');?>:</th>
-                        <?php
-                            if (!isset($config['available_filter'])) {
-                                $config['available_filter'] = 'Main subject;Publication type;Database;Publication country;Limits;Language;Journal;Year';
-                                $order = explode(';', $config['available_filter'] );
-                            } else {
-                                $order = array_filter(explode(';', $config['available_filter']));
-                            }
-                        ?>
                         <td>
                             <table border=0>
                                 <tr>
                                     <td>
                                         <p align="left"><?php _e('Available', 'biblio');?><br>
-                                            <ul id="sortable1" class="droptrue">
+                                            <ul id="sortable1" class="connectedSortable">
                                                 <?php
-                                                    if(!in_array('Main subject', $order) && !in_array('Main subject ', $order) ){
-                                                      echo '<li class="ui-state-default" id="Main subject">'.translate('Main subject','biblio').'</li>';
-                                                    }
-                                                    if(!in_array('Publication type', $order) && !in_array('Publication type ', $order) ){
-                                                      echo '<li class="ui-state-default" id="Publication type">'.translate('Publication type','biblio').'</li>';
-                                                    }
-                                                    if(!in_array('Database', $order) && !in_array('Database ', $order) ){
-                                                      echo '<li class="ui-state-default" id="Database">'.translate('Database','biblio').'</li>';
-                                                    }
-                                                    if(!in_array('Publication country', $order) && !in_array('Publication country ', $order) ){
-                                                      echo '<li class="ui-state-default" id="Publication country">'.translate('Publication country','biblio').'</li>';
-                                                    }
-                                                    if(!in_array('Limits', $order) && !in_array('Limits ', $order) ){
-                                                      echo '<li class="ui-state-default" id="Limits">'.translate('Limits','biblio').'</li>';
-                                                    }
-                                                    if(!in_array('Language', $order) && !in_array('Language ', $order) ){
-                                                      echo '<li class="ui-state-default" id="Language">'.translate('Language','biblio').'</li>';
-                                                    }
-                                                    if(!in_array('Journal', $order) && !in_array('Journal ', $order) ){
-                                                      echo '<li class="ui-state-default" id="Journal">'.translate('Journal','biblio').'</li>';
-                                                    }
-                                                    if(!in_array('Year', $order) && !in_array('Year ', $order) ){
-                                                      echo '<li class="ui-state-default" id="Year">'.translate('Year','biblio').'</li>';
+                                                    foreach ($available_filter_list as $filter_field => $filter_title){
+                                                        if ( !in_array($filter_field, $config_filter_list) ) {
+                                                            echo '<li class="ui-state-default" id="' .  $filter_field .'">' . $filter_title . '</li>';
+                                                        }
                                                     }
                                                 ?>
                                             </ul>
@@ -127,15 +121,17 @@ function biblio_page_admin() {
                                     </td>
                                     <td>
                                         <p align="left"><?php _e('Selected', 'biblio');?> <br>
-                                          <ul id="sortable2" class="sortable-list">
+                                          <ul id="sortable2" class="connectedSortable">
                                               <?php
-                                                  foreach ($order as $index => $item) {
-                                                      $item = trim($item); // Important
-                                                      echo '<li class="ui-state-default" id="'.$item.'">'.translate($item ,'biblio').'</li>';
-                                                  }
+                                                foreach ($config_filter_list as $selected_filter) {
+                                                    $filter_title = $biblio_texts['filter'][$selected_filter];
+                                                    if ($filter_title != ''){
+                                                        echo '<li class="ui-state-default" id="' . $selected_filter . '">' . $filter_title . '</li>';
+                                                    }
+                                                }
                                               ?>
                                           </ul>
-                                          <input type="hidden" id="order_aux" name="biblio_config[available_filter]" value="<?php echo trim($config['available_filter']); ?>" >
+                                          <input type="hidden" id="available_filter_aux" name="biblio_config[available_filter]" value="<?php echo $config['available_filter']; ?>" >
                                         </p>
                                     </td>
                                 </tr>
@@ -153,19 +149,19 @@ function biblio_page_admin() {
         var $j = jQuery.noConflict();
 
         $j( function() {
-            $j( "ul.droptrue" ).sortable({
-                connectWith: "ul"
+            $j("#sortable1, #sortable2").sortable({
+                connectWith: ".connectedSortable"
             });
 
-            $j('.sortable-list').sortable({
-                connectWith: 'ul',
+            $j("#sortable2").sortable({
                 update: function(event, ui) {
                     var changedList = this.id;
-                    var order = $j(this).sortable('toArray');
-                    var positions = order.join(';');
-                    $j('#order_aux').val(positions);
+                    var selected_filter = $j(this).sortable('toArray');
+                    var selected_filter_list = selected_filter.join(';');
+                    $j('#available_filter_aux').val(selected_filter_list);
                 }
             });
+
         } );
     </script>
 

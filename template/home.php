@@ -45,6 +45,12 @@ $start = ($page * $count) - $count;
 
 $biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&count=' . $count . '&lang=' . $lang;
 
+$filter_list = explode(";", $biblio_config['available_filter']);
+
+foreach ($filter_list as $filter_field){
+    $biblio_service_request.= "&facet.field=" . urlencode($filter_field);
+}
+
 if ( $user_filter != '' ) {
     $user_filter_list = preg_split("/ AND /", $user_filter);
     $applied_filter_list = array();
@@ -57,7 +63,7 @@ if ( $user_filter != '' ) {
     }
 }
 
-//print $biblio_service_request;
+//echo $biblio_service_request;
 
 $response = @file_get_contents($biblio_service_request);
 if ($response){
@@ -66,14 +72,7 @@ if ($response){
     $total = $response_json->diaServerResponse[0]->response->numFound;
     $start = $response_json->diaServerResponse[0]->response->start;
     $docs_list = $response_json->diaServerResponse[0]->response->docs;
-    $descriptor_list = $response_json->diaServerResponse[0]->facet_counts->facet_fields->descriptor_filter;
-    $type_list = $response_json->diaServerResponse[0]->facet_counts->facet_fields->publication_type;
-    $database_list = $response_json->diaServerResponse[0]->facet_counts->facet_fields->database;
-    $cp_list = $response_json->diaServerResponse[0]->facet_counts->facet_fields->publication_country;
-    $limit_list = $response_json->diaServerResponse[0]->facet_counts->facet_fields->check_tags;
-    $language_list = $response_json->diaServerResponse[0]->facet_counts->facet_fields->publication_language;
-    $journal_list = $response_json->diaServerResponse[0]->facet_counts->facet_fields->journal;
-    $year_list = $response_json->diaServerResponse[0]->facet_counts->facet_fields->publication_year;
+    $facet_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields;
 }
 
 $params  = !empty($format) ? '&format=' . $format : '';
@@ -253,17 +252,23 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                                         <input type="hidden" name="filter" id="filter" value="" >
 
                                         <?php foreach ( $applied_filter_list as $filter => $filter_values ) :?>
-                                            <strong><?php echo translate_label($biblio_texts, $filter, 'filter') ?></strong>
                                             <ul>
+                                            <strong>
+                                                <?php
+                                                    $filter_field = ($filter == 'mj' ? 'descriptor_filter' : $filter);
+                                                    echo translate_label($biblio_texts, $filter_field, 'filter')
+                                                ?>
+                                            </strong>
+
                                             <?php foreach ( $filter_values as $value ) :?>
                                                 <input type="hidden" name="apply_filter" class="apply_filter"
                                                         id="<?php echo md5($value) ?>" value='<?php echo $filter . ':"' . $value . '"'; ?>' >
                                                 <li>
                                                     <span class="filter-item">
                                                         <?php
-                                                            if ($filter == 'publication_language' || $filter == 'publication_country'){
+                                                            if (strpos($value, '^') !== false){
                                                                 echo print_lang_value($value, $site_language);
-                                                            }elseif ($filter == 'publication_type'){
+                                                            }elseif (array_key_exists($filter, $biblio_texts)){
                                                                 echo translate_label($biblio_texts, $value, $filter);
                                                             }else{
                                                                 echo $value;
@@ -284,210 +289,48 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                             <?php endif; ?>
 
                             <?php
-                                $order = explode(';', $biblio_config['available_filter']);
-                                foreach($order as $index=>$content) {
+                                foreach($filter_list as $filter_field) {
                             ?>
-                            <?php if ($content == 'Main subject' && $descriptor_list ): ?>
-                                <section class="row-fluid widget_categories">
-                                    <header class="row-fluid border-bottom marginbottom15">
-                                        <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'mj', 'filter') ?></h1>
-                                    </header>
-                                    <ul>
-                                        <?php foreach ( $descriptor_list as $index => $descriptor ) { $index++; ?>
-                                            <li class="cat-item">
-                                                <?php
-                                                    $filter_link = '?';
-                                                    if ($query != ''){
-                                                        $filter_link .= 'q=' . $query . '&';
-                                                    }
-                                                    $filter_link .= 'filter=mj:"' . $descriptor[0] . '"';
-                                                    if ($user_filter != ''){
-                                                        $filter_link .= ' AND ' . $user_filter ;
-                                                    }
-                                                ?>
-                                                <a href='<?php echo $filter_link; ?>'><?php echo $descriptor[0]; ?></a>
-                                                <span class="cat-item-count"><?php echo $descriptor[1]; ?></span>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-                                </section>
-                            <?php endif; ?>
-                            <?php if ( $content == 'Publication type' && $type_list ): ?>
-                                <section class="row-fluid widget_categories">
-                                    <header class="row-fluid border-bottom marginbottom15">
-                                        <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'publication type', 'filter') ?></h1>
-                                    </header>
-                                    <ul>
-                                        <?php foreach ( $type_list as $type ) { ?>
-                                            <li class="cat-item">
-                                                <?php
-                                                    $filter_link = '?';
-                                                    if ($query != ''){
-                                                        $filter_link .= 'q=' . $query . '&';
-                                                    }
-                                                    $filter_link .= 'filter=publication_type:"' . $type[0] . '"';
-                                                    if ($user_filter != ''){
-                                                        $filter_link .= ' AND ' . $user_filter ;
-                                                    }
-                                                ?>
-                                                <a href='<?php echo $filter_link; ?>'><?php echo translate_label($biblio_texts, $type[0], 'publication_type') ?></a>
-                                                <span class="cat-item-count"><?php echo $type[1]; ?></span>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-                                </section>
-                            <?php endif; ?>
-                            <?php if ( $content == 'Database' && $database_list ): ?>
-                                <section class="row-fluid widget_categories">
-                                    <header class="row-fluid border-bottom marginbottom15">
-                                        <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'database', 'filter'); ?></h1>
-                                    </header>
-                                    <ul>
-                                        <?php foreach ( $database_list as $db ) { ?>
-                                            <li class="cat-item">
-                                                <?php
-                                                    $filter_link = '?';
-                                                    if ($query != ''){
-                                                        $filter_link .= 'q=' . $query . '&';
-                                                    }
-                                                    $filter_link .= 'filter=database:"' . $db[0] . '"';
-                                                    if ($user_filter != ''){
-                                                        $filter_link .= ' AND ' . $user_filter ;
-                                                    }
-                                                ?>
-                                                <a href='<?php echo $filter_link; ?>'><?php echo $db[0]; ?></a>
-                                                <span class="cat-item-count"><?php echo $db[1]; ?></span>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-                                </section>
-                            <?php endif; ?>
-                            <?php if ($content == 'Publication country' && $cp_list ): ?>
-                                <section class="row-fluid widget_categories">
-                                    <header class="row-fluid border-bottom marginbottom15">
-                                        <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'publication country', 'filter'); ?></h1>
-                                    </header>
-                                    <ul>
-                                        <?php foreach ( $cp_list as $cp ) { ?>
-                                            <li class="cat-item">
-                                                <?php
-                                                    $filter_link = '?';
-                                                    if ($query != ''){
-                                                        $filter_link .= 'q=' . $query . '&';
-                                                    }
-                                                    $filter_link .= 'filter=publication_country:"' . $cp[0] . '"';
-                                                    if ($user_filter != ''){
-                                                        $filter_link .= ' AND ' . $user_filter ;
-                                                    }
-                                                ?>
-                                                <a href='<?php echo $filter_link; ?>'><?php print_lang_value($cp[0], $site_language); ?></a>
-                                                <span class="cat-item-count"><?php echo $cp[1]; ?></span>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-                                </section>
-                            <?php endif; ?>
-                            <?php if ( $content == 'Limits' && $limit_list ): ?>
-                                <section class="row-fluid widget_categories">
-                                    <header class="row-fluid border-bottom marginbottom15">
-                                        <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'limits', 'filter');  ?></h1>
-                                    </header>
-                                    <ul>
-                                        <?php foreach ( $limit_list as $limit ) { ?>
-                                            <li class="cat-item">
-                                                <?php
-                                                    $filter_link = '?';
-                                                    if ($query != ''){
-                                                        $filter_link .= 'q=' . $query . '&';
-                                                    }
-                                                    $filter_link .= 'filter=check_tags:"' . $limit[0] . '"';
-                                                    if ($user_filter != ''){
-                                                        $filter_link .= ' AND ' . $user_filter ;
-                                                    }
-                                                ?>
-                                                <a href='<?php echo $filter_link; ?>'><?php echo $limit[0]; ?></a>
-                                                <span class="cat-item-count"><?php echo $limit[1]; ?></span>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-                                </section>
-                            <?php endif; ?>
-                            <?php if ( $content == 'Language' && $language_list ): ?>
-                                <section class="row-fluid widget_categories">
-                                    <header class="row-fluid border-bottom marginbottom15">
-                                        <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'language', 'filter'); ?></h1>
-                                    </header>
-                                    <ul>
-                                        <?php foreach ( $language_list as $lang ) { ?>
-                                            <li class="cat-item">
-                                                <?php
-                                                    $filter_link = '?';
-                                                    if ($query != ''){
-                                                        $filter_link .= 'q=' . $query . '&';
-                                                    }
-                                                    $filter_link .= 'filter=publication_language:"' . $lang[0] . '"';
-                                                    if ($user_filter != ''){
-                                                        $filter_link .= ' AND ' . $user_filter ;
-                                                    }
-                                                ?>
-                                                <a href='<?php echo $filter_link; ?>'><?php print_lang_value($lang[0], $site_language); ?></a>
-                                                <span class="cat-item-count"><?php echo $lang[1]; ?></span>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-                                </section>
-                            <?php endif; ?>
-                            <?php if ( $content == 'Journal' && $journal_list ): ?>
-                                <section class="row-fluid widget_categories">
-                                    <header class="row-fluid border-bottom marginbottom15">
-                                        <h1 class="h1-header"><?php echo translate_label($biblio_texts, 'journal', 'filter'); ?></h1>
-                                    </header>
-                                    <ul>
-                                        <?php foreach ( $journal_list as $journal ) { ?>
-                                            <li class="cat-item">
-                                                <?php
-                                                    $filter_link = '?';
-                                                    if ($query != ''){
-                                                        $filter_link .= 'q=' . $query . '&';
-                                                    }
-                                                    $filter_link .= 'filter=journal:"' . $journal[0] . '"';
-                                                    if ($user_filter != ''){
-                                                        $filter_link .= ' AND ' . $user_filter ;
-                                                    }
-                                                ?>
-                                                <a href='<?php echo $filter_link; ?>'><?php echo $journal[0]; ?></a>
-                                                <span class="cat-item-count"><?php echo $journal[1]; ?></span>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-                                </section>
-                            <?php endif; ?>
-                            <?php if ( $content == 'Year' && $year_list ): ?>
-                                <section class="row-fluid widget_categories">
-                                    <header class="row-fluid border-bottom marginbottom15">
-                                        <h1 class="h1-header"><?php  echo translate_label($biblio_texts, 'year', 'filter'); ?></h1>
-                                    </header>
-                                    <ul>
-                                        <?php foreach ( $year_list as $year ) { ?>
-                                            <li class="cat-item">
-                                                <?php
-                                                    $filter_link = '?';
-                                                    if ($query != ''){
-                                                        $filter_link .= 'q=' . $query . '&';
-                                                    }
-                                                    $filter_link .= 'filter=publication_year:"' . $year[0] . '"';
-                                                    if ($user_filter != ''){
-                                                        $filter_link .= ' AND ' . $user_filter ;
-                                                    }
-                                                ?>
-                                                <a href='<?php echo $filter_link; ?>'><?php echo $year[0]; ?></a>
-                                                <span class="cat-item-count"><?php echo $year[1]; ?></span>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-                                </section>
-                            <?php endif; ?>
-                          <?php } ?>
+                                <?php if ($facet_list[$filter_field] ): ?>
+                                    <section class="row-fluid widget_categories">
+                                        <header class="row-fluid border-bottom marginbottom15">
+                                            <h1 class="h1-header"><?php echo $biblio_texts['filter'][$filter_field]; ?></h1>
+                                        </header>
+                                        <ul>
+                                            <?php foreach ( $facet_list[$filter_field] as $filter_item ) { ?>
+                                                <li class="cat-item">
+                                                    <?php
+                                                        $filter_value = $filter_item[0];
+                                                        $filter_count = $filter_item[1];
+                                                        if ($filter_field == 'descriptor_filter'){
+                                                            $filter_field = 'mj';
+                                                        }
+
+                                                        $filter_link = '?';
+                                                        if ($query != ''){
+                                                            $filter_link .= 'q=' . $query . '&';
+                                                        }
+                                                        $filter_link .= 'filter=' . $filter_field . ':"' . $filter_value . '"';
+                                                        if ($user_filter != ''){
+                                                            $filter_link .= ' AND ' . $user_filter ;
+                                                        }
+                                                    ?>
+                                                    <?php if ( strpos($filter_value, '^') !== false ): ?>
+                                                        <a href='<?php echo $filter_link; ?>'><?php print_lang_value($filter_value, $site_language); ?></a>
+                                                    <?php elseif ( array_key_exists($filter_field, $biblio_texts) ): ?>
+                                                        <a href='<?php echo $filter_link; ?>'><?php  echo translate_label($biblio_texts, $filter_value, $filter_field); ?></a>
+                                                    <?php else: ?>
+                                                        <a href='<?php echo $filter_link; ?>'><?php echo $filter_value; ?></a>
+                                                    <?php endif; ?>
+                                                    <span class="cat-item-count"><?php echo $filter_count; ?></span>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
+                                    </section>
+                                <?php endif; ?>
+                            <?php } ?>
+
+
                         </div> <!-- close DIV.filters -->
                     <?php endif; ?>
                 </aside>
