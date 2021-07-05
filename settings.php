@@ -8,13 +8,13 @@ function biblio_page_admin() {
         $available_filter_list = $biblio_texts['filter'];
     }else{
         $available_filter_list = array(
-                                    'descriptor_filter' => translate('Main subject','biblio') ,
-                                    'publication_type' =>  translate('Publication type', 'biblio'),
-                                    'database' =>  translate('Database','biblio'),
-                                    'publication_country' =>  translate('Publication country', 'biblio'),
-                                    'publication_language' =>  translate('Language','biblio'),
-                                    'publication_year' =>  translate('Year','biblio'),
-                                    'journal' =>  translate('Journal','biblio')
+                                    'descriptor_filter' => __('Main subject','biblio') ,
+                                    'publication_type' =>  __('Document type', 'biblio'),
+                                    'database' =>  __('Database','biblio'),
+                                    'publication_country' =>  __('Publication country', 'biblio'),
+                                    'publication_language' =>  __('Language','biblio'),
+                                    'publication_year' =>  __('Year','biblio'),
+                                    'journal' =>  __('Journal','biblio')
         );
         $biblio_texts['filter'] = $available_filter_list;
     }

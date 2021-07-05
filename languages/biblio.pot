@@ -1,35 +1,30 @@
-# Copyright (C) 2018 Bibliographic
+# Copyright (C) 2021 Bibliographic
 # This file is distributed under the same license as the Bibliographic package.
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Bibliographic 0.1\n"
+"Project-Id-Version: Bibliographic 1.4\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2019-11-21 15:46-0300\n"
+"POT-Creation-Date: 2021-07-05 20:48:33+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"X-Generator: Poedit 2.0.6\n"
-"X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-SearchPath-0: .\n"
 
-#: bibliographic.php:97 settings.php:9
+#: bibliographic.php:98 settings.php:30
 msgid "Bibliographic record settings"
 msgstr ""
 
-#: bibliographic.php:97 template/rss.php:52
+#: bibliographic.php:98 template/rss.php:52
 msgid "Bibliographic records"
 msgstr ""
 
-#: bibliographic.php:145
+#: bibliographic.php:146
 msgid "Bibliographic sidebar"
 msgstr ""
 
-#: bibliographic.php:155
+#: bibliographic.php:156
 msgid "Bibliographic header"
 msgstr ""
 
@@ -39,111 +34,139 @@ msgstr ""
 msgid "go to page"
 msgstr ""
 
+#: settings.php:11
+msgid "Main subject"
+msgstr ""
+
+#: settings.php:12
+msgid "Document type"
+msgstr ""
+
+#: settings.php:13
+msgid "Database"
+msgstr ""
+
+#: settings.php:14
+msgid "Publication country"
+msgstr ""
+
+#: settings.php:15
+msgid "Language"
+msgstr ""
+
+#: settings.php:16
+msgid "Year"
+msgstr ""
+
 #: settings.php:17
+msgid "Journal"
+msgstr ""
+
+#: settings.php:38
 msgid "Plugin page"
 msgstr ""
 
-#: settings.php:21
+#: settings.php:42
 msgid "Filter query"
 msgstr ""
 
-#: settings.php:25
+#: settings.php:46
 msgid "AddThis profile ID"
 msgstr ""
 
-#: settings.php:29
+#: settings.php:50
 msgid "Google Analytics code"
 msgstr ""
 
-#: settings.php:33 template/home.php:206 template/resource.php:237
+#: settings.php:54 template/home.php:205 template/resource.php:237
 msgid "Fulltext"
 msgstr ""
 
-#: settings.php:37
+#: settings.php:58
 msgid "Present alternative fulltext links"
 msgstr ""
 
-#: settings.php:52
+#: settings.php:73
 msgid "Home URL"
 msgstr ""
 
-#: settings.php:57 settings.php:64
+#: settings.php:78 settings.php:85
 msgid "Page title"
 msgstr ""
 
-#: settings.php:70
+#: settings.php:91
 msgid "Related Documents filter"
 msgstr ""
 
-#: settings.php:73 settings.php:80
+#: settings.php:94 settings.php:101
 msgid "The filters must be separated by commas."
 msgstr ""
 
-#: settings.php:77
+#: settings.php:98
 msgid "More Related filter"
 msgstr ""
 
-#: settings.php:84
+#: settings.php:105
 msgid "Search filters"
 msgstr ""
 
-#: settings.php:97
+#: settings.php:110
 msgid "Available"
 msgstr ""
 
-#: settings.php:129
+#: settings.php:123
 msgid "Selected"
 msgstr ""
 
-#: settings.php:148
+#: settings.php:144
 msgid "Save changes"
 msgstr ""
 
-#: template/home.php:99 template/resource.php:85
+#: template/home.php:98 template/resource.php:85
 msgid "Home"
 msgstr ""
 
-#: template/home.php:104
+#: template/home.php:103
 msgid "Search result"
 msgstr ""
 
-#: template/home.php:123 template/resource.php:97
+#: template/home.php:122 template/resource.php:97
 msgid "Enter one or more words"
 msgstr ""
 
-#: template/home.php:124 template/resource.php:98
+#: template/home.php:123 template/resource.php:98
 msgid "Search"
 msgstr ""
 
-#: template/home.php:125 template/resource.php:99
+#: template/home.php:124 template/resource.php:99
 msgid "Tip! You can do your search using boolean operators."
 msgstr ""
 
-#: template/home.php:134
+#: template/home.php:133
 msgid "No results found"
 msgstr ""
 
-#: template/home.php:138
+#: template/home.php:137
 msgid "Results"
 msgstr ""
 
-#: template/home.php:140
+#: template/home.php:139
 msgid "Total"
 msgstr ""
 
-#: template/home.php:199 template/resource.php:230
+#: template/home.php:198 template/resource.php:230
 msgid "Fulltext (primary link)"
 msgstr ""
 
-#: template/home.php:199 template/resource.php:230
+#: template/home.php:198 template/resource.php:230
 msgid "Fulltext (alternative link)"
 msgstr ""
 
-#: template/home.php:235
+#: template/home.php:234
 msgid "Filters"
 msgstr ""
 
-#: template/home.php:245
+#: template/home.php:244
 msgid "Selected filters"
 msgstr ""
 
@@ -156,11 +179,15 @@ msgid "Publication year"
 msgstr ""
 
 #: template/resource.php:151
-msgid "Theses and dissertations in %pub_lang% presented to the %institution% to obtain the academic title of %academic_title%. Leader: %leader%"
+msgid ""
+"Theses and dissertations in %pub_lang% presented to the %institution% to "
+"obtain the academic title of %academic_title%. Leader: %leader%"
 msgstr ""
 
 #: template/resource.php:154
-msgid "Theses and dissertations presented to the %institution% to obtain the academic title of %academic_title%. Leader: %leader%"
+msgid ""
+"Theses and dissertations presented to the %institution% to obtain the "
+"academic title of %academic_title%. Leader: %leader%"
 msgstr ""
 
 #: template/resource.php:247
@@ -169,4 +196,24 @@ msgstr ""
 
 #: template/resource.php:267
 msgid "Related"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Bibliographic"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://reddes.bvsalud.org/projects/fi-admin/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Search bibliographic records from FI-ADMIN."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "BIREME/OPAS/OMS"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://reddes.bvsalud.org/"
 msgstr ""
