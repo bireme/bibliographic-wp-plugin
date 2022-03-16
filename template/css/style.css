@@ -257,18 +257,24 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 }
 
 .rec-box{
-	background-color: #fff;
+    background-color: #fff;
     border: 2px solid #0087c9;
     border-radius: 6px;
     padding: 15px;
     margin-bottom: 10px;
     color: #000;
-	clear: both;
+    clear: both;
+}
+
+.rec-title{
+   margin: 10px 0 10px 0;
+   font-weight: bold;
+   color: #005a9e;
 }
 
 .rec-box .label{
-	font-weight: bold;
-	margin-right: 10px;
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 
