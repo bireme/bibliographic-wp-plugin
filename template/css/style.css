@@ -256,6 +256,22 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 	padding: 5px 0;
 }
 
+.rec-box{
+	background-color: #fff;
+    border: 2px solid #0087c9;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 10px;
+    color: #000;
+	clear: both;
+}
+
+.rec-box .label{
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+
 @media (min-width: 766px) and (max-width: 1099px) {
 	.ajusta, .ajusta3, .ajusta2, .top, .bar .barInner, .footerArea {width:100%; margin:0;}
 	.container{width:95% !important;margin: 0 2.5% !important;}

@@ -45,14 +45,13 @@ $lang = substr($site_language,0,2);
 
 $biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?id=' . $resource_id . '&op=related&lang=' . $lang;
 
-//print $biblio_service_request;
+//print($biblio_service_request);
 
 $response = @file_get_contents($biblio_service_request);
 
 if ($response){
     $response_json = json_decode($response);
     $resource = $response_json->diaServerResponse[0]->match->docs[0];
-    
     // create param to find similars
     $similar_text = $resource->reference_title[0];
     if (isset($resource->mj)){
@@ -248,6 +247,11 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                         </header>
                         <div id="loader" class="loader" style="display: inline-block;"></div>
                     </div>
+
+                    <div id="epistemonikos">
+
+                    </div>
+
                     <div class="row-fluid">
                         <div id="async" class="related-docs">
 
@@ -281,4 +285,16 @@ $url = BIBLIOGRAPHIC_PLUGIN_URL.'template/similar.php?query='.$similar_query.'&l
             </div> <!-- close DIV.detail-area -->
         </div> <!-- close DIV.detail-area -->
     </div>
+
+<?php
+if ( strpos($biblio_initial_filter, 'BIGG') !== false ):
+    $epistemonikos_url = BIBLIOGRAPHIC_PLUGIN_URL.'template/epistemonikos.php?biblio_id=' . $resource_id;
+?>
+
+    <script type="text/javascript">
+        show_epistemonikos("<?php echo $epistemonikos_url; ?>");
+    </script>
+
+<?php endif; ?>
+
 <?php get_footer(); ?>

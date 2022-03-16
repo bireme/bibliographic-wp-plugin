@@ -87,6 +87,19 @@ function show_similar(url){
     xmlhttp.send();
 }
 
+function show_epistemonikos(url){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("epistemonikos").innerHTML = this.responseText;
+        }else {
+            document.getElementById("epistemonikos").innerHTML = '<li class="cat-item"><div class="loader"></div></li>';
+        }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+
 function show_related(url){
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
