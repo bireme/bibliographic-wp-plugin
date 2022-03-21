@@ -269,7 +269,16 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 .rec-title{
    margin: 10px 0 10px 0;
    font-weight: bold;
-   color: #005a9e;
+   background-color: #ecf9ff;
+   clear: both;
+   width: 100%;
+   border-radius: 15px;
+   padding: 5px;
+}
+
+.rec-icon{
+    float: left;
+    margin: 5px 10px;
 }
 
 .rec-box .label{

@@ -24,13 +24,16 @@
 
         $recommendation_list = $epistemonikos_api_result["guideline"]["recommendations"];
 
-        echo '<div class="rec-title">Recommendations included in this guideline: (' . count($recommendation_list) . ')';
+        echo '<div class="rec-title">';
+        echo '<a href="https://bigg-rec.bvsalud.org/guidelines/' . $epistemonikos_id . '" target="biggrec"><img src="https://bigg-rec.bvsalud.org/favicon.ico" class="rec-icon"></a>';
+        echo 'This guideline is part of <a href="https://bigg-rec.bvsalud.org/guidelines/' . $epistemonikos_id . '" target="biggrec">BIGGREC Database</a><br/> Recommendations included in this guideline: (' . count($recommendation_list) . ')';
+        echo '</div>';
 
         foreach ($recommendation_list as $rec){
             $detail_link = 'https://bigg-rec.bvsalud.org/recommendations/' . $rec['id'];
             echo '<div class="rec-box">';
             echo '<p>' . $rec['abstract_en'] . '</p>';
-            echo '<p><span class="label">Year</span><span>' . $rec['year'] . '</span></p>';
+            echo '<p><span class="label">Recommendation strength:</span><span>' . $rec['rec_type'] . '</span></p>';
             echo '<p><span class="more"><a href="' . $detail_link . '" target="biggrec">More details</a></span></p>';
             echo '</div>';
         }
