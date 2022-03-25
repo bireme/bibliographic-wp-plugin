@@ -273,12 +273,18 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
    clear: both;
    width: 100%;
    border-radius: 15px;
-   padding: 5px;
+   padding: 15px;
+   font-size: 115%;
+}
+
+.rec-title-text{
+    float:left;
 }
 
 .rec-icon{
+    width: 90px;
+    margin: 0 10px 0 10px;
     float: left;
-    margin: 5px 10px;
 }
 
 .rec-box .label{
