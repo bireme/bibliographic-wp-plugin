@@ -7,7 +7,7 @@
     $biblio_id_parts = explode(".", $biblio_id);
     $biblio_ref_id = $biblio_id_parts[2];
 
-    $biggrec_api_url = "https://biggrec-api.teste.bvsalud.org/get_epistemoniko_id/" . $biblio_ref_id;
+    $biggrec_api_url = "https://biggrec-api.bvsalud.org/get_epistemoniko_id/" . $biblio_ref_id;
     $epistemonikos_guidelines_api_url = "https://api.iloveevidence.com/v2.1/guidelines/";
 
     // get similar docs
