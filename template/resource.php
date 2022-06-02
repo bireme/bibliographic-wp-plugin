@@ -240,16 +240,17 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                             <?php endif; ?>
                         </article>
                     </div>
-                    <div class="row-fluid">
-                        <header class="row-fluid border-bottom marginbottom15">
-                            <h1 class="h1-header"><?php _e('More related','biblio'); ?></h1>
-                        </header>
-                        <div id="loader" class="loader" style="display: inline-block;"></div>
-                    </div>
 
-                    <div id="epistemonikos">
-
-                    </div>
+                    <?php if ( strpos($biblio_initial_filter, 'BIGG') === false ): ?>
+                        <div class="row-fluid">
+                            <header class="row-fluid border-bottom marginbottom15">
+                                <h1 class="h1-header"><?php _e('More related','biblio'); ?></h1>
+                            </header>
+                            <div id="loader" class="loader" style="display: inline-block;"></div>
+                        </div>
+                    <?php else:  ?>
+                        <div id="epistemonikos"> </div>
+                    <?php endif; ?>
 
                     <div class="row-fluid">
                         <div id="async" class="related-docs">
@@ -260,9 +261,13 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
 $sources = ( $biblio_config['extra_filter_db'] ) ? $biblio_config['extra_filter_db'] : '';
 $url = BIBLIOGRAPHIC_PLUGIN_URL.'template/related.php?query='.$related_query.'&sources='.$sources.'&lang='.$lang;
 ?>
-<script type="text/javascript">
-    show_related("<?php echo $url; ?>");
-</script>
+
+<?php if ( strpos($biblio_initial_filter, 'BIGG') !== false ): ?>
+    <script type="text/javascript">
+        show_related("<?php echo $url; ?>");
+    </script>
+<?php endif; ?>
+
                 </section>
                 <aside id="sidebar">
                     <section class="row-fluid marginbottom25 widget_categories">
@@ -277,7 +282,7 @@ $url = BIBLIOGRAPHIC_PLUGIN_URL.'template/related.php?query='.$related_query.'&s
 $url = BIBLIOGRAPHIC_PLUGIN_URL.'template/similar.php?query='.$similar_query.'&lang='.$lang;
 ?>
 <script type="text/javascript">
-    //show_similar("<?php echo $url; ?>");
+    show_similar("<?php echo $url; ?>");
 </script>
                 </aside>
                 <div class="spacer"></div>
