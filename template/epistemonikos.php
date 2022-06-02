@@ -1,8 +1,9 @@
 <?php
     include "../../../../wp-load.php";
 
-    $lang = $_GET['lang'];
     $biblio_id = $_GET['biblio_id'];
+
+    $epistemonikos_lang = ($lang == 'en' || $lang == 'es'? $lang : 'en');
 
     $biblio_id_parts = explode(".", $biblio_id);
     $biblio_ref_id = $biblio_id_parts[2];
@@ -25,12 +26,12 @@
         $recommendation_list = $epistemonikos_api_result["guideline"]["recommendations"];
 
         echo '<div class="rec-title">';
-        echo '<div class="rec-title-text">This <a href="https://bigg-rec.bvsalud.org/guidelines/' . $epistemonikos_id . '" target="biggrec">guideline</a> is part of </div><div><a href="https://bigg-rec.bvsalud.org/" target="biggrec"><img src="https://bigg-rec.bvsalud.org/img/bigg_rec_logo.fd16849c.svg" class="rec-icon"></a>';
+        echo '<div class="rec-title-text">This <a href="https://bigg-rec.bvsalud.org/' . $epistemonikos_lang . '/guidelines/' . $epistemonikos_id . '" target="biggrec">guideline</a> is part of </div><div><a href="https://bigg-rec.bvsalud.org/' . $epistemonikos_lang . '" target="biggrec"><img src="https://bigg-rec.bvsalud.org/img/bigg_rec_logo.fd16849c.svg" class="rec-icon"></a>';
         echo ' | Recommendations included in this guideline: (' . count($recommendation_list) . ')</div>';
         echo '</div>';
 
         foreach ($recommendation_list as $rec){
-            $detail_link = 'https://bigg-rec.bvsalud.org/recommendations/' . $rec['id'];
+            $detail_link = 'https://bigg-rec.bvsalud.org/' . $epistemonikos_lang . '/recommendations/' . $rec['id'];
             echo '<div class="rec-box">';
             echo '<p>' . $rec['abstract_en'] . '</p>';
             echo '<p><span class="label">Recommendation strength:</span><span>' . $rec['rec_type'] . '</span></p>';

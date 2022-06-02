@@ -41,7 +41,6 @@ $request_parts = explode('/', $request_uri);
 $resource_id   = $_GET['id'];
 
 $site_language = strtolower(get_bloginfo('language'));
-$lang = substr($site_language,0,2);
 
 $biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?id=' . $resource_id . '&op=related&lang=' . $lang;
 
@@ -278,7 +277,7 @@ $url = BIBLIOGRAPHIC_PLUGIN_URL.'template/related.php?query='.$related_query.'&s
 $url = BIBLIOGRAPHIC_PLUGIN_URL.'template/similar.php?query='.$similar_query.'&lang='.$lang;
 ?>
 <script type="text/javascript">
-    show_similar("<?php echo $url; ?>");
+    //show_similar("<?php echo $url; ?>");
 </script>
                 </aside>
                 <div class="spacer"></div>
