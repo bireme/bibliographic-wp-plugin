@@ -1,9 +1,9 @@
 <?php
     include "../../../../wp-load.php";
 
-    $lang = $_GET['lang'];
-    $similar_docs_url = $_GET['query'];
-    $filter_db = $_GET['sources'];
+    $lang = sanitize_text_field($_GET['lang']);
+    $similar_docs_url = sanitize_text_field($_GET['query']);
+    $filter_db = sanitize_text_field($_GET['sources']);
     $similar_docs = array();
 
     if ( $filter_db ) {

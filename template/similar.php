@@ -1,8 +1,8 @@
 <?php
     include "../../../../wp-load.php";
 
-    $lang = $_GET['lang'];
-    $similar_docs_url = $_GET['query'];
+    $lang = sanitize_text_field($_GET['lang']);
+    $similar_docs_url = sanitize_text_field($_GET['query']);
 
     // get similar docs
     $similar_docs_xml = @file_get_contents($similar_docs_url);

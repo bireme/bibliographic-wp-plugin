@@ -1,7 +1,7 @@
 <?php
     include "../../../../wp-load.php";
 
-    $biblio_id = $_GET['biblio_id'];
+    $biblio_id = sanitize_text_field($_GET['biblio_id']);
 
     $epistemonikos_lang = ($lang == 'en' || $lang == 'es'? $lang : 'en');
 

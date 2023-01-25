@@ -21,14 +21,16 @@ $site_language = strtolower(get_bloginfo('language'));
 $lang = substr($site_language,0,2);
 
 // set query using default param q (query) or s (wordpress search) or newexpr (metaiah)
-$query = $_GET['s'] . $_GET['q'];
+$query = sanitize_text_field($_GET['s']) . sanitize_text_field($_GET['q']);
 $query = stripslashes( trim($query) );
 
-$user_filter = stripslashes($_GET['filter']);
-$page   = ( !empty($_GET['page']) ? $_GET['page'] : 1 );
-$format = ( !empty($_GET['format']) ? $_GET['format'] : '' );
-$sort   = ( !empty($_GET['sort']) ? $order[$_GET['sort']] : '');
-$count  = ( !empty($_GET['count']) ? $_GET['count'] : 10 );
+$sanitize_user_filter = sanitize_text_field($_GET['filter']);
+$user_filter = stripslashes($sanitize_user_filter);
+$page   = ( !empty($_GET['page']) ? sanitize_text_field($_GET['page']) : 1 );
+$format = ( !empty($_GET['format']) ? sanitize_text_field($_GET['format']) : '' );
+$sanitize_sort = sanitize_text_field($_GET['sort']);
+$sort   = ( !empty($_GET['sort']) ? $order[$sanitize_sort] : '');
+$count  = ( !empty($_GET['count']) ? sanitize_text_field($_GET['count']) : 10 );
 $total  = 0;
 $filter = '';
 
@@ -77,7 +79,7 @@ if ($response){
 
 $params  = !empty($format) ? '&format=' . $format : '';
 $params .= $count != 2 ? '&count=' . $count : '';
-$params .= !empty($_GET['sort']) ? '&sort=' . $_GET['sort'] : '';
+$params .= !empty($_GET['sort']) ? '&sort=' . sanitize_text_field($_GET['sort']) : '';
 
 $page_url_params = real_site_url($biblio_plugin_slug) . '?q=' . urlencode($query) . '&filter=' . urlencode($user_filter) . $params;
 $feed_url = real_site_url($biblio_plugin_slug) . 'bibliographic-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
@@ -115,7 +117,7 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
             <section class="header-search">
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($biblio_plugin_slug); ?>">
                     <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
-                    <input type="hidden" name="sort" id="sort" value="<?php echo $_GET['sort']; ?>">
+                    <input type="hidden" name="sort" id="sort" value="<?php echo sanitize_text_field($_GET['sort']); ?>">
                     <input type="hidden" name="format" id="format" value="<?php echo $format ? $format : 'summary'; ?>">
                     <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
                     <input type="hidden" name="page" id="page" value="1">

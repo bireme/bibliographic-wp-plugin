@@ -38,7 +38,7 @@ if ($biblio_initial_filter != ''){
 
 $request_uri   = $_SERVER["REQUEST_URI"];
 $request_parts = explode('/', $request_uri);
-$resource_id   = $_GET['id'];
+$resource_id   = sanitize_text_field($_GET['id']);
 
 $site_language = strtolower(get_bloginfo('language'));
 
