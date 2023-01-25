@@ -247,6 +247,7 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                                 <h1 class="h1-header"><?php _e('More related','biblio'); ?></h1>
                             </header>
                             <div id="loader" class="loader" style="display: inline-block;"></div>
+                            <div id="async-alert" style="display: none;"><?php echo __('No related documents', 'biblio'); ?></div>
                         </div>
                     <?php else:  ?>
                         <div id="epistemonikos"> </div>
@@ -262,7 +263,7 @@ $sources = ( $biblio_config['extra_filter_db'] ) ? $biblio_config['extra_filter_
 $url = BIBLIOGRAPHIC_PLUGIN_URL.'template/related.php?query='.$related_query.'&sources='.$sources.'&lang='.$lang;
 ?>
 
-<?php if ( strpos($biblio_initial_filter, 'BIGG') !== false ): ?>
+<?php if ( strpos($biblio_initial_filter, 'BIGG') === false ): ?>
     <script type="text/javascript">
         show_related("<?php echo $url; ?>");
     </script>

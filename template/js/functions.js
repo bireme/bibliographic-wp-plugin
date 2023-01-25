@@ -108,14 +108,18 @@ function show_related(url){
             loader.parentNode.removeChild(loader);
             document.getElementById("async").innerHTML = this.responseText;
 
-            $j('#async').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                autoplay: false,
-                autoplaySpeed: 3000,
-                infinite: true,
-                dots: false
-            });
+            if ( this.responseText ) {
+                $j('#async').slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: false,
+                    autoplaySpeed: 3000,
+                    infinite: true,
+                    dots: false
+                });
+            } else {
+                document.getElementById("async-alert").style.display = 'block';
+            }
         }
     };
     xmlhttp.open("GET", url, true);
