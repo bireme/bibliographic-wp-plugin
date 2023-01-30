@@ -4,25 +4,26 @@ function biblio_page_admin() {
 
     $config = get_option('biblio_config');
 
+    $default_filter_list = array(
+                                'descriptor_filter' => __('Main subject','biblio') ,
+                                'publication_type' =>  __('Document type', 'biblio'),
+                                'database' =>  __('Database','biblio'),
+                                'publication_country' =>  __('Publication country', 'biblio'),
+                                'publication_language' =>  __('Language','biblio'),
+                                'publication_year' =>  __('Year','biblio'),
+                                'journal' =>  __('Journal','biblio')
+    );
+
     if ($biblio_texts['filter']){
-        $available_filter_list = $biblio_texts['filter'];
+        $available_filter_list = array_merge($biblio_texts['filter'], $default_filter_list);
     }else{
-        $available_filter_list = array(
-                                    'descriptor_filter' => __('Main subject','biblio') ,
-                                    'publication_type' =>  __('Document type', 'biblio'),
-                                    'database' =>  __('Database','biblio'),
-                                    'publication_country' =>  __('Publication country', 'biblio'),
-                                    'publication_language' =>  __('Language','biblio'),
-                                    'publication_year' =>  __('Year','biblio'),
-                                    'journal' =>  __('Journal','biblio')
-        );
-        $biblio_texts['filter'] = $available_filter_list;
+        $available_filter_list   = $default_filter_list;
+        $biblio_texts['filter'] = $default_filter_list;
     }
 
+    $config_filter_list = array();
     if ( $config['available_filter'] ){
         $config_filter_list = explode(';', $config['available_filter']);
-    }else{
-        $config_filter_list = array_keys($available_filter_list);
     }
 ?>
     <div class="wrap">
