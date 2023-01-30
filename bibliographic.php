@@ -88,7 +88,13 @@ if(!class_exists('Bibliographic_Plugin')) {
                 $site_language = strtolower(get_bloginfo('language'));
                 $lang = substr($site_language,0,2);
 
-                $biblio_texts = @parse_ini_file(BIBLIOGRAPHIC_PLUGIN_PATH . "/languages/texts_" . $lang . ".ini", true);
+                $biblio_texts = @parse_ini_file(BIBLIOGRAPHIC_PLUGIN_PATH . "/languages/texts_".$lang.".ini", true);
+                if ( !$biblio_texts ) {
+                    $biblio_texts = @parse_ini_file(BIBLIOGRAPHIC_PLUGIN_PATH . "/languages/texts_".$lang."-SAMPLE.ini", true);
+                    if ( !$biblio_texts ) {
+                        $biblio_texts = @parse_ini_file(BIBLIOGRAPHIC_PLUGIN_PATH . "/languages/texts_en-SAMPLE.ini", true);
+                    }
+                }
             }
 
         }

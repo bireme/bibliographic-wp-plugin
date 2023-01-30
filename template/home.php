@@ -303,14 +303,14 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                                                 <?php
                                                     $filter_value = $filter_item[0];
                                                     $filter_count = $filter_item[1];
+
+                                                    if ($filter_field == 'descriptor_filter') {
+                                                        $filter_field = 'mj';
+                                                    }
                                                 ?>
-                                                <?php if ( filter_var($filter_value, FILTER_VALIDATE_INT) === false ) : ?>
+                                                <?php if ( 'mj' != $filter_field || filter_var($filter_value, FILTER_VALIDATE_INT) === false) : ?>
                                                     <li class="cat-item">
                                                         <?php
-                                                            if ($filter_field == 'descriptor_filter'){
-                                                                $filter_field = 'mj';
-                                                            }
-
                                                             $filter_link = '?';
                                                             if ($query != ''){
                                                                 $filter_link .= 'q=' . $query . '&';
