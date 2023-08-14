@@ -147,6 +147,9 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                                     <article class="conteudo-loop">
                                         <h2 class="h2-loop-tit">
                                             <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/?id=<?php echo $docs->id; ?>"><?php echo $docs->reference_title[0]; ?></a>
+                                            <?php if ( $docs->english_title ): ?>
+                                                <div class="altLang"><?php echo $docs->english_title; ?></div>
+                                            <?php endif; ?>
                                         </h2>
 
                                         <?php if ( $docs->author ): ?>

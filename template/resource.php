@@ -121,6 +121,9 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                                         <div class="altLang"><?php echo $title; ?></div>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
+                                <?php if ( $resource->english_title ): ?>
+                                    <div class="altLang"><?php echo $resource->english_title; ?></div>
+                                <?php endif; ?>
                             </h2>
 
                             <?php if ( $resource->author ): ?>
