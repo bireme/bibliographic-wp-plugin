@@ -8,7 +8,7 @@ class Paginator{
     var $default_count = 10;
     var $current_page;
 
-    function Paginator($total, $start)
+    function __construct($total, $start)
     {
         $this->total = $total;
         $this->start = $start;
