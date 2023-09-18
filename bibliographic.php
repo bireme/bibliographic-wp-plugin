@@ -47,6 +47,7 @@ if(!class_exists('Bibliographic_Plugin')) {
             add_action( 'widgets_init', array(&$this, 'register_sidebars'));
             add_action( 'after_setup_theme', array(&$this, 'title_tag_setup'));
             add_filter( 'get_search_form', array(&$this, 'search_form'));
+            add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array(&$this, 'settings_link') );
             add_filter( 'document_title_separator', array(&$this, 'title_tag_sep') );
             add_filter( 'document_title_parts', array(&$this, 'theme_slug_render_title'));
             add_filter( 'wp_title', array(&$this, 'theme_slug_render_wp_title'));
@@ -257,6 +258,12 @@ if(!class_exists('Bibliographic_Plugin')) {
             register_setting('biblio-settings-group', 'biblio_config');
             wp_enqueue_style('biblio' ,  BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/admin.css');
             wp_enqueue_script('jquery-ui-sortable');
+        }
+
+        function settings_link($links) {
+            $settings_link = '<a href="options-general.php?page=bibliographic.php">' . __('Settings') . '</a>';
+            array_unshift($links, $settings_link);
+            return $links;
         }
 
         function google_analytics_code(){
