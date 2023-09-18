@@ -102,7 +102,7 @@ if(!class_exists('Bibliographic_Plugin')) {
 
         function admin_menu() {
             add_options_page(__('Bibliographic record settings', 'biblio'), __('Bibliographic records', 'biblio'),
-                'manage_options', 'biblio', 'biblio_page_admin');
+                'manage_options', 'biblio-settings', 'biblio_page_admin');
             //call register settings function
             add_action( 'admin_init', array(&$this, 'register_settings'));
         }
@@ -261,7 +261,7 @@ if(!class_exists('Bibliographic_Plugin')) {
         }
 
         function settings_link($links) {
-            $settings_link = '<a href="options-general.php?page=bibliographic.php">' . __('Settings') . '</a>';
+            $settings_link = '<a href="options-general.php?page=biblio-settings">' . __('Settings') . '</a>';
             array_unshift($links, $settings_link);
             return $links;
         }
