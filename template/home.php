@@ -70,11 +70,26 @@ if ( $user_filter != '' ) {
 $response = @file_get_contents($biblio_service_request);
 if ($response){
     $response_json = json_decode($response);
-    //echo "<pre>"; print_r($response_json); echo "</pre>";
+    // echo "<pre>"; print_r($response_json); echo "</pre>";
     $total = $response_json->diaServerResponse[0]->response->numFound;
     $start = $response_json->diaServerResponse[0]->response->start;
     $docs_list = $response_json->diaServerResponse[0]->response->docs;
     $facet_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields;
+    // echo "<pre>"; print_r($facet_list); echo "</pre>"; die();
+
+    if ( array_key_exists('publication_year', $facet_list)) {
+        usort($facet_list['publication_year'], function($a, $b) {
+            return $b[0] <=> $a[0];
+        });
+    }
+
+    if ( array_key_exists('publication_country', $facet_list)) {
+        usort($facet_list['publication_country'], function($a, $b) use ($lang) {
+            $a[0] = biblio_get_lang_value($a[0], $lang);
+            $b[0] = biblio_get_lang_value($b[0], $lang);
+            return $a[0] <=> $b[0];
+        });
+    }
 }
 
 $params  = !empty($format) ? '&format=' . $format : '';
@@ -272,7 +287,7 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                                                     <span class="filter-item">
                                                         <?php
                                                             if (strpos($value, '^') !== false){
-                                                                echo print_lang_value($value, $site_language);
+                                                                echo biblio_print_lang_value($value, $site_language);
                                                             }elseif (array_key_exists($filter, $biblio_texts)){
                                                                 echo translate_label($biblio_texts, $value, $filter);
                                                             }else{
@@ -324,7 +339,7 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                                                             }
                                                         ?>
                                                         <?php if ( strpos($filter_value, '^') !== false ): ?>
-                                                            <a href='<?php echo $filter_link; ?>'><?php print_lang_value($filter_value, $site_language); ?></a>
+                                                            <a href='<?php echo $filter_link; ?>'><?php biblio_print_lang_value($filter_value, $site_language); ?></a>
                                                         <?php elseif ( array_key_exists($filter_field, $biblio_texts) ): ?>
                                                             <a href='<?php echo $filter_link; ?>'><?php  echo translate_label($biblio_texts, $filter_value, $filter_field); ?></a>
                                                         <?php else: ?>

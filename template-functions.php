@@ -1,22 +1,22 @@
 <?php
 
-if ( !function_exists('print_lang_value') ) {
-    function print_lang_value($value, $lang_code){
+if ( !function_exists('biblio_print_lang_value') ) {
+    function biblio_print_lang_value($value, $lang_code){
         $lang_code = substr($lang_code,0,2);
         if ( is_array($value) ){
             foreach($value as $current_value){
-                $print_values[] = get_lang_value($current_value, $lang_code);
+                $print_values[] = biblio_get_lang_value($current_value, $lang_code);
             }
             echo implode(', ', $print_values);
         }else{
-            echo get_lang_value($value, $lang_code);
+            echo biblio_get_lang_value($value, $lang_code);
         }
         return;
     }
 }
 
-if ( !function_exists('get_lang_value') ) {
-    function get_lang_value($string, $lang_code, $default_lang_code = 'en'){
+if ( !function_exists('biblio_get_lang_value') ) {
+    function biblio_get_lang_value($string, $lang_code, $default_lang_code = 'en'){
         $lang_value = array();
         $occs = preg_split('/\|/', $string);
 
@@ -27,16 +27,19 @@ if ( !function_exists('get_lang_value') ) {
             $value = $lv[1];
             $lang_value[$lang] = $value;
         }
+
         if ( isset($lang_value[$lang_code]) ){
             $translated = $lang_value[$lang_code];
-        }else{
+        } elseif ( isset($lang_value[$default_lang_code]) ){
             $translated = $lang_value[$default_lang_code];
+        } else {
+            $translated = ltrim(strstr($string, '^'), '^');
+            if ( !$translated ) $translated = $string;
         }
 
         return $translated;
     }
 }
-
 
 if ( !function_exists('print_formated_date') ) {
     function print_formated_date($string){
