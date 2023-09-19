@@ -144,6 +144,9 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                     <a href="<?php echo $feed_url ?>" target="blank"><img src="<?php echo BIBLIOGRAPHIC_PLUGIN_URL; ?>template/images/icon_rss.png" ></a>
                 </div>
             </section>
+
+<?php if ($biblio_config['page_layout'] != 'whole_page' || $_GET['q'] != '' || $_GET['filter'] != '' ) : ?>
+
             <div class="content-area result-list">
                 <section id="conteudo">
                     <?php if ( isset($total) && strval($total) == 0 ) :?>
@@ -158,78 +161,78 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                         </header>
                         <div class="row-fluid">
 
-                                <?php foreach ( $docs_list as $position => $docs) { $position++; ?>
-                                    <article class="conteudo-loop">
-                                        <h2 class="h2-loop-tit">
-                                            <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/?id=<?php echo $docs->id; ?>"><?php echo $docs->reference_title[0]; ?></a>
-                                            <?php if ( $docs->english_title ): ?>
-                                                <div class="altLang"><?php echo $docs->english_title; ?></div>
-                                            <?php endif; ?>
-                                        </h2>
+                            <?php foreach ( $docs_list as $position => $docs) { $position++; ?>
+                                <article class="conteudo-loop">
+                                    <h2 class="h2-loop-tit">
+                                        <a href="<?php echo real_site_url($biblio_plugin_slug); ?>resource/?id=<?php echo $docs->id; ?>"><?php echo $docs->reference_title[0]; ?></a>
+                                        <?php if ( $docs->english_title ): ?>
+                                            <div class="altLang"><?php echo $docs->english_title; ?></div>
+                                        <?php endif; ?>
+                                    </h2>
 
-                                        <?php if ( $docs->author ): ?>
-                                            <div class="row-fluid authors">
-                                                <?php foreach ( $docs->author as $index => $author ):
-                                                    echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=author:\"" . $author . "\"'>" . $author . "</a>";
-                                                    echo count($docs->author)-1 != $index ? '; ' : '.';
+                                    <?php if ( $docs->author ): ?>
+                                        <div class="row-fluid authors">
+                                            <?php foreach ( $docs->author as $index => $author ):
+                                                echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=author:\"" . $author . "\"'>" . $author . "</a>";
+                                                echo count($docs->author)-1 != $index ? '; ' : '.';
+                                            endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if ( $docs->journal ): ?>
+                                        <div class="row-fluid">
+                                            <?php
+                                                echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=journal:\"" . $docs->journal[0] . "\"'>" . $docs->journal[0] . "</a>";
+                                                if ( $docs->reference_source ):
+                                                    echo substr($docs->reference_source, strpos($docs->reference_source, ';'), 100);
+                                                endif;
+                                            ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if ( $docs->reference_abstract ): ?>
+                                        <div class="row-fluid">
+                                            <?php
+                                                $ab_clean = str_replace(array("\\r\\n", "\\t", "\\r", "\\n"), '' ,$docs->reference_abstract[0]);
+                                                echo substr($ab_clean, 0, 305) . '...';
+                                            ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if ($docs->mh ) : ?>
+                                        <div class="row-fluid subjects">
+                                            <strong><i class="fa fa-tags" aria-hidden="true"></i></strong>
+                                            <?php
+                                                $subjects = array();
+                                                foreach ( $docs->mh as $index => $subject ):
+                                                    echo "<a href='" . real_site_url($biblio_plugin_slug) . "?q=mh:\"" . $subject . "\"'>" . $subject . "</a>";
+                                                    echo $index != count($docs->mh)-1 ? ', ' : '';
                                                 endforeach; ?>
-                                            </div>
-                                        <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
 
-                                        <?php if ( $docs->journal ): ?>
-                                            <div class="row-fluid">
-                                                <?php
-                                                    echo "<a href='" . real_site_url($biblio_plugin_slug) . "?filter=journal:\"" . $docs->journal[0] . "\"'>" . $docs->journal[0] . "</a>";
-                                                    if ( $docs->reference_source ):
-                                                        echo substr($docs->reference_source, strpos($docs->reference_source, ';'), 100);
-                                                    endif;
-                                                ?>
-                                            </div>
-                                        <?php endif; ?>
-
-                                        <?php if ( $docs->reference_abstract ): ?>
-                                            <div class="row-fluid">
-                                                <?php
-                                                    $ab_clean = str_replace(array("\\r\\n", "\\t", "\\r", "\\n"), '' ,$docs->reference_abstract[0]);
-                                                    echo substr($ab_clean, 0, 305) . '...';
-                                                ?>
-                                            </div>
-                                        <?php endif; ?>
-
-                                        <?php if ($docs->mh ) : ?>
-                                            <div class="row-fluid subjects">
-                                                <strong><i class="fa fa-tags" aria-hidden="true"></i></strong>
-                                                <?php
-                                                    $subjects = array();
-                                                    foreach ( $docs->mh as $index => $subject ):
-                                                        echo "<a href='" . real_site_url($biblio_plugin_slug) . "?q=mh:\"" . $subject . "\"'>" . $subject . "</a>";
-                                                        echo $index != count($docs->mh)-1 ? ', ' : '';
-                                                    endforeach; ?>
-                                            </div>
-                                        <?php endif; ?>
-
-                                        <?php if ( $docs->link ) : ?>
-                                            <div class="row-fluid">
-                                                <?php if ( $alternative_links && count($docs->link) > 1): ?>
-                                                    <?php foreach ($docs->link as $index => $link): ?>
-                                                        <span class="more">
-                                                            <a href="<?php echo $link ?>" target="_blank">
-                                                                <i class="fa fa-file" aria-hidden="true"> </i>
-                                                                <?php ( ($index == 0) ? _e('Fulltext (primary link)','biblio') : _e('Fulltext (alternative link)','biblio')); ?>
-                                                            </a>
-                                                        </span>&nbsp;&nbsp;&nbsp;
-                                                    <?php endforeach; ?>
-                                                <?php else: ?>
+                                    <?php if ( $docs->link ) : ?>
+                                        <div class="row-fluid">
+                                            <?php if ( $alternative_links && count($docs->link) > 1): ?>
+                                                <?php foreach ($docs->link as $index => $link): ?>
                                                     <span class="more">
-                                                        <a href="<?php echo $docs->link[0] ?>" target="_blank">
-                                                            <i class="fa fa-file" aria-hidden="true"> </i> <?php _e('Fulltext','biblio'); ?>
+                                                        <a href="<?php echo $link ?>" target="_blank">
+                                                            <i class="fa fa-file" aria-hidden="true"> </i>
+                                                            <?php ( ($index == 0) ? _e('Fulltext (primary link)','biblio') : _e('Fulltext (alternative link)','biblio')); ?>
                                                         </a>
-                                                    </span>
-                                                <?php endif; ?>
-                                            </div>
-                                        <?php endif; ?>
-                                    </article>
-                                <?php } ?>
+                                                    </span>&nbsp;&nbsp;&nbsp;
+                                                <?php endforeach; ?>
+                                            <?php else: ?>
+                                                <span class="more">
+                                                    <a href="<?php echo $docs->link[0] ?>" target="_blank">
+                                                        <i class="fa fa-file" aria-hidden="true"> </i> <?php _e('Fulltext','biblio'); ?>
+                                                    </a>
+                                                </span>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </article>
+                            <?php } ?>
 
                         </div>
                         <div class="row-fluid">
@@ -357,8 +360,70 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                         </div> <!-- close DIV.filters -->
                     <?php endif; ?>
                 </aside>
-                <div class="spacer"></div>
-            </div> <!-- close DIV.result-area -->
+                <div class="spacer marginbottom25"></div>
+            </div> <!-- close DIV.result-list -->
+
+<?php else : ?>
+
+            <div class="content-area result-list">
+                <section id="">
+                    <header class="row-fluid">
+                        <h1 class="h1-header"><?php _e('Total', 'biblio'); echo ': ' . $total ?></h1>
+                    </header>
+                </section>
+
+                <?php
+                    foreach($filter_list as $filter_field) {
+                ?>
+                    <?php if ($facet_list[$filter_field] ): ?>
+                        <section class="row-fluid widget_categories">
+                            <header class="row-fluid border-bottom marginbottom15">
+                                <h1 class="h1-header"><?php echo $biblio_texts['filter'][$filter_field]; ?></h1>
+                            </header>
+                            <ul class="col3">
+                                <?php foreach ( $facet_list[$filter_field] as $filter_item ) { ?>
+                                    <?php
+                                        $filter_value = $filter_item[0];
+                                        $filter_count = $filter_item[1];
+
+                                        if ($filter_field == 'descriptor_filter') {
+                                            $filter_field = 'mj';
+                                        }
+                                    ?>
+                                    <?php if ( 'mj' != $filter_field || filter_var($filter_value, FILTER_VALIDATE_INT) === false) : ?>
+                                        <li class="cat-item">
+                                            <?php
+                                                $filter_link = '?';
+                                                if ($query != ''){
+                                                    $filter_link .= 'q=' . $query . '&';
+                                                }
+                                                $filter_link .= 'filter=' . $filter_field . ':"' . $filter_value . '"';
+                                                if ($user_filter != ''){
+                                                    $filter_link .= ' AND ' . $user_filter ;
+                                                }
+                                            ?>
+                                            <?php if ( strpos($filter_value, '^') !== false ): ?>
+                                                <a href='<?php echo $filter_link; ?>'><?php biblio_print_lang_value($filter_value, $site_language); ?></a>
+                                            <?php elseif ( array_key_exists($filter_field, $biblio_texts) ): ?>
+                                                <a href='<?php echo $filter_link; ?>'><?php  echo translate_label($biblio_texts, $filter_value, $filter_field); ?></a>
+                                            <?php else: ?>
+                                                <a href='<?php echo $filter_link; ?>'><?php echo $filter_value; ?></a>
+                                            <?php endif; ?>
+                                            <span class="cat-item-count"><?php echo $filter_count; ?></span>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php } ?>
+                            </ul>
+                        </section>
+                    <?php endif; ?>
+                <?php } ?>
+
+                <div class="spacer marginbottom25"></div>
+
+            </div> <!-- close DIV.result-list -->
+
+<?php endif; ?>
+
         </div> <!-- close DIV.ajusta2 -->
     </div>
 <?php get_footer(); ?>

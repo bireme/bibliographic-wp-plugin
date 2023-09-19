@@ -103,6 +103,23 @@ function biblio_page_admin() {
                         </td>
                     </tr>
                     <tr valign="top">
+                        <th scope="row">
+                            <?php _e('Page Layout', 'biblio'); ?>:
+                        </th>
+                        <td>
+                            <label for="whole_page">
+                                <input type="radio" id="whole_page" value="whole_page" name="biblio_config[page_layout]"  <?php if($config['page_layout'] == 'whole_page' ){ echo 'checked'; }?>>
+                                <?php _e('Show filters as whole page', 'biblio'); ?>
+                            </label>
+                            <br />
+                            <br />
+                            <label for="normal_page">
+                                <input type="radio" id="normal_page" value="normal_page" name="biblio_config[page_layout]" <?php if(!isset($config['page_layout']) || $config['page_layout'] == 'normal_page' ){ echo 'checked'; }?> >
+                                <?php _e('Show normal page', 'biblio'); ?>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr valign="top">
                         <th scope="row"><?php _e('Search filters', 'biblio');?>:</th>
                         <td>
                             <table border=0>
