@@ -137,6 +137,7 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 .more-items a {color: #000;}
 
 /* FOOTER */
+.footer, #footer{clear:both !important;}
 .footer{width:98%; background:rgb(211,211,211); border-top:1px solid rgb(75,95,120); margin-top:50px;padding:1%;}
 .footer-logo{width:61px; height:62px; float:left; background-position:0 -222px; margin:2px 15px 0 0;}
 .footer-logo-texto{float:left; line-height:18px; color:rgb(0,0,0);}
