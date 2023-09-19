@@ -29,10 +29,12 @@ $user_filter = stripslashes($sanitize_user_filter);
 $page   = ( !empty($_GET['page']) ? sanitize_text_field($_GET['page']) : 1 );
 $format = ( !empty($_GET['format']) ? sanitize_text_field($_GET['format']) : '' );
 $sanitize_sort = sanitize_text_field($_GET['sort']);
-$sort   = ( !empty($_GET['sort']) ? $order[$sanitize_sort] : '');
 $count  = ( !empty($_GET['count']) ? sanitize_text_field($_GET['count']) : 10 );
 $total  = 0;
 $filter = '';
+
+$sort_options = array('score desc', 'created_date desc', 'publication_date desc');
+$sort = ( isset($_GET['sort']) && in_array($_GET['sort'], $sort_options) ) ? $_GET['sort'] : 'publication_date desc';
 
 if ($biblio_initial_filter != ''){
     if ($user_filter != ''){
@@ -45,7 +47,7 @@ if ($biblio_initial_filter != ''){
 }
 $start = ($page * $count) - $count;
 
-$biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&count=' . $count . '&lang=' . $lang;
+$biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&count=' . $count . '&lang=' . $lang . '&sort=' . urlencode($sort);;
 
 $filter_list = explode(";", $biblio_config['available_filter']);
 
@@ -65,7 +67,7 @@ if ( $user_filter != '' ) {
     }
 }
 
-//echo $biblio_service_request;
+// echo "<pre>"; print_r($biblio_service_request); echo "</pre>"; die();
 
 $response = @file_get_contents($biblio_service_request);
 if ($response){
@@ -75,6 +77,7 @@ if ($response){
     $start = $response_json->diaServerResponse[0]->response->start;
     $docs_list = $response_json->diaServerResponse[0]->response->docs;
     $facet_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields;
+    // echo "<pre>"; print_r($docs_list); echo "</pre>"; die();
     // echo "<pre>"; print_r($facet_list); echo "</pre>"; die();
 
     if ( array_key_exists('publication_year', $facet_list)) {
@@ -159,6 +162,15 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                                 <h1 class="h1-header"><?php _e('Total', 'biblio'); echo ': ' . $total ?></h1>
                             <?php endif; ?>
                         </header>
+                        <div class="search-form">
+                            <label for="sortBy"><?php _e('Sort by','biblio'); ?>:</label>
+                            <select name="sortBy" id="sortBy" class="selectOrder margintop15" onchange="if (this.value) javascript:change_sort(this);">
+                                <option value="">-</option>
+                                <option value="score desc" <?php echo ( $_GET['sort'] && 'score desc' == $_GET['sort'] ) ? 'selected' : ''; ?>><?php _e('Relevance','biblio'); ?></option>
+                                <option value="created_date desc" <?php echo ( $_GET['sort'] && 'created_date desc' == $_GET['sort'] ) ? 'selected' : ''; ?>><?php _e('Entry date','biblio'); ?></option>
+                                <option value="publication_date desc" <?php echo ( $_GET['sort'] && 'publication_date desc' == $_GET['sort'] ) ? 'selected' : ''; ?>><?php _e('Publication date','biblio'); ?></option>
+                            </select>
+                        </div>
                         <div class="row-fluid">
 
                             <?php foreach ( $docs_list as $position => $docs) { $position++; ?>

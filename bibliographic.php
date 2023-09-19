@@ -101,7 +101,7 @@ if(!class_exists('Bibliographic_Plugin')) {
         }
 
         function admin_menu() {
-            add_options_page(__('Bibliographic record settings', 'biblio'), __('Bibliographic records', 'biblio'),
+            add_options_page(__('Bibliographic record settings', 'biblio'), __('Bibliographic Records', 'biblio'),
                 'manage_options', 'biblio-settings', 'biblio_page_admin');
             //call register settings function
             add_action( 'admin_init', array(&$this, 'register_settings'));

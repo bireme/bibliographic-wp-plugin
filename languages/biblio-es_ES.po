@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bibliographic WP Plugin 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2023-09-19 16:44-0300\n"
-"PO-Revision-Date: 2023-09-19 16:46-0300\n"
+"POT-Creation-Date: 2023-09-19 17:45-0300\n"
+"PO-Revision-Date: 2023-09-19 17:47-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -21,9 +21,9 @@ msgstr ""
 msgid "Bibliographic record settings"
 msgstr "Configuración - Registro bibliográfico"
 
-#: bibliographic.php:104 template/rss.php:53
-msgid "Bibliographic records"
-msgstr "Registro bibliográfico"
+#: bibliographic.php:104
+msgid "Bibliographic Records"
+msgstr "Registro Bibliográfico"
 
 #: bibliographic.php:152
 msgid "Bibliographic sidebar"
@@ -87,7 +87,7 @@ msgstr "ID de AddThis"
 msgid "Google Analytics code"
 msgstr "Código de Google Analytics"
 
-#: settings.php:55 template/home.php:228 template/resource.php:238
+#: settings.php:55 template/home.php:240 template/resource.php:238
 msgid "Fulltext"
 msgstr "Texto completo"
 
@@ -143,51 +143,67 @@ msgstr "Seleccionados"
 msgid "Save changes"
 msgstr "Guardar cambios"
 
-#: template/home.php:115 template/resource.php:83
+#: template/home.php:118 template/resource.php:83
 msgid "Home"
 msgstr "Inicio"
 
-#: template/home.php:120
+#: template/home.php:123
 msgid "Search result"
 msgstr "Resultado de la búsqueda"
 
-#: template/home.php:139 template/resource.php:95
+#: template/home.php:142 template/resource.php:95
 msgid "Enter one or more words"
 msgstr "Ingrese una o más palabras"
 
-#: template/home.php:140 template/resource.php:96
+#: template/home.php:143 template/resource.php:96
 msgid "Search"
 msgstr "Buscar"
 
-#: template/home.php:141 template/resource.php:97
+#: template/home.php:144 template/resource.php:97
 msgid "Tip! You can do your search using boolean operators."
 msgstr "Puedes realizar la búsqueda utilizando operadores booleanos."
 
-#: template/home.php:153
+#: template/home.php:156
 msgid "No results found"
 msgstr "No se han encontrado resultados"
 
-#: template/home.php:157
+#: template/home.php:160
 msgid "Results"
 msgstr "Resultados"
 
-#: template/home.php:159 template/home.php:371
+#: template/home.php:162 template/home.php:383
 msgid "Total"
 msgstr "Total"
 
-#: template/home.php:221 template/resource.php:231
+#: template/home.php:166
+msgid "Sort by"
+msgstr "Ordenar por"
+
+#: template/home.php:169
+msgid "Relevance"
+msgstr "Relevancia"
+
+#: template/home.php:170
+msgid "Entry date"
+msgstr "Fecha de entrada"
+
+#: template/home.php:171
+msgid "Publication date"
+msgstr "Fecha de publicación"
+
+#: template/home.php:233 template/resource.php:231
 msgid "Fulltext (primary link)"
 msgstr "Texto completo (enlace principal)"
 
-#: template/home.php:221 template/resource.php:231
+#: template/home.php:233 template/resource.php:231
 msgid "Fulltext (alternative link)"
 msgstr "Texto completo (enlace alternativo)"
 
-#: template/home.php:257
+#: template/home.php:269
 msgid "Filters"
 msgstr "Filtros"
 
-#: template/home.php:267
+#: template/home.php:279
 msgid "Selected filters"
 msgstr "Filtros seleccionados"
 
@@ -223,6 +239,10 @@ msgstr "Más Relacionados"
 msgid "Related"
 msgstr "Relacionados"
 
+#: template/rss.php:53
+msgid "Bibliographic records"
+msgstr "Registro bibliográfico"
+
 #~ msgid "Bibliographic"
 #~ msgstr "Registros bibliográficos"
 
@@ -231,9 +251,6 @@ msgstr "Relacionados"
 
 #~ msgid "Display filters"
 #~ msgstr "Mostrar filtros"
-
-#~ msgid "Publication type"
-#~ msgstr "Tipo de publicación"
 
 #~ msgid "Limits"
 #~ msgstr "Límites"
