@@ -344,35 +344,35 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                                         <ul class="filter-list">
                                             <?php foreach ( $facet_list[$filter_field] as $filter_item ) { ?>
                                                 <?php
+                                                    $cluster = $filter_field;
                                                     $filter_value = $filter_item[0];
                                                     $filter_count = $filter_item[1];
 
-                                                    if ($filter_field == 'descriptor_filter') {
-                                                        $filter_field = 'mj';
+                                                    if ('descriptor_filter' == $cluster) {
+                                                        $cluster = 'mj';
                                                     }
                                                 ?>
-                                                <?php if ( 'mj' != $filter_field || filter_var($filter_value, FILTER_VALIDATE_INT) === false) : ?>
-                                                    <li class="cat-item">
-                                                        <?php
-                                                            $filter_link = '?';
-                                                            if ($query != ''){
-                                                                $filter_link .= 'q=' . $query . '&';
-                                                            }
-                                                            $filter_link .= 'filter=' . $filter_field . ':"' . $filter_value . '"';
-                                                            if ($user_filter != ''){
-                                                                $filter_link .= ' AND ' . $user_filter ;
-                                                            }
-                                                        ?>
-                                                        <?php if ( strpos($filter_value, '^') !== false ): ?>
-                                                            <a href='<?php echo $filter_link; ?>'><?php biblio_print_lang_value($filter_value, $site_language); ?></a>
-                                                        <?php elseif ( array_key_exists($filter_field, $biblio_texts) ): ?>
-                                                            <a href='<?php echo $filter_link; ?>'><?php  echo translate_label($biblio_texts, $filter_value, $filter_field); ?></a>
-                                                        <?php else: ?>
-                                                            <a href='<?php echo $filter_link; ?>'><?php echo $filter_value; ?></a>
-                                                        <?php endif; ?>
-                                                        <span class="cat-item-count"><?php echo $filter_count; ?></span>
-                                                    </li>
-                                                <?php endif; ?>
+                                                <?php $class = ( 'mj' != $cluster || filter_var($filter_value, FILTER_VALIDATE_INT) === false ) ? 'cat-item' : 'cat-item hide'; ?>
+                                                <li class="<?php echo $class; ?>">
+                                                    <?php
+                                                        $filter_link = '?';
+                                                        if ($query != ''){
+                                                            $filter_link .= 'q=' . $query . '&';
+                                                        }
+                                                        $filter_link .= 'filter=' . $cluster . ':"' . $filter_value . '"';
+                                                        if ($user_filter != ''){
+                                                            $filter_link .= ' AND ' . $user_filter ;
+                                                        }
+                                                    ?>
+                                                    <?php if ( strpos($filter_value, '^') !== false ): ?>
+                                                        <a href='<?php echo $filter_link; ?>'><?php biblio_print_lang_value($filter_value, $site_language); ?></a>
+                                                    <?php elseif ( array_key_exists($filter_field, $biblio_texts) ): ?>
+                                                        <a href='<?php echo $filter_link; ?>'><?php  echo translate_label($biblio_texts, $filter_value, $filter_field); ?></a>
+                                                    <?php else: ?>
+                                                        <a href='<?php echo $filter_link; ?>'><?php echo $filter_value; ?></a>
+                                                    <?php endif; ?>
+                                                    <span class="cat-item-count"><?php echo $filter_count; ?></span>
+                                                </li>
                                             <?php } ?>
                                         </ul>
                                         <?php if ( count($facet_list[$filter_field]) == 20 ) : ?>

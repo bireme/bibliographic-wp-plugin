@@ -65,28 +65,27 @@ if ($response){
                     $cluster = 'mj';
                 }
             ?>
-            <?php if ( 'mj' != $cluster || filter_var($filter_value, FILTER_VALIDATE_INT) === false ) : ?>
-                <li class="cat-item">
-                    <?php
-                        $filter_link = '?';
-                        if ($query != ''){
-                            $filter_link .= 'q=' . $query . '&';
-                        }
-                        $filter_link .= 'filter=' . $cluster . ':"' . $filter_value . '"';
-                        if ($user_filter != ''){
-                            $filter_link .= ' AND ' . $user_filter ;
-                        }
-                    ?>
-                    <?php if ( strpos($filter_value, '^') !== false ): ?>
-                        <a href='<?php echo $filter_link; ?>'><?php biblio_print_lang_value($filter_value, $site_lang); ?></a>
-                    <?php elseif ( array_key_exists($cluster, $biblio_texts) ): ?>
-                        <a href='<?php echo $filter_link; ?>'><?php  echo translate_label($biblio_texts, $filter_value, $cluster); ?></a>
-                    <?php else: ?>
-                        <a href='<?php echo $filter_link; ?>'><?php echo $filter_value; ?></a>
-                    <?php endif; ?>
-                    <span class="cat-item-count"><?php echo $filter_count; ?></span>
-                </li>
-            <?php endif; ?>
+            <?php $class = ( 'mj' != $cluster || filter_var($filter_value, FILTER_VALIDATE_INT) === false ) ? 'cat-item' : 'cat-item hide'; ?>
+            <li class="<?php echo $class; ?>">
+                <?php
+                    $filter_link = '?';
+                    if ($query != ''){
+                        $filter_link .= 'q=' . $query . '&';
+                    }
+                    $filter_link .= 'filter=' . $cluster . ':"' . $filter_value . '"';
+                    if ($user_filter != ''){
+                        $filter_link .= ' AND ' . $user_filter ;
+                    }
+                ?>
+                <?php if ( strpos($filter_value, '^') !== false ): ?>
+                    <a href='<?php echo $filter_link; ?>'><?php biblio_print_lang_value($filter_value, $site_lang); ?></a>
+                <?php elseif ( array_key_exists($cluster, $biblio_texts) ): ?>
+                    <a href='<?php echo $filter_link; ?>'><?php  echo translate_label($biblio_texts, $filter_value, $cluster); ?></a>
+                <?php else: ?>
+                    <a href='<?php echo $filter_link; ?>'><?php echo $filter_value; ?></a>
+                <?php endif; ?>
+                <span class="cat-item-count"><?php echo $filter_count; ?></span>
+            </li>
         <?php } ?>
     </ul>
 <?php endif; ?>
