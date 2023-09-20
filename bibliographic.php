@@ -51,6 +51,8 @@ if(!class_exists('Bibliographic_Plugin')) {
             add_filter( 'document_title_separator', array(&$this, 'title_tag_sep') );
             add_filter( 'document_title_parts', array(&$this, 'theme_slug_render_title'));
             add_filter( 'wp_title', array(&$this, 'theme_slug_render_wp_title'));
+            add_action( 'wp_ajax_biblio_show_more_clusters', array($this, 'biblio_show_more_clusters'));
+            add_action( 'wp_ajax_nopriv_biblio_show_more_clusters', array($this, 'biblio_show_more_clusters'));
 
         } // END public function __construct
 
@@ -252,6 +254,13 @@ if(!class_exists('Bibliographic_Plugin')) {
             wp_enqueue_style ('slick-css', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css');
             wp_enqueue_style ('slick-theme-css', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css');
             wp_enqueue_style ('biblio',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/style.css', array(), BIBLIOGRAPHIC_PLUGIN_VERSION);
+
+            wp_enqueue_script('jquery');
+            wp_localize_script('jquery', 'biblio_script_vars', array(
+                    'ajaxurl' => admin_url( 'admin-ajax.php' ),
+                    'ajaxnonce' => wp_create_nonce( 'ajax_post_validation' )
+                )
+            );
         }
 
         function register_settings(){
@@ -266,7 +275,7 @@ if(!class_exists('Bibliographic_Plugin')) {
             return $links;
         }
 
-        function google_analytics_code(){
+        function google_analytics_code() {
             global $wp;
 
             $pagename = $wp->query_vars["pagename"];
@@ -294,6 +303,23 @@ if(!class_exists('Bibliographic_Plugin')) {
             } //endif
         }
 
+        function biblio_show_more_clusters() {
+            global $biblio_service_url, $biblio_texts;
+            $biblio_service_url = $this->service_url;
+
+            ob_start();
+            include BIBLIOGRAPHIC_PLUGIN_PATH . '/template/cluster.php';
+            $contents = ob_get_contents();
+            ob_end_clean();
+
+            if ( $contents ) {
+                echo $contents;
+            } else {
+                echo 0;
+            }
+
+            die();
+        }
 
     } // END class Bibliographic_Plugin
 } // END if(!class_exists('Bibliographic_Plugin'))

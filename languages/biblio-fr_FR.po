@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bibliographic WP Plugin 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2023-09-19 17:44-0300\n"
-"PO-Revision-Date: 2023-09-19 17:45-0300\n"
+"POT-Creation-Date: 2023-09-20 14:30-0300\n"
+"PO-Revision-Date: 2023-09-20 14:30-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -17,23 +17,23 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: bibliographic.php:104 settings.php:31
+#: bibliographic.php:106 settings.php:31
 msgid "Bibliographic record settings"
 msgstr ""
 
-#: bibliographic.php:104
+#: bibliographic.php:106
 msgid "Bibliographic Records"
 msgstr ""
 
-#: bibliographic.php:152
+#: bibliographic.php:154
 msgid "Bibliographic sidebar"
 msgstr ""
 
-#: bibliographic.php:162
+#: bibliographic.php:164
 msgid "Bibliographic header"
 msgstr ""
 
-#: bibliographic.php:264
+#: bibliographic.php:273
 msgid "Settings"
 msgstr ""
 
@@ -87,7 +87,7 @@ msgstr ""
 msgid "Google Analytics code"
 msgstr ""
 
-#: settings.php:55 template/home.php:240 template/resource.php:238
+#: settings.php:55 template/home.php:250 template/resource.php:238
 msgid "Fulltext"
 msgstr "Texte intégral"
 
@@ -143,69 +143,77 @@ msgstr "Sélectionnés"
 msgid "Save changes"
 msgstr ""
 
-#: template/home.php:118 template/resource.php:83
+#: template/home.php:128 template/resource.php:83
 msgid "Home"
 msgstr "Accueil"
 
-#: template/home.php:123
+#: template/home.php:133
 msgid "Search result"
 msgstr "Résultat de la recherche"
 
-#: template/home.php:142 template/resource.php:95
+#: template/home.php:152 template/resource.php:95
 msgid "Enter one or more words"
 msgstr "Entrez un ou plusieurs mots"
 
-#: template/home.php:143 template/resource.php:96
+#: template/home.php:153 template/resource.php:96
 msgid "Search"
 msgstr "Rechercher"
 
-#: template/home.php:144 template/resource.php:97
+#: template/home.php:154 template/resource.php:97
 msgid "Tip! You can do your search using boolean operators."
 msgstr ""
 
-#: template/home.php:156
+#: template/home.php:166
 msgid "No results found"
 msgstr ""
 
-#: template/home.php:160
+#: template/home.php:170
 msgid "Results"
 msgstr "Résultats"
 
-#: template/home.php:162 template/home.php:383
+#: template/home.php:172 template/home.php:399
 msgid "Total"
 msgstr "Total"
 
-#: template/home.php:166
+#: template/home.php:176
 msgid "Sort by"
 msgstr ""
 
-#: template/home.php:169
+#: template/home.php:179
 msgid "Relevance"
 msgstr ""
 
-#: template/home.php:170
+#: template/home.php:180
 msgid "Entry date"
 msgstr ""
 
-#: template/home.php:171
+#: template/home.php:181
 msgid "Publication date"
 msgstr ""
 
-#: template/home.php:233 template/resource.php:231
+#: template/home.php:243 template/resource.php:231
 msgid "Fulltext (primary link)"
 msgstr "Texte intégral (lien principal)"
 
-#: template/home.php:233 template/resource.php:231
+#: template/home.php:243 template/resource.php:231
 msgid "Fulltext (alternative link)"
 msgstr "Texte intégral (lien alternatif)"
 
-#: template/home.php:269
+#: template/home.php:279
 msgid "Filters"
 msgstr "Filtres"
 
-#: template/home.php:279
+#: template/home.php:289
 msgid "Selected filters"
 msgstr "Filtres sélectionnés"
+
+#: template/home.php:380
+msgid "show more"
+msgstr ""
+
+#: template/home.php:381
+msgid "loading"
+msgstr ""
 
 #: template/related.php:56 template/resource.php:253 template/similar.php:41
 msgid "No related documents"

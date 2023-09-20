@@ -7,10 +7,20 @@ global $biblio_service_url, $biblio_plugin_slug, $biblio_texts;
 require_once(BIBLIOGRAPHIC_PLUGIN_PATH . '/lib/Paginator.php');
 
 $order = array(
-        'RELEVANCE' => 'score desc',
-        'YEAR_ASC'  => 'publication_year asc',
-        'YEAR_DESC' => 'publication_year desc'
-    );
+    'RELEVANCE' => 'score desc',
+    'YEAR_ASC'  => 'publication_year asc',
+    'YEAR_DESC' => 'publication_year desc'
+);
+
+$patterns = array(
+    'A' => '(á|à|â|ä|Á|À|Â|Ä)',
+    'E' => '(é|è|ê|ë|É|È|Ê|Ë)',
+    'I' => '(í|ì|î|ï|Í|Ì|Î|Ï)',
+    'O' => '(ó|ò|ô|ö|Ó|Ò|Ô|Ö)',
+    'U' => '(ú|ù|û|ü|Ú|Ù|Û|Ü)',
+    'C' => '(ç|Ç)',
+    'N' => '(ñ|Ñ)'
+);
 
 $biblio_config         = get_option('biblio_config');
 $biblio_initial_filter = $biblio_config['initial_filter'];
@@ -77,8 +87,6 @@ if ($response){
     $start = $response_json->diaServerResponse[0]->response->start;
     $docs_list = $response_json->diaServerResponse[0]->response->docs;
     $facet_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields;
-    // echo "<pre>"; print_r($docs_list); echo "</pre>"; die();
-    // echo "<pre>"; print_r($facet_list); echo "</pre>"; die();
 
     if ( array_key_exists('publication_year', $facet_list)) {
         usort($facet_list['publication_year'], function($a, $b) {
@@ -87,9 +95,11 @@ if ($response){
     }
 
     if ( array_key_exists('publication_country', $facet_list)) {
-        usort($facet_list['publication_country'], function($a, $b) use ($lang) {
+        usort($facet_list['publication_country'], function($a, $b) use ($lang, $patterns) {
             $a[0] = biblio_get_lang_value($a[0], $lang);
+            $a[0] = preg_replace(array_values($patterns), array_keys($patterns), $a[0]);
             $b[0] = biblio_get_lang_value($b[0], $lang);
+            $b[0] = preg_replace(array_values($patterns), array_keys($patterns), $b[0]);
             return $a[0] <=> $b[0];
         });
     }
@@ -288,12 +298,12 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
 
                                         <?php foreach ( $applied_filter_list as $filter => $filter_values ) :?>
                                             <ul>
-                                            <strong>
-                                                <?php
-                                                    $filter_field = ($filter == 'mj' ? 'descriptor_filter' : $filter);
-                                                    echo translate_label($biblio_texts, $filter_field, 'filter')
-                                                ?>
-                                            </strong>
+                                                <strong>
+                                                    <?php
+                                                        $filter_field = ($filter == 'mj' ? 'descriptor_filter' : $filter);
+                                                        echo translate_label($biblio_texts, $filter_field, 'filter')
+                                                    ?>
+                                                </strong>
 
                                             <?php foreach ( $filter_values as $value ) :?>
                                                 <input type="hidden" name="apply_filter" class="apply_filter"
@@ -331,7 +341,7 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                                         <header class="row-fluid border-bottom marginbottom15">
                                             <h1 class="h1-header"><?php echo $biblio_texts['filter'][$filter_field]; ?></h1>
                                         </header>
-                                        <ul>
+                                        <ul class="filter-list">
                                             <?php foreach ( $facet_list[$filter_field] as $filter_item ) { ?>
                                                 <?php
                                                     $filter_value = $filter_item[0];
@@ -365,6 +375,12 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                                                 <?php endif; ?>
                                             <?php } ?>
                                         </ul>
+                                        <?php if ( count($facet_list[$filter_field]) == 20 ) : ?>
+                                        <div class="show-more text-center">
+                                            <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="<?php echo $filter_field; ?>"><?php _e('show more','biblio'); ?></a>
+                                            <a href="javascript:void(0)" class="loading"><?php _e('loading','biblio'); ?>...</a>
+                                        </div>
+                                        <?php endif; ?>
                                     </section>
                                 <?php endif; ?>
                             <?php } ?>
@@ -402,7 +418,7 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                                             $filter_field = 'mj';
                                         }
                                     ?>
-                                    <?php if ( 'mj' != $filter_field || filter_var($filter_value, FILTER_VALIDATE_INT) === false) : ?>
+                                    <?php if ( 'mj' != $filter_field || filter_var($filter_value, FILTER_VALIDATE_INT) === false ) : ?>
                                         <li class="cat-item">
                                             <?php
                                                 $filter_link = '?';
@@ -438,4 +454,52 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
 
         </div> <!-- close DIV.ajusta2 -->
     </div>
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $(document).on( "click", ".btn-ajax", function(e) {
+                e.preventDefault();
+
+                var _this = $(this);
+                var fb = $(this).data('fb');
+                var cluster = $(this).data('cluster');
+
+                $(this).hide();
+                $(this).next('.loading').show();
+
+                $.ajax({ 
+                    type: "POST",
+                    url: biblio_script_vars.ajaxurl,
+                    data: {
+                        action: 'biblio_show_more_clusters',
+                        lang: '<?php echo $lang; ?>',
+                        site_lang: '<?php echo $site_language; ?>',
+                        query: '<?php echo $query; ?>',
+                        filter: '<?php echo $filter; ?>',
+                        uf: '<?php echo $user_filter; ?>',
+                        cluster: cluster,
+                        fb: fb
+                    },
+                    success: function(response){
+                        var html = $.parseHTML( response );
+                        var this_len = _this.parent().siblings('.filter-list').find(".cat-item").length;
+                        _this.parent().siblings('.filter-list').replaceWith( response );
+                        _this.data('fb', fb+10);
+                        _this.next('.loading').hide();
+
+                        var response_len = $(html).find(".cat-item").length;
+                        var mod = parseInt(response_len % 10);
+
+                        if ( mod || response_len == this_len ) {
+                            _this.remove();
+                        } else {
+                            _this.show();
+                        }
+                    },
+                    error: function(error){ console.log(error) }
+                });
+            });
+        });
+    </script>
+
 <?php get_footer(); ?>
