@@ -74,51 +74,54 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
 $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_url_' . $lang] : real_site_url();
 $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_config['plugin_title_' . $lang] : $biblio_config['plugin_title'];
 ?>
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-    <link rel="profile" href="https://gmpg.org/xfn/11" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <meta name="citation_id" content="biblio-<?php echo $resource->django_id ?>" />
-    <meta name="dc.identifier" content="biblio-<?php echo $resource->django_id ?>" />
-    <?php foreach ( $resource->reference_title as $meta_title ): ?>
-        <meta name="dc.title" content="<?php echo $meta_title ?>" />
-    <?php endforeach; ?>
-    <meta name="citation_title" content="<?php echo $resource->reference_title[0] ?>" />
+<?php
+ ob_start();
+ get_header('biblio');
+ $get_header_content = ob_get_contents();
+ ob_end_clean();
 
-    <?php if ( $resource->author ): ?>
-        <?php foreach ( $resource->author as $meta_author ): ?>
-            <meta name="dc.contributor"  content="<?php echo $meta_author ?>" />
-            <meta name="citation_author" content="<?php echo $meta_author ?>" />
-        <?php endforeach; ?>
-    <?php endif; ?>
+ $meta = array();
+ $meta[] = '<!-- bibliographic metadata -->';
+ $meta[] = '<meta name="citation_id" content="biblio-' . $resource->django_id . '" />';
+ $meta[] = '<meta name="dc.identifier" content="biblio-' . $resource->django_id . '" />';
+ foreach ( $resource->reference_title as $meta_title ){
+     $meta[] = '<meta name="dc.title" content="' . $meta_title . '" />';
+ }
+ $meta[] = '<meta name="citation_title" content="' . $resource->reference_title[0] . '" />';
 
+ if ( $resource->author ){
+     foreach ( $resource->author as $meta_author ){
+         $meta[] = '<meta name="dc.contributor"  content="' . $meta_author . '" />';
+         $meta[] = '<meta name="citation_author" content="' . $meta_author . '" />';
+     }
+ }
 
-    <?php if ( $resource->journal ): ?>
-        <meta name="citation_journal_title" content="<?php echo $resource->journal[0] ?>" />
-    <?php endif ?>
+ if ( $resource->journal ){
+     $meta[] = '<meta name="citation_journal_title" content="' . $resource->journal[0] . '" />';
+ }
 
-    <?php if ( $resource->link ) : ?>
-        <meta name="citation_fulltext_html_url" content="<?php echo $resource->link[0] ?>" />
-    <?php endif ?>
+ if ( $resource->link ) {
+     $meta[] = '<meta name="citation_fulltext_html_url" content="' . $resource->link[0] . '" />';
+ }
 
-    <?php if ($resource->mh ) : ?>
-        <?php foreach ( $resource->mh as $meta_keyword ): ?>
-            <meta name="citation_keywords" content="<?php echo $meta_keyword ?>" />
-        <?php endforeach; ?>
-    <?php endif ?>
+ if ($resource->mh ) {
+     foreach ( $resource->mh as $meta_keyword ){
+         $meta[] = '<meta name="citation_keywords" content="' . $meta_keyword . '" />';
+     }
+ }
 
-    <meta name="citation_language" content="<?php echo $publication_language ?>" />
-    <?php if ($resource->publication_year ) : ?>
-        <meta name="citation_publication_date" content="<?php echo $resource->publication_year ?>" />
-        <meta name="dc.date" content="<?php echo $resource->publication_year ?>" />
-    <?php endif ?>
+ $meta[] = '<meta name="citation_language" content="' . $publication_language . '" />';
+ if ($resource->publication_year ) {
+     $meta[] = '<meta name="citation_publication_date" content="' . $resource->publication_year . '" />';
+     $meta[] = '<meta name="dc.date" content="' . $resource->publication_year . '" />';
+ }
+ $meta_lines = implode("\n", $meta);
 
-    <?php wp_head(); ?>
-</head>
+ $header_content = str_replace('</head>', $meta_lines . '</head>', $get_header_content);
+?>
 
-<?php get_header('biblio');?>
+<?php print($header_content); ?>
 
     <div id="content" class="row-fluid">
         <div class="ajusta2">
