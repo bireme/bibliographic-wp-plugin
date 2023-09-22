@@ -256,11 +256,10 @@ if(!class_exists('Bibliographic_Plugin')) {
             wp_enqueue_style ('biblio',  BIBLIOGRAPHIC_PLUGIN_URL . 'template/css/style.css', array(), BIBLIOGRAPHIC_PLUGIN_VERSION);
 
             wp_enqueue_script('jquery');
-            wp_localize_script('jquery', 'biblio_script_vars', array(
-                    'ajaxurl' => admin_url( 'admin-ajax.php' ),
-                    'ajaxnonce' => wp_create_nonce( 'ajax_post_validation' )
-                )
-            );
+            wp_add_inline_script('jquery', 'const biblio_script_vars = ' . json_encode( array(
+                'ajaxurl' => admin_url( 'admin-ajax.php' ),
+                'ajaxnonce' => wp_create_nonce( 'ajax_post_validation' )
+            )), 'before');
         }
 
         function register_settings(){

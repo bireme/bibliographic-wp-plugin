@@ -4,9 +4,9 @@ ini_set('display_errors', '0');
 
 $lang = $_POST['lang'];
 $site_lang = $_POST['site_lang'];
-$query = $_POST['query'];
-$filter = $_POST['filter'];
-$user_filter = $_POST['uf'];
+$query = stripslashes($_POST['query']);
+$filter = stripslashes($_POST['filter']);
+$user_filter = stripslashes($_POST['uf']);
 $fb = $_POST['fb'];
 $cluster = $_POST['cluster'];
 $cluster_fb = ( $_POST['cluster'] ) ? $_POST['cluster'].':'.$fb : '';
