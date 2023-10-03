@@ -1,25 +1,22 @@
-# Copyright (C) 2017 Bibliographic
-# This file is distributed under the same license as the Bibliographic package.
+# Copyright (C) 2023 BIREME/OPAS/OMS
+# This file is distributed under the same license as the Bibliographic plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Bibliographic WP Plugin 0.1\n"
+"Project-Id-Version: Bibliographic 1.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bibliographic\n"
 "POT-Creation-Date: 2023-10-03T17:54:03+00:00\n"
-"PO-Revision-Date: 2023-10-03 15:01-0300\n"
-"Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
+"PO-Revision-Date: 2023-10-03 15:13-0300\n"
+"Last-Translator: \n"
 "Language-Team: \n"
-"Language: es_ES\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4\n"
-"X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #. Plugin Name of the plugin
 msgid "Bibliographic"
-msgstr "Registros bibliográficos"
+msgstr ""
 
 #. Plugin URI of the plugin
 msgid "http://reddes.bvsalud.org/projects/fi-admin/"
@@ -27,7 +24,7 @@ msgstr ""
 
 #. Description of the plugin
 msgid "Search bibliographic records from FI-ADMIN."
-msgstr "Búsqueda de registros bibliográficos de FI-ADMIN."
+msgstr ""
 
 #. Author of the plugin
 msgid "BIREME/OPAS/OMS"
@@ -39,329 +36,298 @@ msgstr ""
 
 #: bibliographic.php:106 settings.php:31
 msgid "Bibliographic record settings"
-msgstr "Configuración - Registro bibliográfico"
+msgstr ""
 
 #: bibliographic.php:106
 msgid "Bibliographic Records"
-msgstr "Registro Bibliográfico"
+msgstr ""
 
 #: bibliographic.php:154
 msgid "Bibliographic sidebar"
-msgstr "Registros bibliograficos - Barra lateral"
+msgstr ""
 
 #: bibliographic.php:164
 msgid "Bibliographic header"
-msgstr "Registro bibliográfico - Encabezado"
+msgstr ""
 
 #: bibliographic.php:272
 msgid "Settings"
-msgstr "Configuración"
+msgstr ""
 
 #: lib/Paginator.php:35 lib/Paginator.php:36 lib/Paginator.php:47
 #: lib/Paginator.php:53 lib/Paginator.php:62 lib/Paginator.php:63
 #: lib/Paginator.php:69 lib/Paginator.php:70
 msgid "go to page"
-msgstr "ir a la página"
+msgstr ""
 
 #: settings.php:8
 msgid "Main subject"
-msgstr "Asunto principal"
+msgstr ""
 
 #: settings.php:9
 msgid "Document type"
-msgstr "Tipo de documento"
+msgstr ""
 
 #: settings.php:10
 msgid "Database"
-msgstr "Base de datos"
+msgstr ""
 
 #: settings.php:11
 msgid "Publication country"
-msgstr "País de publicación"
+msgstr ""
 
 #: settings.php:12
 msgid "Language"
-msgstr "Idioma"
+msgstr ""
 
 #: settings.php:13
 msgid "Year"
-msgstr "Año"
+msgstr ""
 
 #: settings.php:14
 msgid "Journal"
-msgstr "Revista"
+msgstr ""
 
 #: settings.php:39
 msgid "Plugin page"
-msgstr "Pagina del plugin"
+msgstr ""
 
 #: settings.php:43
 msgid "Filter query"
-msgstr "Filtro de búsqueda"
+msgstr ""
 
 #: settings.php:47
 msgid "AddThis profile ID"
-msgstr "ID de AddThis"
+msgstr ""
 
 #: settings.php:51
 msgid "Google Analytics code"
-msgstr "Código de Google Analytics"
+msgstr ""
 
 #: settings.php:55 template/home.php:250 template/resource.php:305
 msgid "Fulltext"
-msgstr "Texto completo"
+msgstr ""
 
 #: settings.php:59
 msgid "Present alternative fulltext links"
-msgstr "Presentar enlaces alternativo del  texto completo"
+msgstr ""
 
 #: settings.php:74
 msgid "Home URL"
-msgstr "Inicio"
+msgstr ""
 
 #: settings.php:79 settings.php:86
 msgid "Page title"
-msgstr "Título de la página"
+msgstr ""
 
 #: settings.php:92
 msgid "Related Documents filter"
-msgstr "Filtro de Documentos Relacionados"
+msgstr ""
 
 #: settings.php:95 settings.php:102
 msgid "The filters must be separated by commas."
-msgstr "Los filtros deben estar separados por comas."
+msgstr ""
 
 #: settings.php:99
 msgid "More Related filter"
-msgstr "Filtro de Más Relacionados"
+msgstr ""
 
 #: settings.php:107
 msgid "Page Layout"
-msgstr "Layout de pagina"
+msgstr ""
 
 #: settings.php:112
 msgid "Show filters as whole page"
-msgstr "Mostrar filtros como página completa"
+msgstr ""
 
 #: settings.php:118
 msgid "Show normal page"
-msgstr "Mostrar página normal"
+msgstr ""
 
 #: settings.php:123
 msgid "Search filters"
-msgstr "Filtros de búsqueda"
+msgstr ""
 
 #: settings.php:128
 msgid "Available"
-msgstr "Disponible"
+msgstr ""
 
 #: settings.php:141
 msgid "Selected"
-msgstr "Seleccionados"
+msgstr ""
 
 #: settings.php:162
 msgid "Save changes"
-msgstr "Guardar cambios"
+msgstr ""
 
 #: template/home.php:128 template/resource.php:150
 msgid "Home"
-msgstr "Inicio"
+msgstr ""
 
 #: template/home.php:133
 msgid "Search result"
-msgstr "Resultado de la búsqueda"
+msgstr ""
 
 #: template/home.php:152 template/resource.php:162
 msgid "Enter one or more words"
-msgstr "Ingrese una o más palabras"
+msgstr ""
 
 #: template/home.php:153 template/resource.php:163
 msgid "Search"
-msgstr "Buscar"
+msgstr ""
 
 #: template/home.php:154 template/resource.php:164
 msgid "Tip! You can do your search using boolean operators."
-msgstr "Puedes realizar la búsqueda utilizando operadores booleanos."
+msgstr ""
 
 #: template/home.php:166
 msgid "No results found"
-msgstr "No se han encontrado resultados"
+msgstr ""
 
 #: template/home.php:170
 msgid "Results"
-msgstr "Resultados"
+msgstr ""
 
 #: template/home.php:172 template/home.php:399
 msgid "Total"
-msgstr "Total"
+msgstr ""
 
 #: template/home.php:176
 msgid "Sort by"
-msgstr "Ordenar por"
+msgstr ""
 
 #: template/home.php:179
 msgid "Relevance"
-msgstr "Relevancia"
+msgstr ""
 
 #: template/home.php:180
 msgid "Entry date"
-msgstr "Fecha de entrada"
+msgstr ""
 
 #: template/home.php:181
 msgid "Publication date"
-msgstr "Fecha de publicación"
+msgstr ""
 
 #: template/home.php:243 template/resource.php:298
 msgid "Fulltext (primary link)"
-msgstr "Texto completo (enlace principal)"
+msgstr ""
 
 #: template/home.php:243 template/resource.php:298
 msgid "Fulltext (alternative link)"
-msgstr "Texto completo (enlace alternativo)"
+msgstr ""
 
 #: template/home.php:279
 msgid "Filters"
-msgstr "Filtros"
+msgstr ""
 
 #: template/home.php:289
 msgid "Selected filters"
-msgstr "Filtros seleccionados"
+msgstr ""
 
 #: template/home.php:380
 msgid "show more"
-msgstr "mostrar más"
+msgstr ""
 
 #: template/home.php:381
 msgid "loading"
-msgstr "cargando"
+msgstr ""
 
 #: template/related.php:56 template/resource.php:346 template/similar.php:41
 msgid "No related documents"
-msgstr "No se han encontrado relacionados"
+msgstr ""
 
 #: template/resource.php:79
 msgid "cin"
-msgstr "Comentario en"
+msgstr "Comment in"
 
 #: template/resource.php:80
 msgid "con"
-msgstr "Comentario sobre"
+msgstr "Comment on"
 
 #: template/resource.php:81
 msgid "ein"
-msgstr "Errata en"
+msgstr "Erratum in"
 
 #: template/resource.php:82
 msgid "efr"
-msgstr "Errata de"
+msgstr "Erratum for"
 
 #: template/resource.php:83
 msgid "cri"
-msgstr "Corregido y republicado en"
+msgstr "Corrected and republished in"
 
 #: template/resource.php:84 template/resource.php:85
 msgid "crf"
-msgstr "Corregido y republicado de"
+msgstr "Corrected and republished from"
 
 #: template/resource.php:86
 msgid "uin"
-msgstr "Actualización en"
+msgstr "Update in"
 
 #: template/resource.php:87
 msgid "uof"
-msgstr "Actualización de"
+msgstr "Update of"
 
 #: template/resource.php:88
 msgid "eci"
-msgstr "Expresión de preocupación en"
+msgstr "Expression of concern in"
 
 #: template/resource.php:89
 msgid "ecf"
-msgstr "Expresión de preocupación para"
+msgstr "Expression of concern for"
 
 #: template/resource.php:90
 msgid "rpi"
-msgstr "Republicado en"
+msgstr "Republished in"
 
 #: template/resource.php:91
 msgid "rpf"
-msgstr "Republicado de"
+msgstr "Republished from"
 
 #: template/resource.php:92
 msgid "spin"
-msgstr "Resumen para pacientes en"
+msgstr "Summary for patients in"
 
 #: template/resource.php:93
 msgid "ori"
-msgstr "Informe original en"
+msgstr "Original report in"
 
 #: template/resource.php:94
 msgid "rin"
-msgstr "Retractación en"
+msgstr "Retraction in"
 
 #: template/resource.php:95
 msgid "rof"
-msgstr "Retractación de"
+msgstr "Retraction of"
 
 #: template/resource.php:212
 msgid "Publication year"
-msgstr "Año de publicación"
+msgstr ""
 
 #: template/resource.php:219
 msgid ""
 "Theses and dissertations in %pub_lang% presented to the %institution% to "
 "obtain the academic title of %academic_title%. Leader: %leader%"
 msgstr ""
-"Tesis y disertaciones en %pub_lang% presentadas a la %institution% para "
-"obtener el título de %academic_title%. Líder: %leader%"
 
 #: template/resource.php:222
 msgid ""
 "Theses and dissertations presented to the %institution% to obtain the "
 "academic title of %academic_title%. Leader: %leader%"
 msgstr ""
-"Tesis y disertaciones presentadas a la %institution% para obtener el título "
-"de %academic_title%. Líder: %leader%"
 
 #: template/resource.php:328
 msgid "Research data"
-msgstr "Datos de investigación"
+msgstr ""
 
 #: template/resource.php:343
 msgid "More related"
-msgstr "Más Relacionados"
+msgstr ""
 
 #: template/resource.php:372
 msgid "Related"
-msgstr "Relacionados"
+msgstr ""
 
 #: template/rss.php:53
 msgid "Bibliographic records"
-msgstr "Registro bibliográfico"
-
-#~ msgid "Display filters"
-#~ msgstr "Mostrar filtros"
-
-#~ msgid "Limits"
-#~ msgstr "Límites"
-
-#~ msgid "Abstract"
-#~ msgstr "Resumen"
-
-#~ msgid "Portuguese"
-#~ msgstr "Portugués"
-
-#~ msgid "Spanish"
-#~ msgstr "Español"
-
-#~ msgid "English"
-#~ msgstr "Inglés"
-
-#~ msgid "French"
-#~ msgstr "Francés"
-
-#~ msgid "Records"
-#~ msgstr "Registros"
-
-#~ msgid " in "
-#~ msgstr "en"
+msgstr ""

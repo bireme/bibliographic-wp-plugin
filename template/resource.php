@@ -41,6 +41,7 @@ $request_parts = explode('/', $request_uri);
 $resource_id   = sanitize_text_field($_GET['id']);
 
 $site_language = strtolower(get_bloginfo('language'));
+$lang = substr($site_language,0,2);
 
 $biblio_service_request = $biblio_service_url . 'api/bibliographic/search/?id=' . $resource_id . '&op=related&lang=' . $lang;
 
@@ -73,6 +74,26 @@ $feed_url = real_site_url($biblio_plugin_slug) . 'biblio-feed?q=' . urlencode($q
 
 $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_url_' . $lang] : real_site_url();
 $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_config['plugin_title_' . $lang] : $biblio_config['plugin_title'];
+
+// related resources types
+$type_translated['cin'] = __('cin','biblio');
+$type_translated['con'] = __('con','biblio');
+$type_translated['ein'] = __('ein','biblio');
+$type_translated['efr'] = __('efr','biblio');
+$type_translated['cri'] = __('cri','biblio');
+$type_translated['crf'] = __('crf','biblio');
+$type_translated['crf'] = __('crf','biblio');
+$type_translated['uin'] = __('uin','biblio');
+$type_translated['uof'] = __('uof','biblio');
+$type_translated['eci'] = __('eci','biblio');
+$type_translated['ecf'] = __('ecf','biblio');
+$type_translated['rpi'] = __('rpi','biblio');
+$type_translated['rpf'] = __('rpf','biblio');
+$type_translated['spin'] = __('spin','biblio');
+$type_translated['ori'] = __('ori','biblio');
+$type_translated['rin'] = __('rin','biblio');
+$type_translated['rof'] = __('rof','biblio');
+
 ?>
 
 <?php
@@ -289,6 +310,33 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                             <?php endif; ?>
                         </article>
                     </div>
+
+                    <?php if ( $resource->related_resources ) : ?>
+                        <?php
+                            foreach ($resource->related_resources as $related):
+                                $related_data = json_decode($related, true);
+                                $related_type = $related_data['_i'];
+                                $related_link = ($related_data['_6'] != '' ? $related_data['_6'] : 'https://pesquisa.bvsalud.org/portal/resource/' . $lang . '/' . $related_data['_w']);
+                                echo '<strong>' . $type_translated[$related_type] . ':</strong>';
+                                echo '<p><a href="' . $related_link . '" target="_blank">' . $related_data['_t'] . '</a></p>';
+                            endforeach;
+                        ?>
+                    <?php endif; ?>
+
+                    <?php if ( $resource->related_research ) : ?>
+                        <?php
+
+                            echo '<strong>' . __('Research data','biblio') . '</strong>';
+                            foreach ($resource->related_research as $research):
+                                $research_data = json_decode($research, true);
+                                $research_link = $research_data['_6'];
+                                echo '<p>';
+                                echo '<a href="' . $research_link . '" target="_blank">' . $research_data['_t'] . '</a><br/>';
+                                echo $research_data['_n'];
+                                echo '</p>';
+                            endforeach;
+                        ?>
+                    <?php endif; ?>
 
                     <?php if ( strpos($biblio_initial_filter, 'BIGG') === false ): ?>
                         <div class="row-fluid">

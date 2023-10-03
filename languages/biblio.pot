@@ -1,23 +1,40 @@
-# Copyright (C) 2021 Bibliographic
-# This file is distributed under the same license as the Bibliographic package.
-#, fuzzy
+# Copyright (C) 2023 BIREME/OPAS/OMS
+# This file is distributed under the same license as the Bibliographic plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Bibliographic WP Plugin 0.1\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2023-09-20 14:29-0300\n"
-"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
+"Project-Id-Version: Bibliographic 1.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bibliographic\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
-"X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-SearchPath-0: .\n"
+"POT-Creation-Date: 2023-10-03T17:54:03+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.8.1\n"
 
-#: bibliographic.php:106 settings.php:31
+#. Plugin Name of the plugin
+msgid "Bibliographic"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "http://reddes.bvsalud.org/projects/fi-admin/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Search bibliographic records from FI-ADMIN."
+msgstr ""
+
+#. Author of the plugin
+msgid "BIREME/OPAS/OMS"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://reddes.bvsalud.org/"
+msgstr ""
+
+#: bibliographic.php:106
+#: settings.php:31
 msgid "Bibliographic record settings"
 msgstr ""
 
@@ -33,13 +50,18 @@ msgstr ""
 msgid "Bibliographic header"
 msgstr ""
 
-#: bibliographic.php:273
+#: bibliographic.php:272
 msgid "Settings"
 msgstr ""
 
-#: lib/Paginator.php:35 lib/Paginator.php:36 lib/Paginator.php:47
-#: lib/Paginator.php:53 lib/Paginator.php:62 lib/Paginator.php:63
-#: lib/Paginator.php:69 lib/Paginator.php:70
+#: lib/Paginator.php:35
+#: lib/Paginator.php:36
+#: lib/Paginator.php:47
+#: lib/Paginator.php:53
+#: lib/Paginator.php:62
+#: lib/Paginator.php:63
+#: lib/Paginator.php:69
+#: lib/Paginator.php:70
 msgid "go to page"
 msgstr ""
 
@@ -87,7 +109,9 @@ msgstr ""
 msgid "Google Analytics code"
 msgstr ""
 
-#: settings.php:55 template/home.php:250 template/resource.php:238
+#: settings.php:55
+#: template/home.php:250
+#: template/resource.php:305
 msgid "Fulltext"
 msgstr ""
 
@@ -99,7 +123,8 @@ msgstr ""
 msgid "Home URL"
 msgstr ""
 
-#: settings.php:79 settings.php:86
+#: settings.php:79
+#: settings.php:86
 msgid "Page title"
 msgstr ""
 
@@ -107,7 +132,8 @@ msgstr ""
 msgid "Related Documents filter"
 msgstr ""
 
-#: settings.php:95 settings.php:102
+#: settings.php:95
+#: settings.php:102
 msgid "The filters must be separated by commas."
 msgstr ""
 
@@ -143,7 +169,8 @@ msgstr ""
 msgid "Save changes"
 msgstr ""
 
-#: template/home.php:128 template/resource.php:83
+#: template/home.php:128
+#: template/resource.php:150
 msgid "Home"
 msgstr ""
 
@@ -151,15 +178,18 @@ msgstr ""
 msgid "Search result"
 msgstr ""
 
-#: template/home.php:152 template/resource.php:95
+#: template/home.php:152
+#: template/resource.php:162
 msgid "Enter one or more words"
 msgstr ""
 
-#: template/home.php:153 template/resource.php:96
+#: template/home.php:153
+#: template/resource.php:163
 msgid "Search"
 msgstr ""
 
-#: template/home.php:154 template/resource.php:97
+#: template/home.php:154
+#: template/resource.php:164
 msgid "Tip! You can do your search using boolean operators."
 msgstr ""
 
@@ -171,7 +201,8 @@ msgstr ""
 msgid "Results"
 msgstr ""
 
-#: template/home.php:172 template/home.php:399
+#: template/home.php:172
+#: template/home.php:399
 msgid "Total"
 msgstr ""
 
@@ -191,11 +222,13 @@ msgstr ""
 msgid "Publication date"
 msgstr ""
 
-#: template/home.php:243 template/resource.php:231
+#: template/home.php:243
+#: template/resource.php:298
 msgid "Fulltext (primary link)"
 msgstr ""
 
-#: template/home.php:243 template/resource.php:231
+#: template/home.php:243
+#: template/resource.php:298
 msgid "Fulltext (alternative link)"
 msgstr ""
 
@@ -215,32 +248,98 @@ msgstr ""
 msgid "loading"
 msgstr ""
 
-#: template/related.php:56 template/resource.php:253
+#: template/related.php:56
+#: template/resource.php:346
 #: template/similar.php:41
 msgid "No related documents"
 msgstr ""
 
-#: template/resource.php:145
+#: template/resource.php:79
+msgid "cin"
+msgstr ""
+
+#: template/resource.php:80
+msgid "con"
+msgstr ""
+
+#: template/resource.php:81
+msgid "ein"
+msgstr ""
+
+#: template/resource.php:82
+msgid "efr"
+msgstr ""
+
+#: template/resource.php:83
+msgid "cri"
+msgstr ""
+
+#: template/resource.php:84
+#: template/resource.php:85
+msgid "crf"
+msgstr ""
+
+#: template/resource.php:86
+msgid "uin"
+msgstr ""
+
+#: template/resource.php:87
+msgid "uof"
+msgstr ""
+
+#: template/resource.php:88
+msgid "eci"
+msgstr ""
+
+#: template/resource.php:89
+msgid "ecf"
+msgstr ""
+
+#: template/resource.php:90
+msgid "rpi"
+msgstr ""
+
+#: template/resource.php:91
+msgid "rpf"
+msgstr ""
+
+#: template/resource.php:92
+msgid "spin"
+msgstr ""
+
+#: template/resource.php:93
+msgid "ori"
+msgstr ""
+
+#: template/resource.php:94
+msgid "rin"
+msgstr ""
+
+#: template/resource.php:95
+msgid "rof"
+msgstr ""
+
+#: template/resource.php:212
 msgid "Publication year"
 msgstr ""
 
-#: template/resource.php:152
-msgid ""
-"Theses and dissertations in %pub_lang% presented to the %institution% to "
-"obtain the academic title of %academic_title%. Leader: %leader%"
+#: template/resource.php:219
+msgid "Theses and dissertations in %pub_lang% presented to the %institution% to obtain the academic title of %academic_title%. Leader: %leader%"
 msgstr ""
 
-#: template/resource.php:155
-msgid ""
-"Theses and dissertations presented to the %institution% to obtain the "
-"academic title of %academic_title%. Leader: %leader%"
+#: template/resource.php:222
+msgid "Theses and dissertations presented to the %institution% to obtain the academic title of %academic_title%. Leader: %leader%"
 msgstr ""
 
-#: template/resource.php:250
+#: template/resource.php:328
+msgid "Research data"
+msgstr ""
+
+#: template/resource.php:343
 msgid "More related"
 msgstr ""
 
-#: template/resource.php:279
+#: template/resource.php:372
 msgid "Related"
 msgstr ""
 

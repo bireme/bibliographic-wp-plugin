@@ -120,7 +120,7 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
 
 ?>
 
-<?php get_header('biblio');?>
+<?php get_header('biblio'); ?>
 
     <div id="content" class="row-fluid">
         <div class="ajusta2">
@@ -467,7 +467,7 @@ $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_co
                 $(this).hide();
                 $(this).next('.loading').show();
 
-                $.ajax({ 
+                $.ajax({
                     type: "POST",
                     url: biblio_script_vars.ajaxurl,
                     data: {
