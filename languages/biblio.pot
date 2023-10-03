@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-10-03T17:54:03+00:00\n"
+"POT-Creation-Date: 2023-10-03T18:50:28+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 
@@ -111,7 +111,7 @@ msgstr ""
 
 #: settings.php:55
 #: template/home.php:250
-#: template/resource.php:305
+#: template/resource.php:304
 msgid "Fulltext"
 msgstr ""
 
@@ -170,7 +170,7 @@ msgid "Save changes"
 msgstr ""
 
 #: template/home.php:128
-#: template/resource.php:150
+#: template/resource.php:149
 msgid "Home"
 msgstr ""
 
@@ -179,17 +179,17 @@ msgid "Search result"
 msgstr ""
 
 #: template/home.php:152
-#: template/resource.php:162
+#: template/resource.php:161
 msgid "Enter one or more words"
 msgstr ""
 
 #: template/home.php:153
-#: template/resource.php:163
+#: template/resource.php:162
 msgid "Search"
 msgstr ""
 
 #: template/home.php:154
-#: template/resource.php:164
+#: template/resource.php:163
 msgid "Tip! You can do your search using boolean operators."
 msgstr ""
 
@@ -223,12 +223,12 @@ msgid "Publication date"
 msgstr ""
 
 #: template/home.php:243
-#: template/resource.php:298
+#: template/resource.php:297
 msgid "Fulltext (primary link)"
 msgstr ""
 
 #: template/home.php:243
-#: template/resource.php:298
+#: template/resource.php:297
 msgid "Fulltext (alternative link)"
 msgstr ""
 
@@ -255,79 +255,78 @@ msgid "No related documents"
 msgstr ""
 
 #: template/resource.php:79
-msgid "cin"
+msgid "Comment in"
 msgstr ""
 
 #: template/resource.php:80
-msgid "con"
+msgid "Comment on"
 msgstr ""
 
 #: template/resource.php:81
-msgid "ein"
+msgid "Erratum in"
 msgstr ""
 
 #: template/resource.php:82
-msgid "efr"
+msgid "Erratum for"
 msgstr ""
 
 #: template/resource.php:83
-msgid "cri"
+msgid "Corrected and republished in"
 msgstr ""
 
 #: template/resource.php:84
+msgid "Corrected and republished from"
+msgstr ""
+
 #: template/resource.php:85
-msgid "crf"
+msgid "Update in"
 msgstr ""
 
 #: template/resource.php:86
-msgid "uin"
+msgid "Update of"
 msgstr ""
 
 #: template/resource.php:87
-msgid "uof"
+msgid "Expression of concern in"
 msgstr ""
 
 #: template/resource.php:88
-msgid "eci"
+msgid "Expression of concern for"
 msgstr ""
 
 #: template/resource.php:89
-msgid "ecf"
+msgid "Republished in"
 msgstr ""
 
 #: template/resource.php:90
-msgid "rpi"
+msgid "Republished from"
 msgstr ""
 
 #: template/resource.php:91
-msgid "rpf"
+msgid "Summary for patients in"
 msgstr ""
 
 #: template/resource.php:92
-msgid "spin"
+msgid "Original report in"
 msgstr ""
 
 #: template/resource.php:93
-msgid "ori"
+msgid "Retraction in"
 msgstr ""
 
 #: template/resource.php:94
-msgid "rin"
+msgid "Retraction of"
 msgstr ""
 
-#: template/resource.php:95
-msgid "rof"
-msgstr ""
-
-#: template/resource.php:212
+#: template/resource.php:211
 msgid "Publication year"
 msgstr ""
 
-#: template/resource.php:219
+#: template/resource.php:218
 msgid "Theses and dissertations in %pub_lang% presented to the %institution% to obtain the academic title of %academic_title%. Leader: %leader%"
 msgstr ""
 
-#: template/resource.php:222
+#: template/resource.php:221
 msgid "Theses and dissertations presented to the %institution% to obtain the academic title of %academic_title%. Leader: %leader%"
 msgstr ""
 

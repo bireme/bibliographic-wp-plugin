@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bibliographic WP Plugin 0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bibliographic\n"
-"POT-Creation-Date: 2023-10-03T17:54:03+00:00\n"
-"PO-Revision-Date: 2023-10-03 14:55-0300\n"
+"POT-Creation-Date: 2023-10-03T18:50:28+00:00\n"
+"PO-Revision-Date: 2023-10-03 15:56-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -107,7 +107,7 @@ msgstr "ID do AddThis"
 msgid "Google Analytics code"
 msgstr "Código Google Analytics"
 
-#: settings.php:55 template/home.php:250 template/resource.php:305
+#: settings.php:55 template/home.php:250 template/resource.php:304
 msgid "Fulltext"
 msgstr "Texto completo"
 
@@ -163,7 +163,7 @@ msgstr "Selecionados"
 msgid "Save changes"
 msgstr "Guardar alterações"
 
-#: template/home.php:128 template/resource.php:150
+#: template/home.php:128 template/resource.php:149
 msgid "Home"
 msgstr "Início"
 
@@ -171,15 +171,15 @@ msgstr "Início"
 msgid "Search result"
 msgstr "Resultado da busca"
 
-#: template/home.php:152 template/resource.php:162
+#: template/home.php:152 template/resource.php:161
 msgid "Enter one or more words"
 msgstr "Entre uma ou mais palavras"
 
-#: template/home.php:153 template/resource.php:163
+#: template/home.php:153 template/resource.php:162
 msgid "Search"
 msgstr "Pesquisar"
 
-#: template/home.php:154 template/resource.php:164
+#: template/home.php:154 template/resource.php:163
 msgid "Tip! You can do your search using boolean operators."
 msgstr "Dica! Você pode pesquisar usando operadores booleanos."
 
@@ -211,11 +211,11 @@ msgstr "Data de registro"
 msgid "Publication date"
 msgstr "Data de publicação"
 
-#: template/home.php:243 template/resource.php:298
+#: template/home.php:243 template/resource.php:297
 msgid "Fulltext (primary link)"
 msgstr "Texto completo (link principal)"
 
-#: template/home.php:243 template/resource.php:298
+#: template/home.php:243 template/resource.php:297
 msgid "Fulltext (alternative link)"
 msgstr "Texto completo (link alternativo)"
 
@@ -240,74 +240,74 @@ msgid "No related documents"
 msgstr "Nenhum relacionado encontrado"
 
 #: template/resource.php:79
-msgid "cin"
+msgid "Comment in"
 msgstr "Comentário em"
 
 #: template/resource.php:80
-msgid "con"
+msgid "Comment on"
 msgstr "Comentário sobre"
 
 #: template/resource.php:81
-msgid "ein"
+msgid "Erratum in"
 msgstr "Errata em"
 
 #: template/resource.php:82
-msgid "efr"
+msgid "Erratum for"
 msgstr "Errata de"
 
 #: template/resource.php:83
-msgid "cri"
+msgid "Corrected and republished in"
 msgstr "Corrigido e republicado em"
 
-#: template/resource.php:84 template/resource.php:85
-msgid "crf"
+#: template/resource.php:84
+msgid "Corrected and republished from"
 msgstr "Corrigido e republicado de"
 
-#: template/resource.php:86
-msgid "uin"
+#: template/resource.php:85
+msgid "Update in"
 msgstr "Atualização em"
 
-#: template/resource.php:87
-msgid "uof"
+#: template/resource.php:86
+msgid "Update of"
 msgstr "Atualização de"
 
-#: template/resource.php:88
-msgid "eci"
+#: template/resource.php:87
+msgid "Expression of concern in"
 msgstr "Expressão de preocupação em"
 
-#: template/resource.php:89
-msgid "ecf"
+#: template/resource.php:88
+msgid "Expression of concern for"
 msgstr "Expressão de preocupação para"
 
-#: template/resource.php:90
-msgid "rpi"
+#: template/resource.php:89
+msgid "Republished in"
 msgstr "Republicado em"
 
-#: template/resource.php:91
-msgid "rpf"
+#: template/resource.php:90
+msgid "Republished from"
 msgstr "Republicado de"
 
-#: template/resource.php:92
-msgid "spin"
+#: template/resource.php:91
+msgid "Summary for patients in"
 msgstr "Resumo para pacientes em"
 
-#: template/resource.php:93
-msgid "ori"
+#: template/resource.php:92
+msgid "Original report in"
 msgstr "Relatório original em"
 
-#: template/resource.php:94
-msgid "rin"
+#: template/resource.php:93
+msgid "Retraction in"
 msgstr "Retratação em"
 
-#: template/resource.php:95
-msgid "rof"
+#: template/resource.php:94
+msgid "Retraction of"
 msgstr "Retratação de"
 
-#: template/resource.php:212
+#: template/resource.php:211
 msgid "Publication year"
 msgstr "Ano de publicação"
 
-#: template/resource.php:219
+#: template/resource.php:218
 msgid ""
 "Theses and dissertations in %pub_lang% presented to the %institution% to "
 "obtain the academic title of %academic_title%. Leader: %leader%"
@@ -315,7 +315,7 @@ msgstr ""
 "Teses e dissertações em %pub_lang% apresentado à %institution% para obtenção "
 "do título de %academic_title%. Orientador: %leader%"
 
-#: template/resource.php:222
+#: template/resource.php:221
 msgid ""
 "Theses and dissertations presented to the %institution% to obtain the "
 "academic title of %academic_title%. Leader: %leader%"
@@ -338,6 +338,54 @@ msgstr "Relacionados"
 #: template/rss.php:53
 msgid "Bibliographic records"
 msgstr "Registros bibliográficos"
+
+#~ msgid "cin"
+#~ msgstr "Comentário em"
+
+#~ msgid "con"
+#~ msgstr "Comentário sobre"
+
+#~ msgid "ein"
+#~ msgstr "Errata em"
+
+#~ msgid "efr"
+#~ msgstr "Errata de"
+
+#~ msgid "cri"
+#~ msgstr "Corrigido e republicado em"
+
+#~ msgid "crf"
+#~ msgstr "Corrigido e republicado de"
+
+#~ msgid "uin"
+#~ msgstr "Atualização em"
+
+#~ msgid "uof"
+#~ msgstr "Atualização de"
+
+#~ msgid "eci"
+#~ msgstr "Expressão de preocupação em"
+
+#~ msgid "ecf"
+#~ msgstr "Expressão de preocupação para"
+
+#~ msgid "rpi"
+#~ msgstr "Republicado em"
+
+#~ msgid "rpf"
+#~ msgstr "Republicado de"
+
+#~ msgid "spin"
+#~ msgstr "Resumo para pacientes em"
+
+#~ msgid "ori"
+#~ msgstr "Relatório original em"
+
+#~ msgid "rin"
+#~ msgstr "Retratação em"
+
+#~ msgid "rof"
+#~ msgstr "Retratação de"
 
 #~ msgid "Display filters"
 #~ msgstr "Mostrar filtros"

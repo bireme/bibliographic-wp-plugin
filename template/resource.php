@@ -76,23 +76,22 @@ $home_url = isset($biblio_config['home_url_' . $lang]) ? $biblio_config['home_ur
 $plugin_breadcrumb = isset($biblio_config['plugin_title_' . $lang]) ? $biblio_config['plugin_title_' . $lang] : $biblio_config['plugin_title'];
 
 // related resources types
-$type_translated['cin'] = __('cin','biblio');
-$type_translated['con'] = __('con','biblio');
-$type_translated['ein'] = __('ein','biblio');
-$type_translated['efr'] = __('efr','biblio');
-$type_translated['cri'] = __('cri','biblio');
-$type_translated['crf'] = __('crf','biblio');
-$type_translated['crf'] = __('crf','biblio');
-$type_translated['uin'] = __('uin','biblio');
-$type_translated['uof'] = __('uof','biblio');
-$type_translated['eci'] = __('eci','biblio');
-$type_translated['ecf'] = __('ecf','biblio');
-$type_translated['rpi'] = __('rpi','biblio');
-$type_translated['rpf'] = __('rpf','biblio');
-$type_translated['spin'] = __('spin','biblio');
-$type_translated['ori'] = __('ori','biblio');
-$type_translated['rin'] = __('rin','biblio');
-$type_translated['rof'] = __('rof','biblio');
+$type_translated['cin'] = __('Comment in','biblio');
+$type_translated['con'] = __('Comment on','biblio');
+$type_translated['ein'] = __('Erratum in','biblio');
+$type_translated['efr'] = __('Erratum for','biblio');
+$type_translated['cri'] = __('Corrected and republished in','biblio');
+$type_translated['crf'] = __('Corrected and republished from','biblio');
+$type_translated['uin'] = __('Update in','biblio');
+$type_translated['uof'] = __('Update of','biblio');
+$type_translated['eci'] = __('Expression of concern in','biblio');
+$type_translated['ecf'] = __('Expression of concern for','biblio');
+$type_translated['rpi'] = __('Republished in','biblio');
+$type_translated['rpf'] = __('Republished from','biblio');
+$type_translated['spin'] = __('Summary for patients in','biblio');
+$type_translated['ori'] = __('Original report in','biblio');
+$type_translated['rin'] = __('Retraction in','biblio');
+$type_translated['rof'] = __('Retraction of','biblio');
 
 ?>
 
