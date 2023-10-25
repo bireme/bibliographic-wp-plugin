@@ -62,9 +62,15 @@ $page_url_params = home_url($biblio_plugin_slug) . '?q=' . urlencode($query) . '
                     echo "   <author><![CDATA[" . implode(", ", $doc->author) . "]]></author>\n";
                 }
                 echo "   <link>" . home_url($biblio_plugin_slug) .'/resource/?id=' . $doc->id . "</link>\n";
-                if ( $doc->reference_abstract ) {
-                    echo "   <description><![CDATA[" . implode("<br /><br />", $doc->reference_abstract) . "]]></description>\n";
+                echo "   <description><![CDATA[";
+                if ( $doc->reference_source ) {
+                    echo $doc->reference_source . "<br/><br/>";
                 }
+                if ( $doc->reference_abstract ) {
+                    echo implode("<br /><br />", $doc->reference_abstract);
+                }
+                echo "]]></description>\n";
+
                 echo "   <guid isPermaLink=\"false\">" . $doc->django_id . "</guid>\n";
 
                 $pub_date = ($doc->updated_date != '' ? $doc->updated_date : $doc->created_date);
