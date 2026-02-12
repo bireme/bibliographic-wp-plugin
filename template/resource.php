@@ -8,9 +8,9 @@ global $biblio_service_url, $biblio_plugin_slug, $similar_docs_url;
 $biblio_config         = get_option('biblio_config');
 $biblio_initial_filter = $biblio_config['initial_filter'];
 $biblio_addthis_id     = $biblio_config['addthis_profile_id'];
-$biblio_about          = $biblio_config['about'];
-$biblio_tutorials      = $biblio_config['tutorials'];
-$alternative_links     = (bool)$biblio_config['alternative_links'];
+$biblio_about = $biblio_config['about'] ?? null;
+$biblio_tutorials  = $biblio_config['tutorials'] ?? null;
+$alternative_links = $biblio_config['alternative_links'] ?? null;
 
 $referer = wp_get_referer();
 $path = parse_url($referer);
@@ -309,8 +309,7 @@ $type_translated['rof'] = __('Retraction of','biblio');
                             <?php endif; ?>
                         </article>
                     </div>
-
-                    <?php if ( $resource->related_resources ) : ?>
+                    <?php if ( isset($resource->related_resources) && $resource->related_resources ) : ?>
                         <?php
                             foreach ($resource->related_resources as $related):
                                 $related_data = json_decode($related, true);
@@ -322,7 +321,7 @@ $type_translated['rof'] = __('Retraction of','biblio');
                         ?>
                     <?php endif; ?>
 
-                    <?php if ( $resource->related_research ) : ?>
+                    <?php if ( isset($resource->related_research) && $resource->related_research ) : ?>
                         <?php
 
                             echo '<strong>' . __('Research data','biblio') . '</strong>';

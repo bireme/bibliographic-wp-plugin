@@ -4,11 +4,11 @@ Plugin Name: Bibliographic
 Plugin URI: http://reddes.bvsalud.org/projects/fi-admin/
 Description: Search bibliographic records from FI-ADMIN.
 Author: BIREME/OPAS/OMS
-Version: 1.4
+Version: 1.5
 Author URI: http://reddes.bvsalud.org/
 */
 
-define('BIBLIOGRAPHIC_PLUGIN_VERSION', '1.4' );
+define('BIBLIOGRAPHIC_PLUGIN_VERSION', '1.5' );
 
 define('BIBLIOGRAPHIC_SYMBOLIC_LINK', false );
 define('BIBLIOGRAPHIC_PLUGIN_DIRNAME', 'bibliographic' );
